@@ -27,6 +27,7 @@ regions = ['IT', 'V4']
 
 
 def get_model_scores(model_identifier, layers, region, n_components):
+    tf.reset_default_graph()
     activations_model = ModelBuilder()(model_identifier)
     activations_model.identifier += '-majajhong2015'
     benchmark_identifier = f'dicarlo.MajajHong2015public.{region}-pls'
