@@ -26,7 +26,7 @@ prednet_layers = ['A_%i' % i for i in range(1, 4)] \
                  + ['R_%i' % i for i in range(1, 4)]
 vvs_models = ['resnet18-supervised', 'resnet18-la', 'resnet18-ir', 'resnet18-ae',
               'resnet18-cpc', 'resnet18-color', 'resnet18-rp', 'resnet18-depth',
-              'prednet', 'resnet18-simclr', 'resnet18-deepcluster', 'resnet18-cmc']
+              'resnet18-simclr', 'resnet18-deepcluster', 'resnet18-cmc']
 regions = ['IT', 'V4']
 
 
