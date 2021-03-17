@@ -20,6 +20,10 @@ pt_resnet18_layers = ['relu', 'maxpool'] +\
                      ['layer2.0.relu', 'layer2.1.relu'] +\
                      ['layer3.0.relu', 'layer3.1.relu'] +\
                      ['layer4.0.relu', 'layer4.1.relu']
+prednet_layers = ['A_%i' % i for i in range(1, 4)] \
+                 + ['Ahat_%i' % i for i in range(1, 4)] \
+                 + ['E_%i' % i for i in range(1, 4)] \
+                 + ['R_%i' % i for i in range(1, 4)]
 vvs_models = ['resnet18-supervised', 'resnet18-la', 'resnet18-ir', 'resnet18-ae',
               'resnet18-cpc', 'resnet18-color', 'resnet18-rp', 'resnet18-depth',
               'prednet', 'resnet18-simclr', 'resnet18-deepcluster', 'resnet18-cmc']
@@ -81,7 +85,12 @@ if __name__ == '__main__':
 
     results = pd.DataFrame()
     for model_identifier, region in itertools.product(vvs_models, regions):
-        layers = pt_resnet18_layers if model_identifier in ModelBuilder.PT_MODELS else tf_res18_layers
+        if model_identifier in ModelBuilder.PT_MODELS:
+            layers = pt_resnet18_layers
+        elif model_identifier == 'prednet':
+            layers = prednet_layers
+        else:
+            layers = tf_res18_layers
         if args.debug:
             layers = layers[:1]
 
