@@ -89,6 +89,8 @@ if __name__ == '__main__':
             layers = pt_resnet18_layers
         elif model_identifier == 'prednet':
             layers = prednet_layers
+        elif model_identifier == 'resnet18-simclr':
+            layers = tf_res18_layers[1:]
         else:
             layers = tf_res18_layers
         if args.debug:
