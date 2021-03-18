@@ -45,7 +45,7 @@ def get_model_scores(model_identifier, layers, region, n_components):
 
     score = score.to_dataframe(name='').unstack(level='aggregation').reset_index()
     score.columns = ['layer', 'score', 'score_error']
-    score = score.assign(model=model_identifier)
+    score = score.assign(model=model_identifier, region=region)
 
     return score
 
@@ -60,7 +60,7 @@ def get_model_effdims(model_identifier, n_components):
 
     effdims = [{'layer': layer, 'effective_dimensionality': dim} for layer, dim in effdims.items()]
     effdims = pd.DataFrame(effdims)
-    effdims = effdims.assign(model=model_identifier)
+    effdims = effdims.assign(model=model_identifier, region=region)
 
     return effdims
 
@@ -98,7 +98,7 @@ if __name__ == '__main__':
 
         model_scores = get_model_scores(model_identifier, layers, region, args.n_components)
         model_effdims = get_model_effdims(model_identifier, args.n_components)
-        result = pd.merge(model_scores, model_effdims, on=['model', 'layer'])
+        result = pd.merge(model_scores, model_effdims, on=['model', 'layer', 'region'])
 
         results = results.append(result)
 
