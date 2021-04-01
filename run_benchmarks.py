@@ -139,4 +139,4 @@ if __name__ == '__main__':
 
         results = results.append(result)
 
-    results.to_csv('results.csv', index=False)
+    results.to_csv(f'results_{args.regression}.csv', index=False)
