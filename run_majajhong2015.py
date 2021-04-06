@@ -36,7 +36,7 @@ if __name__ == '__main__':
             benchmark._similarity_metric.regression = linear_regression()
 
         result = get_results(benchmark, args.n_components, models=models)
-        results = result.assign(region=region)
+        result = result.assign(region=region)
         results = results.append(result)
 
     results.to_csv(f'results_majajhong2015_{args.regression}.csv', index=False)
