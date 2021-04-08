@@ -8,9 +8,7 @@ from dimensionality import get_results
 from activations_models.generators import unsup_vvs_generator
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Run unsupervised activations_models on Object2Vec.')
-    parser.add_argument('--debug', action='store_true',
-                        help='run only a single model and layer')
+    parser = argparse.ArgumentParser(description='Run unsupervised models on Object2Vec.')
     parser.add_argument('--data_dir', type=str, required=True,
                         help='path to the Object2Vec dataset directory')
     parser.add_argument('--regression', type=str, default='pls',
@@ -25,7 +23,7 @@ if __name__ == '__main__':
     benchmark = Object2VecEncoderBenchmark(data_dir=args.data_dir, regression=args.regression,
                                            regions=['EVC', 'OPA', 'PPA', 'LOC', 'PFS', 'OFA', 'FFA'])
 
-    results = get_results(benchmark, unsup_vvs_generator(debug=args.debug), args.n_components)
+    results = get_results(benchmark, unsup_vvs_generator(), args.n_components)
     results = results.assign(region='+'.join(benchmark.regions))
 
-    results.to_csv(f'results/object2vec_{args.regression}.csv', index=False)
+    results.to_csv(f'results/object2vec_vvs_{args.regression}.csv', index=False)

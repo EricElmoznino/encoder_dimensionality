@@ -3,8 +3,8 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 import math
-from activations_models.base import Model
 from typing import List
+from .base import Model
 
 
 class CurvatureFiltersModel(Model):

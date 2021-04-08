@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from torchvision.models import alexnet, resnet18, resnet50
 from typing import List
-from activations_models.base import Model
+from .base import Model
 
 
 class AlexNet(Model):
@@ -57,42 +57,44 @@ class ResNet(Model):
         super().__init__(**kwargs)
 
         self.kind = kind
-        self.block = block
         self.pretrained = pretrained
 
         torch.manual_seed(27)
         if kind == 'resnet18':
-            self.base = resnet18(pretrained=pretrained)
+            base = resnet18(pretrained=pretrained)
         elif kind == 'resnet50':
-            self.base = resnet50(pretrained=pretrained)
+            base = resnet50(pretrained=pretrained)
+        else:
+            raise NotImplementedError()
 
-        self.eval()
+        self.conv1 = base.conv1
+        self.bn1 = base.bn1
+        self.relu = base.relu
+        self.maxpool = base.maxpool
+        self.block1 = base.layer1
+        self.block2 = base.layer2
+        self.block3 = base.layer3
+        self.block4 = base.layer4
 
-    def extract_features(self, x):
-        x = self.base.conv1(x)
-        x = self.base.bn1(x)
-        x = self.base.relu(x)
-        x = self.base.maxpool(x)
-        x = self.base.layer1(x)
-        if self.block == 1:
-            return x
-        x = self.base.layer2(x)
-        if self.block == 2:
-            return x
-        x = self.base.layer3(x)
-        if self.block == 3:
-            return x
-        x = self.base.layer4(x)
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = self.relu(x)
+        x = self.maxpool(x)
+        x = self.block1(x)
+        x = self.block2(x)
+        x = self.block3(x)
+        x = self.block4(x)
         return x
 
     def base_name(self) -> str:
-        name = f'{self.kind} (B={self.block})'
+        name = f'{self.kind}'
         if not self.pretrained:
-            name = name.replace(')', ' untrained)')
+            name += ' (untrained)'
         return name
 
     def model_type(self) -> str:
         return 'supervised'
 
-    def input_size(self) -> Tuple[int, ...]:
-        return (3, 224, 224)
+    def layers(self) -> List[str]:
+        return ['block1', 'block2', 'block3', 'block4']

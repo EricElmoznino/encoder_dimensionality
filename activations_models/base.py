@@ -9,7 +9,7 @@ from typing import Callable, List, Tuple
 
 class Model(nn.Module):
 
-    def __init__(self, zscore: bool):
+    def __init__(self, zscore: bool = False):
         super(Model, self).__init__()
         self.zscore = zscore
 
