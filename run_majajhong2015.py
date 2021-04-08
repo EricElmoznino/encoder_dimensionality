@@ -36,4 +36,4 @@ if __name__ == '__main__':
         result = result.assign(region=region)
         results = results.append(result)
 
-    results.to_csv(f'results_majajhong2015_{args.regression}.csv', index=False)
+    results.to_csv(f'results/majajhong2015_{args.regression}.csv', index=False)

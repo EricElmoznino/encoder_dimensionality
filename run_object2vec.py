@@ -28,4 +28,4 @@ if __name__ == '__main__':
     results = get_results(benchmark, unsup_vvs_generator(debug=args.debug), args.n_components)
     results = results.assign(region='+'.join(benchmark.regions))
 
-    results.to_csv(f'results_object2vec_{args.regression}.csv', index=False)
+    results.to_csv(f'results/object2vec_{args.regression}.csv', index=False)
