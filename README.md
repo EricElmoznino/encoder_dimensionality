@@ -1,1 +1,1 @@
-# unsup_vvs_dimensionality
+# Encoder Dimensionality

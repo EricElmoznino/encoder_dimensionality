@@ -7,9 +7,10 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 import brainscore.benchmarks as bench
 from brainscore.metrics.regression import linear_regression
 from dimensionality import get_results
+from activations_models.generators import unsup_vvs_generator
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Run unsupervised models on MajajHong2015.')
+    parser = argparse.ArgumentParser(description='Run unsupervised activations_models on MajajHong2015.')
     parser.add_argument('--debug', action='store_true',
                         help='run only a single model and layer')
     parser.add_argument('--regression', type=str, default='pls',
@@ -18,14 +19,10 @@ if __name__ == '__main__':
                         help='number of PCA components prior to fitting encoder (-1 for no PCA)')
     args = parser.parse_args()
 
-    if args.debug:
-        models = ['resnet18-supervised']
-        regions = ['IT']
-    else:
-        models = None               # all models
-        regions = ['IT', 'V4']
     if args.n_components == -1:
         args.n_components = None    # no PCA
+
+    regions = ['IT', 'V4'] if not args.debug else ['IT']
 
     results = pd.DataFrame()
     for region in regions:
@@ -35,7 +32,7 @@ if __name__ == '__main__':
             benchmark._identifier = benchmark.identifier.replace('pls', args.regression)
             benchmark._similarity_metric.regression = linear_regression()
 
-        result = get_results(benchmark, args.n_components, models=models)
+        result = get_results(benchmark, unsup_vvs_generator(debug=args.debug), args.n_components)
         result = result.assign(region=region)
         results = results.append(result)
 
