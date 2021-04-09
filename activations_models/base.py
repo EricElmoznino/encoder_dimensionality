@@ -21,7 +21,7 @@ class Model(nn.Module):
         if self.zscore:
             _ = ZScore.hook(activations_model)
         if self.pool_map is not None:
-            _ = MaxPool2d.hook(self, self.pool_map)
+            _ = MaxPool2d.hook(activations_model, self.pool_map)
         return activations_model, self.layers()
 
     def preprocess_func(self) -> Callable[[List[str]], np.ndarray]:
