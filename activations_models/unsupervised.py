@@ -8,13 +8,16 @@ class ResNetSimCLR(Model):
 
     def __init__(self, kind, **kwargs):
         assert kind in ['resnet50']
-        super().__init__(**kwargs)
+        super(ResNetSimCLR, self).__init__(pool_map={'block1': 14, 'block2': 9,
+                                                     'block3': 7, 'block4': 3},
+                                           **kwargs)
 
         self.kind = kind
 
         torch.manual_seed(27)
         if kind == 'resnet50':
-            weight_path = 'https://pl-bolts-weights.s3.us-east-2.amazonaws.com/simclr/bolts_simclr_imagenet/simclr_imagenet.ckpt'
+            weight_path = 'https://pl-bolts-weights.s3.us-east-2.amazonaws.com/simclr/' \
+                          'bolts_simclr_imagenet/simclr_imagenet.ckpt'
             simclr = SimCLR.load_from_checkpoint(weight_path, strict=False)
             base = simclr.encoder
         else:

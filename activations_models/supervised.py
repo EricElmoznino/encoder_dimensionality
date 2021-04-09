@@ -8,7 +8,10 @@ from .base import Model
 class AlexNet(Model):
 
     def __init__(self, pretrained=True, **kwargs):
-        super().__init__(**kwargs)
+        super(AlexNet, self).__init__(pool_map={'conv1': 4, 'conv2': 4,
+                                                'conv3': 4, 'conv4': 4,
+                                                'conv5': 2},
+                                      **kwargs)
 
         self.pretrained = pretrained
 
@@ -54,7 +57,9 @@ class ResNet(Model):
 
     def __init__(self, kind, pretrained=True, **kwargs):
         assert kind in ['resnet18', 'resnet50']
-        super().__init__(**kwargs)
+        super(ResNet, self).__init__(pool_map={'block1': 14, 'block2': 9,
+                                               'block3': 7, 'block4': 3},
+                                     **kwargs)
 
         self.kind = kind
         self.pretrained = pretrained

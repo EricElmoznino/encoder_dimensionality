@@ -3,15 +3,16 @@ from torch import nn
 from torchvision import transforms
 import numpy as np
 from model_tools.activations.pytorch import PytorchWrapper, load_preprocess_images, load_images
-from .zscoring import ZScore
-from typing import Callable, List, Tuple
+from .hooks import ZScore, MaxPool2d
+from typing import Callable, List, Tuple, Dict
 
 
 class Model(nn.Module):
 
-    def __init__(self, zscore: bool = False):
+    def __init__(self, zscore: bool = False, pool_map: Dict[str, int] = None):
         super(Model, self).__init__()
         self.zscore = zscore
+        self.pool_map = pool_map
 
     def make_wrapper(self) -> Tuple[PytorchWrapper, List[str]]:
         activations_model = PytorchWrapper(model=self,
@@ -19,6 +20,8 @@ class Model(nn.Module):
                                            identifier=self.identifier())
         if self.zscore:
             _ = ZScore.hook(activations_model)
+        if self.pool_map is not None:
+            _ = MaxPool2d.hook(self, self.pool_map)
         return activations_model, self.layers()
 
     def preprocess_func(self) -> Callable[[List[str]], np.ndarray]:

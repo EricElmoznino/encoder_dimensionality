@@ -10,9 +10,10 @@ from .base import Model
 class CurvatureFiltersModel(Model):
 
     def __init__(self, n_filts=180, **kwargs):
-        super().__init__(**kwargs)
+        super(CurvatureFiltersModel, self).__init__(pool_map={'logits': 32},
+                                                    **kwargs)
 
-        assert  n_filts % 15 == 0
+        assert n_filts % 15 == 0
         self.n_filts = n_filts
 
         self.n_ories = self.n_filts // 15
@@ -39,7 +40,8 @@ class CurvatureFiltersModel(Model):
         self.weight = nn.Parameter(w)
 
     def forward(self, x):
-        feats = F.conv2d(x, weight=self.weight, padding=math.floor(self.filt_size / 2))
+        feats = F.conv2d(x, weight=self.weight,
+                         padding=math.floor(self.filt_size / 2))
         feats = feats.abs()
         return feats
 
@@ -56,7 +58,8 @@ class CurvatureFiltersModel(Model):
 class EdgeFiltersModel(Model):
 
     def __init__(self, n_filts=180, **kwargs):
-        super().__init__(**kwargs)
+        super(EdgeFiltersModel, self).__init__(pool_map={'logits': 32},
+                                               **kwargs)
 
         self.n_filts = n_filts
 
@@ -82,7 +85,8 @@ class EdgeFiltersModel(Model):
         self.weight = nn.Parameter(w)
 
     def forward(self, x):
-        feats = F.conv2d(x, weight=self.weight, padding=math.floor(self.filt_size / 2))
+        feats = F.conv2d(x, weight=self.weight,
+                         padding=math.floor(self.filt_size / 2))
         feats = feats.abs()
         return feats
 
@@ -99,7 +103,8 @@ class EdgeFiltersModel(Model):
 class RandomFiltersModel(Model):
 
     def __init__(self, n_filts=180, **kwargs):
-        super().__init__(**kwargs)
+        super(RandomFiltersModel, self).__init__(pool_map={'logits': 32},
+                                                 **kwargs)
 
         self.n_filts = n_filts
 
@@ -112,7 +117,8 @@ class RandomFiltersModel(Model):
         self.weight = nn.Parameter(w)
 
     def forward(self, x):
-        feats = F.conv2d(x, weight=self.weight, padding=math.floor(self.filt_size / 2))
+        feats = F.conv2d(x, weight=self.weight,
+                         padding=math.floor(self.filt_size / 2))
         feats = feats.abs()
         return feats
 
