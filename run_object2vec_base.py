@@ -21,8 +21,7 @@ if __name__ == '__main__':
     if args.n_components == -1:
         args.n_components = None    # no PCA
 
-    benchmark = Object2VecEncoderBenchmark(data_dir=args.data_dir, regression=args.regression,
-                                           regions=['EVC', 'OPA', 'PPA', 'LOC', 'PFS', 'OFA', 'FFA'])
+    benchmark = Object2VecEncoderBenchmark(data_dir=args.data_dir, regression=args.regression)
 
     results = pd.DataFrame()
     for gen, model_type in zip([engineered_generator, supervised_generator, unsupervised_generator],

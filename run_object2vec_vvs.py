@@ -20,8 +20,7 @@ if __name__ == '__main__':
     if args.n_components == -1:
         args.n_components = None    # no PCA
 
-    benchmark = Object2VecEncoderBenchmark(data_dir=args.data_dir, regression=args.regression,
-                                           regions=['EVC', 'OPA', 'PPA', 'LOC', 'PFS', 'OFA', 'FFA'])
+    benchmark = Object2VecEncoderBenchmark(data_dir=args.data_dir, regression=args.regression)
 
     results = get_results(benchmark, unsup_vvs_generator(), args.n_components)
     results = results.assign(region='+'.join(benchmark.regions))
