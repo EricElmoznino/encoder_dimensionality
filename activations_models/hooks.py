@@ -8,7 +8,6 @@ from typing import Dict
 
 class ZScore:
     def __init__(self, activations_extractor: PytorchWrapper, dim=1):
-        assert activations_extractor._model.zscore
         self._extractor = activations_extractor
         self._dim = dim
 
@@ -38,7 +37,6 @@ class ZScore:
 
 class MaxPool2d:
     def __init__(self, activations_extractor: PytorchWrapper, pool_map: Dict[str, int]):
-        assert activations_extractor._model.zscore
         self._extractor = activations_extractor
         self._pool_map = pool_map
 
