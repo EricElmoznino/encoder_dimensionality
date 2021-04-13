@@ -46,8 +46,12 @@ def get_model_scores(activations_model, benchmark, layers, n_components):
                                visual_degrees=8)
     score = model_scores(benchmark=benchmark, layers=layers, prerun=True)
 
-    score = score.to_dataframe(name='').unstack(level='aggregation').reset_index()
-    score.columns = ['layer', 'score', 'score_error']
+    if 'aggregation' in score.dims:
+        score = score.to_dataframe(name='').unstack(level='aggregation').reset_index()
+        score.columns = ['layer', 'score', 'score_error']
+    else:
+        score = score.to_dataframe(name='').reset_index()
+        score.columns = ['layer', 'score']
     score = score.assign(model=activations_model.identifier, benchmark=benchmark.identifier)
 
     return score
