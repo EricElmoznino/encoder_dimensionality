@@ -47,7 +47,7 @@ def unsup_vvs_generator():
             activations_model = ModelBuilder()(model_identifier)
             activations_model.identifier += '-pool'
             layers = ['encode_3', 'encode_5', 'encode_7', 'encode_9']
-            pool_map={'encode_3': 14, 'encode_5': 9, 'encode_7': 7, 'encode_9': 3}
+            pool_map={'encode_3': 13, 'encode_5': 9, 'encode_7': 7, 'encode_9': 3}
             _ = MaxPool2d.hook(activations_model, pool_map)
             yield activations_model, layers
 
