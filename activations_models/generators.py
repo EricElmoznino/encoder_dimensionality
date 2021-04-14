@@ -2,6 +2,7 @@ from candidate_models.base_models.unsupervised_vvs import ModelBuilder
 from .engineered import CurvatureFiltersModel, EdgeFiltersModel, RandomFiltersModel, RawPixelsModel
 from .supervised import AlexNet, ResNet
 from .unsupervised import ResNetSimCLR
+from .hooks import MaxPool2d
 
 
 def unsup_vvs_generator():
@@ -31,7 +32,21 @@ def unsup_vvs_generator():
         else:
             layers = tf_res18_layers
 
+        # No pooling
         yield activations_model, layers
+
+        # Pool
+        activations_model.identifier += '-pool'
+        if model_identifier in ModelBuilder.PT_MODELS:
+            layers = ['encode_3', 'encode_5', 'encode_7', 'encode_9']
+            pool_map={'encode_3': 14, 'encode_5': 9, 'encode_7': 7, 'encode_9': 3}
+            _ = MaxPool2d.hook(activations_model, pool_map)
+            yield activations_model, layers
+        elif model_identifier != 'prednet':
+            layers = ['layer1.1.relu', 'layer2.1.relu', 'layer3.1.relu', 'layer4.1.relu']
+            pool_map={'layer1.1.relu': 14, 'layer2.1.relu': 9, 'layer3.1.relu': 7, 'layer4.1.relu': 3}
+            _ = MaxPool2d.hook(activations_model, pool_map)
+            yield activations_model, layers
 
 
 def engineered_generator():
