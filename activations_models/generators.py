@@ -39,15 +39,15 @@ def unsup_vvs_generator():
         if model_identifier in ModelBuilder.PT_MODELS:
             activations_model = ModelBuilder()(model_identifier)
             activations_model.identifier += '-pool'
-            layers = ['encode_3', 'encode_5', 'encode_7', 'encode_9']
-            pool_map={'encode_3': 14, 'encode_5': 9, 'encode_7': 7, 'encode_9': 3}
+            layers = ['layer1.1.relu', 'layer2.1.relu', 'layer3.1.relu', 'layer4.1.relu']
+            pool_map={'layer1.1.relu': 14, 'layer2.1.relu': 9, 'layer3.1.relu': 7, 'layer4.1.relu': 3}
             _ = MaxPool2d.hook(activations_model, pool_map)
             yield activations_model, layers
         elif model_identifier != 'prednet':
             activations_model = ModelBuilder()(model_identifier)
             activations_model.identifier += '-pool'
-            layers = ['layer1.1.relu', 'layer2.1.relu', 'layer3.1.relu', 'layer4.1.relu']
-            pool_map={'layer1.1.relu': 14, 'layer2.1.relu': 9, 'layer3.1.relu': 7, 'layer4.1.relu': 3}
+            layers = ['encode_3', 'encode_5', 'encode_7', 'encode_9']
+            pool_map={'encode_3': 14, 'encode_5': 9, 'encode_7': 7, 'encode_9': 3}
             _ = MaxPool2d.hook(activations_model, pool_map)
             yield activations_model, layers
 
