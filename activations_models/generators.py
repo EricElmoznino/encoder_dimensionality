@@ -71,5 +71,5 @@ def supervised_generator():
 
 def unsupervised_generator():
     for zscore in [True, False]:
-        for kind in ['resnet50']:
-            yield ResNetSimCLR(kind, zscore=zscore).make_wrapper()
+        for method in ['simclr', 'barlowtwins']:
+            yield ResNetSimCLR(kind='resnet50', method=method, zscore=zscore).make_wrapper()
