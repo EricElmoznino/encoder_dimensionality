@@ -4,14 +4,14 @@ from typing import List
 from .base import Model
 
 
-class ResNetSimCLR(Model):
+class ResNetUnsup(Model):
 
     def __init__(self, kind, method, **kwargs):
         assert kind in ['resnet50']
         assert method in ['simclr', 'barlowtwins']
-        super(ResNetSimCLR, self).__init__(pool_map={'block1': 14, 'block2': 9,
-                                                     'block3': 7, 'block4': 3},
-                                           **kwargs)
+        super(ResNetUnsup, self).__init__(pool_map={'block1': 14, 'block2': 9,
+                                                    'block3': 7, 'block4': 3},
+                                          **kwargs)
 
         self.kind = kind
         self.method = method

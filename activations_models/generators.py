@@ -1,7 +1,7 @@
 from candidate_models.base_models.unsupervised_vvs import ModelBuilder
 from .engineered import CurvatureFiltersModel, EdgeFiltersModel, RandomFiltersModel, RawPixelsModel
 from .supervised import AlexNet, ResNet
-from .unsupervised import ResNetSimCLR
+from .unsupervised import ResNetUnsup
 from .hooks import MaxPool2d
 
 
@@ -72,4 +72,4 @@ def supervised_generator():
 def unsupervised_generator():
     for zscore in [True, False]:
         for method in ['simclr', 'barlowtwins']:
-            yield ResNetSimCLR(kind='resnet50', method=method, zscore=zscore).make_wrapper()
+            yield ResNetUnsup(kind='resnet50', method=method, zscore=zscore).make_wrapper()
