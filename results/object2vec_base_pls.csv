@@ -1,0 +1,72 @@
+layer,score,score_error,model,benchmark,effective_dimensionality_dataset,effective_dimensionality_imagenet,model_type,region
+logits,0.2909128808295599,0.0012021994743938867,base=curvature filters (n=180)-type=engineered-zscore-1000components,bonner.Object2Vec.regression=pls,12.197068060794903,92.57292332578486,engineered,reliable
+logits,0.23131291879073546,0.0010705950691401389,base=edge filters (n=180)-type=engineered-zscore-1000components,bonner.Object2Vec.regression=pls,9.41512511195165,50.05537350517653,engineered,reliable
+logits,0.29741826933256477,0.0012782695088247127,base=random filters (n=180)-type=engineered-zscore-1000components,bonner.Object2Vec.regression=pls,7.446007232296384,27.578760368479948,engineered,reliable
+logits,0.21501989115598208,0.0009553019718799463,base=curvature filters (n=180)-type=engineered-1000components,bonner.Object2Vec.regression=pls,7.0588187459396705,7.873873488307533,engineered,reliable
+logits,0.21307192701995317,0.0009033845145348783,base=edge filters (n=180)-type=engineered-1000components,bonner.Object2Vec.regression=pls,7.798720293432602,9.538119254879243,engineered,reliable
+logits,0.248783034994606,0.0010146065126330093,base=random filters (n=180)-type=engineered-1000components,bonner.Object2Vec.regression=pls,4.44047235300642,4.525785796365499,engineered,reliable
+logits,0.164870562378276,0.0010484885511794135,base=raw pixels-type=engineered-1000components,bonner.Object2Vec.regression=pls,8.624966809103906,9.117470464676916,engineered,reliable
+conv1,0.3046947827078797,0.0011947658784663908,base=alexnet-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,27.77332852875596,62.94765796468307,supervised,reliable
+conv3,0.3488717559563732,0.0012510350006307968,base=alexnet-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,42.155045097012305,170.8610374588182,supervised,reliable
+conv5,0.36599676321314417,0.001247322504795093,base=alexnet-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,48.25643701995393,131.0418175461601,supervised,reliable
+fc7,0.3568510175130542,0.001224030504301941,base=alexnet-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,36.82125183369466,229.83204545540787,supervised,reliable
+block1,0.3282222224259388,0.0012480118085844963,base=resnet50-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,10.762921082263395,48.728309223012964,supervised,reliable
+block2,0.35373896930125825,0.0012715852533201647,base=resnet50-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,16.85102093051158,105.62535938405334,supervised,reliable
+block3,0.3900529531106365,0.0012235525291662958,base=resnet50-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,40.702013131830334,150.96343877964935,supervised,reliable
+block4,0.3955598519789691,0.0011035855834311506,base=resnet50-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,51.17729908446412,187.35290266433907,supervised,reliable
+block1,0.32870270803023727,0.0012200563426690394,base=resnet18-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,14.905346893750659,40.53017731307298,supervised,reliable
+block2,0.3683803879867952,0.0012734078493637764,base=resnet18-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,27.91971835832083,95.14418655957896,supervised,reliable
+block3,0.37674434435028364,0.0012444270024794602,base=resnet18-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,63.033605117117474,118.27160974048603,supervised,reliable
+block4,0.3753002297863449,0.001104011691537675,base=resnet18-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,62.61737506958664,170.5378854240871,supervised,reliable
+conv1,0.22806024440682032,0.0010780513195898578,base=alexnet (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,9.994299464207312,19.233390590155388,supervised,reliable
+conv3,0.2407644902384773,0.0010856955164638452,base=alexnet (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,6.967043999267492,13.405601550329044,supervised,reliable
+conv5,0.2468245533355188,0.0010881749521863995,base=alexnet (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,8.746446265047895,15.875671830021266,supervised,reliable
+fc7,0.22495027497868936,0.0011075810519717306,base=alexnet (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,11.659498524298177,17.32570485951217,supervised,reliable
+block1,0.240359899949692,0.0011032210228048794,base=resnet50 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,7.74487946664832,23.391938779488758,supervised,reliable
+block2,0.2692494318509714,0.0011098965809767825,base=resnet50 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,6.563835207299089,33.47223237884626,supervised,reliable
+block3,0.2508131949389356,0.0010133034653021034,base=resnet50 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,5.608048544348533,60.919974788027936,supervised,reliable
+block4,0.2368447625517304,0.0009662389488871916,base=resnet50 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,5.785929229876039,28.25176587303287,supervised,reliable
+block1,0.25401436272734573,0.001101288800118046,base=resnet18 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,9.763388423139462,19.991783314731073,supervised,reliable
+block2,0.28460369144312214,0.001112578839639312,base=resnet18 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,9.64686908012742,20.608048724224247,supervised,reliable
+block3,0.26273347200484065,0.001107053240735562,base=resnet18 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,12.465565720068852,25.76083100564198,supervised,reliable
+block4,0.28603039086453164,0.001092403912974202,base=resnet18 (untrained)-type=supervised-zscore-1000components,bonner.Object2Vec.regression=pls,16.92959812664385,51.386119419465906,supervised,reliable
+conv1,0.27745556830966633,0.0010982420401260819,base=alexnet-type=supervised-1000components,bonner.Object2Vec.regression=pls,16.99570987652469,27.65924179012877,supervised,reliable
+conv3,0.3374063754062578,0.0011693683216039705,base=alexnet-type=supervised-1000components,bonner.Object2Vec.regression=pls,33.67783005934383,139.34613635536041,supervised,reliable
+conv5,0.3376650388248972,0.0012147650081943903,base=alexnet-type=supervised-1000components,bonner.Object2Vec.regression=pls,39.82085255456266,110.6779043447512,supervised,reliable
+fc7,0.35363179428956154,0.0012108737657105968,base=alexnet-type=supervised-1000components,bonner.Object2Vec.regression=pls,35.101125529826554,227.13645028334082,supervised,reliable
+block1,0.31420321092176307,0.0012363471021945359,base=resnet50-type=supervised-1000components,bonner.Object2Vec.regression=pls,10.610320216360867,29.529389436605022,supervised,reliable
+block2,0.34517795471477686,0.0012555450339823697,base=resnet50-type=supervised-1000components,bonner.Object2Vec.regression=pls,13.80932245783822,55.59662547984754,supervised,reliable
+block3,0.38066558490726543,0.0012084843447950715,base=resnet50-type=supervised-1000components,bonner.Object2Vec.regression=pls,34.794391605130535,114.69687913791196,supervised,reliable
+block4,0.375144131924529,0.0010732672795684061,base=resnet50-type=supervised-1000components,bonner.Object2Vec.regression=pls,53.067644020972565,182.26800494561527,supervised,reliable
+block1,0.32718342140816487,0.001198523353844582,base=resnet18-type=supervised-1000components,bonner.Object2Vec.regression=pls,13.287526487094574,23.12907609403569,supervised,reliable
+block2,0.367173823017884,0.0011878272640424062,base=resnet18-type=supervised-1000components,bonner.Object2Vec.regression=pls,22.553229365599933,56.05575421323803,supervised,reliable
+block3,0.3640038551720447,0.0011916156426748398,base=resnet18-type=supervised-1000components,bonner.Object2Vec.regression=pls,41.50772265366491,67.89410151786119,supervised,reliable
+block4,0.34088733186545306,0.0010347429614849565,base=resnet18-type=supervised-1000components,bonner.Object2Vec.regression=pls,60.67427156811946,163.75875080664545,supervised,reliable
+conv1,0.20182159907325717,0.0010894558699935755,base=alexnet (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,12.517086507383818,14.84222331904795,supervised,reliable
+conv3,0.2366500855275011,0.0010461670477653422,base=alexnet (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,6.662043566717231,10.09265257212421,supervised,reliable
+conv5,0.22955456798207324,0.0010996771486183599,base=alexnet (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,5.892561252981324,8.233365857645616,supervised,reliable
+fc7,0.22232329953669133,0.0011212934017261465,base=alexnet (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,8.578913403257891,11.89220551473817,supervised,reliable
+block1,0.23416034611966347,0.0011056340087876794,base=resnet50 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,7.052530122457591,8.252314307063202,supervised,reliable
+block2,0.24722529282374706,0.0010516922921970265,base=resnet50 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,4.795079277945793,4.299677831350609,supervised,reliable
+block3,0.23008521152591394,0.000987227423121339,base=resnet50 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,2.549093766485306,2.3045946620221507,supervised,reliable
+block4,0.22363134107333707,0.0010015479686340308,base=resnet50 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,1.9605802800478407,1.9151193044196406,supervised,reliable
+block1,0.24771886781911073,0.0010842366533808405,base=resnet18 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,7.4972829290134415,8.667985483061925,supervised,reliable
+block2,0.2679031358903149,0.0010579127693086429,base=resnet18 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,5.948969182239369,6.034078865576757,supervised,reliable
+block3,0.26909271504121973,0.0010391254961547927,base=resnet18 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,5.418235165576911,4.014160126918305,supervised,reliable
+block4,0.25796824645021205,0.0011047032885893949,base=resnet18 (untrained)-type=supervised-1000components,bonner.Object2Vec.regression=pls,4.345521992708137,3.693635748180003,supervised,reliable
+block1,0.33846117419482,0.0012192336421014513,base=resnet50 simclr-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,9.444567584102641,59.488059369553305,unsupervised,reliable
+block2,0.3721543518371139,0.0012778591438371537,base=resnet50 simclr-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,14.12919629832828,143.96704249087503,unsupervised,reliable
+block3,0.3976592034921438,0.0012941348870518523,base=resnet50 simclr-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,34.82079696840489,110.57875524211012,unsupervised,reliable
+block4,0.39578204046597315,0.0011625956962044658,base=resnet50 simclr-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,31.037020651884692,207.73351692841365,unsupervised,reliable
+block1,0.3309248234247721,0.0012398430642178646,base=resnet50 barlowtwins-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,9.02321314659274,43.612514662310126,unsupervised,reliable
+block2,0.3699808827249884,0.0012375322439450369,base=resnet50 barlowtwins-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,15.682259471818881,112.93197779882912,unsupervised,reliable
+block3,0.39645921085893915,0.001249590524441836,base=resnet50 barlowtwins-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,38.369155337391696,117.51407091538088,unsupervised,reliable
+block4,0.3850454987755076,0.0012045879256544559,base=resnet50 barlowtwins-type=unsupervised-zscore-1000components,bonner.Object2Vec.regression=pls,46.12970039011117,390.76025581351183,unsupervised,reliable
+block1,0.32209063975003804,0.0012087173782188607,base=resnet50 simclr-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,11.14176112403355,37.35552304646143,unsupervised,reliable
+block2,0.37136529594492684,0.0012404036357910988,base=resnet50 simclr-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,12.55209896739505,73.03678414296142,unsupervised,reliable
+block3,0.39164672020773444,0.0012558471103494677,base=resnet50 simclr-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,32.41703370650006,101.75702049250971,unsupervised,reliable
+block4,0.36868071572651495,0.0011554205207696814,base=resnet50 simclr-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,33.94944319713839,208.22446397460564,unsupervised,reliable
+block1,0.31493698445934404,0.0012262466579377109,base=resnet50 barlowtwins-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,9.592999335399416,29.788398572325004,unsupervised,reliable
+block2,0.36910089982638494,0.0012190491331935179,base=resnet50 barlowtwins-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,14.372754078360849,75.82112114569289,unsupervised,reliable
+block3,0.38739197332723224,0.0012428942184857105,base=resnet50 barlowtwins-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,35.15478867764124,111.00545268232116,unsupervised,reliable
+block4,0.362607705649832,0.001198544255296896,base=resnet50 barlowtwins-type=unsupervised-1000components,bonner.Object2Vec.regression=pls,62.823415096329796,356.9351244451548,unsupervised,reliable
