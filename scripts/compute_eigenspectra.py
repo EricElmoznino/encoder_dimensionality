@@ -1,4 +1,6 @@
 import argparse
+from time import time
+import datetime
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import tensorflow as tf
@@ -7,20 +9,19 @@ from activation_models.generators import get_activation_models
 from custom_model_tools.eigenspectrum import ImageNetLayerEigenspectrum
 
 
-def main(pooling):
+def main(pooling, debug):
+    start_time = time()
+
     for model, layers in get_activation_models():
-        if pooling:
-            eigspec = ImageNetLayerEigenspectrum(model, pooling=pooling)
-            eigspec.fit(layers)
-        else:
-            # Compute the eigenspectrum one layer at a time to avoid running out of memory
-            # todo: merge pickled dictionaries together and delete the individual ones
-            for layer in layers:
-                identifier_append = f'|layer:{layer}'
-                model.identifier += identifier_append
-                eigspec = ImageNetLayerEigenspectrum(model, pooling=pooling)
-                eigspec.fit([layer])
-                model.identifier = model.identifier.replace(identifier_append, '')
+        eigspec = ImageNetLayerEigenspectrum(model, pooling=pooling)
+        eigspec.fit(layers)
+
+        if debug:
+            break
+
+    end_time = time()
+    elapsed_time = str(datetime.timedelta(seconds=(end_time-start_time)))
+    print(f'Total runtime: {elapsed_time}')
 
 
 if __name__ == '__main__':
@@ -31,4 +32,4 @@ if __name__ == '__main__':
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()
 
-    main(pooling=args.pooling)
+    main(pooling=args.pooling, debug=args.debug)

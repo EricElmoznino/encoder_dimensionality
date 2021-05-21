@@ -1,6 +1,4 @@
 import logging
-import os
-import numpy as np
 from result_caching import store_dict
 from sklearn.decomposition import PCA
 from tqdm import tqdm
@@ -35,30 +33,31 @@ class ImageNetLayerEigenspectrum:
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
     def _fit(self, identifier, layers, pooling):
-        self._logger.debug('Retrieving ImageNet activations')
-        imagenet_paths = _get_imagenet_val(num_images=1000)
+        imagenet_paths = _get_imagenet_val(num_images=10000)
         if self._pooling:
             handle = GlobalMaxPool2d.hook(self._extractor)
-        imagenet_activations = self._extractor(imagenet_paths, layers=layers)
-        if self._pooling:
-            handle.remove()
-        imagenet_activations = {layer: imagenet_activations.sel(layer=layer).values
-                                for layer in np.unique(imagenet_activations['layer'])}
-        assert len(set(activations.shape[0] for activations in imagenet_activations.values())) == 1, "stimuli differ"
 
-        self._logger.debug('Computing ImageNet principal components')
-        progress = tqdm(total=len(imagenet_activations), desc="layer principal components")
+        # Compute activations and PCA for every layer individually to save on memory.
+        # This is more inefficient because we we'run images through the network several times,
+        # but it is a more scalable approach when using many images and large layers.
+        layer_eigenspectra = {}
+        for layer in layers:
+            self._logger.debug('Retrieving ImageNet activations')
+            activations = self._extractor(imagenet_paths, layers=[layer])
+            activations = activations.sel(layer=layer).values
 
-        def init_and_progress(layer, activations):
+            self._logger.debug('Computing ImageNet principal components')
+            progress = tqdm(total=1, desc="layer principal components")
             activations = flatten(activations)
             pca = PCA(random_state=0)
             pca.fit(activations)
             eigenspectrum = pca.explained_variance_
             progress.update(1)
-            return eigenspectrum
+            progress.close()
 
-        from model_tools.activations.core import change_dict
-        layer_eigenspectra = change_dict(imagenet_activations, init_and_progress, keep_name=True,
-                                           multithread=os.getenv('MT_MULTITHREAD', '1') == '1')
-        progress.close()
+            layer_eigenspectra[layer] = eigenspectrum
+
+        if self._pooling:
+            handle.remove()
+
         return layer_eigenspectra
