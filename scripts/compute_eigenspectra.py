@@ -3,21 +3,28 @@ from time import time
 import datetime
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+import pandas as pd
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 from activation_models.generators import get_activation_models
 from custom_model_tools.eigenspectrum import ImageNetLayerEigenspectrum
 
 
-def main(pooling, debug):
+def main(pooling, debug=False):
     start_time = time()
 
+    eigspec_df = pd.DataFrame()
     for model, layers in get_activation_models():
         eigspec = ImageNetLayerEigenspectrum(model, pooling=pooling)
         eigspec.fit(layers)
 
+        eigspec_df = eigspec_df.append(eigspec.as_df())
+
         if debug:
             break
+
+    if not debug:
+        eigspec_df.to_csv('results/eigen_spectra.csv', index=False)
 
     end_time = time()
     elapsed_time = str(datetime.timedelta(seconds=(end_time-start_time)))

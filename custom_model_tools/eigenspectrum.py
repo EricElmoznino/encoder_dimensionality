@@ -1,11 +1,13 @@
 import logging
 from result_caching import store_dict
 from sklearn.decomposition import PCA
+import pandas as pd
 from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.activations.pca import _get_imagenet_val
 from model_tools.utils import fullname
 from custom_model_tools.hooks import GlobalMaxPool2d
+from utils import id_to_properties
 
 
 class ImageNetLayerEigenspectrum:
@@ -25,11 +27,20 @@ class ImageNetLayerEigenspectrum:
                                          pooling=self._pooling)
         self._layer_eigenspectra = {**self._layer_eigenspectra, **layer_eigenspectra}
 
-    def effective_dimensionalities(self, layers):
-        self.fit(layers)
+    def effective_dimensionalities(self):
         effdims = {layer: eigspec.sum() ** 2 / (eigspec ** 2).sum()
                    for layer, eigspec in self._layer_eigenspectra.items()}
         return effdims
+
+    def as_df(self):
+        df = pd.DataFrame()
+        for layer, eigspec in self._layer_eigenspectra.items():
+            layer_df = pd.DataFrame({'n': range(1, len(eigspec) + 1), 'Variance': eigspec})
+            layer_df = layer_df.assign(layer=layer)
+            df = df.append(layer_df)
+        properties = id_to_properties(self._extractor.identifier)
+        df = df.assign(**properties)
+        return df
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
     def _fit(self, identifier, layers, pooling):

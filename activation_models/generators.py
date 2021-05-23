@@ -1,7 +1,10 @@
 import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 from torchvision.models import resnet18, resnet50
 from candidate_models.base_models.unsupervised_vvs import ModelBuilder
-from activation_models.utils import properties_to_id, wrap_pt
+from model_tools.activations.pytorch import PytorchWrapper, load_preprocess_images
+from functools import partial
+from utils import properties_to_id
 
 
 resnet18_pt_layers = [f'layer1.{i}.relu' for i in range(2)] + \
@@ -82,3 +85,9 @@ def vvs_models():
 def taskonomy_models():
     # todo: add taskonomy models
     return []
+
+
+def wrap_pt(model, identifier, res=224):
+    return PytorchWrapper(model=model,
+                          preprocessing=partial(load_preprocess_images, image_size=res),
+                          identifier=identifier)
