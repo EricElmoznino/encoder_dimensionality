@@ -1,8 +1,10 @@
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+import torch
 from torchvision.models import resnet18, resnet50
 from candidate_models.base_models.unsupervised_vvs import ModelBuilder
 from model_tools.activations.pytorch import PytorchWrapper, load_preprocess_images
+from visualpriors.taskonomy_network import TASKONOMY_PRETRAINED_URLS, TaskonomyEncoder
 from functools import partial
 from utils import properties_to_id
 
@@ -83,8 +85,43 @@ def vvs_models():
 
 
 def taskonomy_models():
-    # todo: add taskonomy models
-    return []
+    configs = [('autoencoding', 'Auto-Encoder', 'Self-Supervised'),
+               ('colorization', 'Colorization', 'Self-Supervised'),
+               ('curvature', 'Curvature Estimation', 'Supervised'),
+               ('denoising', 'Denoising', 'Self-Supervised'),
+               ('edge_texture', 'Edge Detection (2D)', 'Supervised'),
+               ('edge_occlusion', 'Edge Detection (3D)', 'Supervised'),
+               ('egomotion', 'Egomotion', 'Supervised'),
+               ('fixated_pose', 'Fixated Pose Estimation', 'Supervised'),
+               ('jigsaw', 'Jigsaw', 'Self-Supervised'),
+               ('keypoints2d', 'Keypoint Detection (2D)', 'Supervised'),
+               ('keypoints3d', 'Keypoint Detection (3D)', 'Supervised'),
+               ('nonfixated_pose', 'Non-Fixated Pose Estimation', 'Supervised'),
+               ('point_matching', 'Point Matching', 'Supervised'),
+               ('reshading', 'Reshading', 'Supervised'),
+               ('depth_zbuffer', 'Depth Estimation (Z-Buffer)', 'Supervised'),
+               ('depth_euclidean', 'Depth Estimation', 'Supervised'),
+               ('normal', 'Surface Normals Estimation', 'Supervised'),
+               ('room_layout', 'Room Layout', 'Supervised'),
+               ('segment_unsup25d', 'Unsupervised Segmentation (25D)', 'Self-Supervised'),
+               ('segment_unsup2d', 'Unsupervised Segmentation (2D)', 'Self-Supervised'),
+               ('segment_semantic', 'Semantic Segmentation', 'Supervised'),
+               ('class_object', 'Object Classification', 'Supervised'),
+               ('class_scene', 'Scene Classification', 'Supervised'),
+               ('inpainting', 'Inpainting', 'Self-Supervised'),
+               ('vanishing_point', 'Vanishing Point Estimation', 'Supervised')]
+
+    for taskonomy_identifier, task, kind in configs:
+        model = TaskonomyEncoder()
+        model.eval()
+        pretrained_url = TASKONOMY_PRETRAINED_URLS[taskonomy_identifier + '_encoder']
+        checkpoint = torch.hub.load_state_dict_from_url(pretrained_url)
+        model.load_state_dict(checkpoint['state_dict'])
+
+        identifier = properties_to_id('ResNet50', task, kind, 'Taskonomy')
+        model = wrap_pt(model, identifier, res=256)
+
+        yield model, resnet50_pt_layers
 
 
 def wrap_pt(model, identifier, res=224):
