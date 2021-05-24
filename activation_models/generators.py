@@ -86,7 +86,6 @@ def vvs_models():
 
 def taskonomy_models():
     configs = [('autoencoding', 'Auto-Encoder', 'Self-Supervised'),
-               ('colorization', 'Colorization', 'Self-Supervised'),
                ('curvature', 'Curvature Estimation', 'Supervised'),
                ('denoising', 'Denoising', 'Self-Supervised'),
                ('edge_texture', 'Edge Detection (2D)', 'Supervised'),
@@ -124,7 +123,13 @@ def taskonomy_models():
         yield model, resnet50_pt_layers
 
 
-def wrap_pt(model, identifier, res=224):
+def wrap_pt(model, identifier, res=224, imagenet_norm=True):
+    if imagenet_norm:
+        preprocess = partial(load_preprocess_images, image_size=res)
+    else:
+        preprocess = partial(load_preprocess_images, image_size=res,
+                             normalize_mean=(0.5, 0.5, 0.5),
+                             normalize_std=(0.5, 0.5, 0.5))
     return PytorchWrapper(model=model,
-                          preprocessing=partial(load_preprocess_images, image_size=res),
+                          preprocessing=preprocess,
                           identifier=identifier)
