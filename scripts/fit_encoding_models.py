@@ -59,16 +59,17 @@ def fit_encoder(model, layers, pooling):
     return layer_scores
 
 
-def get_benchmark(benchmark, region, data_dir):
+def get_benchmark(benchmark, region, regression, data_dir):
     if benchmark == 'majajhong2015':
         assert region in ['IT', 'V4']
         identifier = f'dicarlo.MajajHong2015public.{region}-pls'
         benchmark = bench.load(identifier)
-        benchmark._identifier = benchmark.identifier.replace('pls', 'lin')
-        benchmark._similarity_metric.regression = linear_regression()
+        if regression == 'lin':
+            benchmark._identifier = benchmark.identifier.replace('pls', 'lin')
+            benchmark._similarity_metric.regression = linear_regression()
     elif benchmark == 'object2vec':
         regions = region if region is None or ',' not in region else region.split(',')
-        benchmark = Object2VecEncoderBenchmark(data_dir=data_dir, regions=regions, regression='lin')
+        benchmark = Object2VecEncoderBenchmark(data_dir=data_dir, regions=regions, regression=regression)
     else:
         raise ValueError(f'Unknown benchmark: {benchmark}')
     return benchmark
@@ -81,6 +82,9 @@ if __name__ == '__main__':
                         help='Neural benchmark dataset to fit')
     parser.add_argument('--region', type=str, default='IT',
                         help='Region(s) to fit. Valid region(s) depend on the neural benchmark')
+    parser.add_argument('--regression', type=str, default='pls',
+                        choices=['pls', 'lin'],
+                        help='Partial-least-squares or ordinary-least-squares for fitting')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory for neural benchmark (only required for "object2vec")')
     parser.add_argument('--pooling', type=bool, default=True,
@@ -89,5 +93,6 @@ if __name__ == '__main__':
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()
 
-    benchmark = get_benchmark(benchmark=args.bench, region=args.region, data_dir=args.data_dir)
+    benchmark = get_benchmark(benchmark=args.bench, region=args.region,
+                              regression=args.regression, data_dir=args.data_dir)
     main(benchmark=benchmark, pooling=args.pooling, debug=args.debug)
