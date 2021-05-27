@@ -35,9 +35,20 @@ class ImageNetLayerEigenspectrum:
     def as_df(self):
         df = pd.DataFrame()
         for layer, eigspec in self._layer_eigenspectra.items():
-            layer_df = pd.DataFrame({'n': range(1, len(eigspec) + 1), 'Variance': eigspec})
-            layer_df = layer_df.assign(layer=layer)
+            layer_df = pd.DataFrame({'n': range(1, len(eigspec) + 1), 'variance': eigspec})
+            layer_df = layer_df.assign(Layer=layer)
             df = df.append(layer_df)
+        properties = id_to_properties(self._extractor.identifier)
+        df = df.assign(**properties)
+        return df
+
+    def metrics_as_df(self):
+        effdims = self.effective_dimensionalities()
+        df = pd.DataFrame()
+        for layer in self._layer_eigenspectra:
+            df = df.append({'layer': layer,
+                            'effective dimensionality': effdims[layer]},
+                           ignore_index=True)
         properties = id_to_properties(self._extractor.identifier)
         df = df.assign(**properties)
         return df

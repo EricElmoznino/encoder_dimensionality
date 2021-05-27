@@ -12,17 +12,20 @@ from utils import timed
 @timed
 def main(pooling, debug=False):
     eigspec_df = pd.DataFrame()
+    eig_metrics_df = pd.DataFrame()
     for model, layers in get_activation_models():
         eigspec = ImageNetLayerEigenspectrum(model, pooling=pooling)
         eigspec.fit(layers)
 
         eigspec_df = eigspec_df.append(eigspec.as_df())
+        eig_metrics_df = eig_metrics_df.append(eigspec.metrics_as_df())
 
         if debug:
             break
 
     if not debug:
         eigspec_df.to_csv('results/eigen_spectra.csv', index=False)
+        eig_metrics_df.to_csv('results/eig_metrics.csv', index=False)
 
 
 if __name__ == '__main__':
