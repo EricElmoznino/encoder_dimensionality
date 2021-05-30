@@ -30,8 +30,11 @@ def main(pooling, debug=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Compute and store eigenspectra of models')
-    parser.add_argument('--pooling', type=bool, default=True,
-                        help='Whether or not to perform global max-pooling prior to computing the eigenspectrum')
+    parser.add_argument('--pooling', dest='pooling', action='store_true',
+                        help='Perform global max-pooling prior to computing the eigenspectrum')
+    parser.add_argument('--no_pooling', dest='pooling', action='store_false',
+                        help='Do not perform global max-pooling prior to computing the eigenspectrum')
+    parser.set_defaults(pooling=True)
     parser.add_argument('--debug', action='store_true',
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()
