@@ -16,8 +16,6 @@ from utils import timed, id_to_properties
 
 @timed
 def main(benchmark, pooling, debug=False):
-    print(pooling)
-    exit(0)
     scores = pd.DataFrame()
     for model, layers in get_activation_models():
         layer_scores = fit_encoder(model, layers, pooling)
