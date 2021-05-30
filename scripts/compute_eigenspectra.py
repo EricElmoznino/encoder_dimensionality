@@ -24,8 +24,8 @@ def main(pooling, debug=False):
             break
 
     if not debug:
-        eigspec_df.to_csv('results/eigen_spectra.csv', index=False)
-        eig_metrics_df.to_csv('results/eig_metrics.csv', index=False)
+        eigspec_df.to_csv(f'results/eigspectra|pooling:{pooling}.csv', index=False)
+        eig_metrics_df.to_csv(f'results/eigmetrics|pooling:{pooling}.csv', index=False)
 
 
 if __name__ == '__main__':
