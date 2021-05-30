@@ -1,7 +1,9 @@
 import logging
 from result_caching import store_dict
 from sklearn.decomposition import PCA
+from sklearn.linear_model import LinearRegression
 import pandas as pd
+import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.activations.pca import _get_imagenet_val
@@ -32,6 +34,29 @@ class ImageNetLayerEigenspectrum:
                    for layer, eigspec in self._layer_eigenspectra.items()}
         return effdims
 
+    def eighty_percent_var(self):
+        eighty_percent_var = {}
+        for layer, eigspec in self._layer_eigenspectra.items():
+            pvar = eigspec.cumsum() / eigspec.sum()
+            for i in range(len(pvar)):
+                if pvar[i] >= 0.8:
+                    eighty_percent_var[layer] = i + 1
+                    break
+        return eighty_percent_var
+
+    def powerlaw_exponent(self):
+        alpha = {}
+        for layer, eigspec in self._layer_eigenspectra.items():
+            start = np.log10(0.005 * len(eigspec))
+            end = np.log10(0.5 * len(eigspec))
+            eignum = np.logspace(start, end, num=50).round().astype(int)
+            eigspec = eigspec[eignum - 1]
+            logeignum = np.log10(eignum)
+            logeigspec = np.log10(eigspec)
+            linear_fit = LinearRegression().fit(logeignum.reshape(-1, 1), logeigspec)
+            alpha[layer] = -linear_fit.coef_.item()
+        return alpha
+
     def as_df(self):
         df = pd.DataFrame()
         for layer, eigspec in self._layer_eigenspectra.items():
@@ -44,10 +69,14 @@ class ImageNetLayerEigenspectrum:
 
     def metrics_as_df(self):
         effdims = self.effective_dimensionalities()
+        eightyvar = self.eighty_percent_var()
+        alpha = self.powerlaw_exponent()
         df = pd.DataFrame()
         for layer in self._layer_eigenspectra:
             df = df.append({'layer': layer,
-                            'effective dimensionality': effdims[layer]},
+                            'effective dimensionality': effdims[layer],
+                            '80% variance': eightyvar[layer],
+                            'alpha': alpha[layer]},
                            ignore_index=True)
         properties = id_to_properties(self._extractor.identifier)
         df = df.assign(**properties)
