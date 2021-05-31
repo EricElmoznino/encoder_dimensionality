@@ -47,8 +47,8 @@ class ImageNetLayerEigenspectrum:
     def powerlaw_exponent(self):
         alpha = {}
         for layer, eigspec in self._layer_eigenspectra.items():
-            start = np.log10(0.005 * len(eigspec))
-            end = np.log10(0.5 * len(eigspec))
+            start = 0
+            end = np.log10(len(eigspec))
             eignum = np.logspace(start, end, num=50).round().astype(int)
             eigspec = eigspec[eignum - 1]
             logeignum = np.log10(eignum)
