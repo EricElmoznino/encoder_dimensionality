@@ -9,24 +9,30 @@ from model_tools.activations.core import flatten
 from model_tools.activations.pca import _get_imagenet_val
 from model_tools.utils import fullname
 from custom_model_tools.hooks import GlobalMaxPool2d
+from custom_model_tools.image_transform import ImageDatasetTransformer
 from utils import id_to_properties
+from typing import Optional
 
 
 class ImageNetLayerEigenspectrum:
 
-    def __init__(self, activations_extractor, pooling=True):
+    def __init__(self, activations_extractor, pooling=True,
+                 image_transform: Optional[ImageDatasetTransformer] = None):
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
         self._pooling = pooling
+        self._image_transform = image_transform
         self._layer_eigenspectra = {}
 
     def fit(self, layers):
         missing_layers = [layer for layer in layers if layer not in self._layer_eigenspectra]
         if len(missing_layers) == 0:
             return
+        transform_name = None if self._image_transform is None else self._image_transform.name
         layer_eigenspectra = self._fit(identifier=self._extractor.identifier,
-                                         layers=missing_layers,
-                                         pooling=self._pooling)
+                                       layers=missing_layers,
+                                       pooling=self._pooling,
+                                       image_transform_name=transform_name)
         self._layer_eigenspectra = {**self._layer_eigenspectra, **layer_eigenspectra}
 
     def effective_dimensionalities(self):
@@ -83,8 +89,10 @@ class ImageNetLayerEigenspectrum:
         return df
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
-    def _fit(self, identifier, layers, pooling):
+    def _fit(self, identifier, layers, pooling, image_transform_name):
         imagenet_paths = _get_imagenet_val(num_images=10000)
+        if self._image_transform is not None:
+            imagenet_paths = self._image_transform.transform_dataset('imagenetval', imagenet_paths)
         if self._pooling:
             handle = GlobalMaxPool2d.hook(self._extractor)
 
