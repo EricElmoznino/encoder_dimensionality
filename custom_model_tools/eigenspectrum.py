@@ -67,7 +67,7 @@ class ImageNetLayerEigenspectrum:
         df = pd.DataFrame()
         for layer, eigspec in self._layer_eigenspectra.items():
             layer_df = pd.DataFrame({'n': range(1, len(eigspec) + 1), 'variance': eigspec})
-            layer_df = layer_df.assign(Layer=layer)
+            layer_df = layer_df.assign(layer=layer)
             df = df.append(layer_df)
         properties = id_to_properties(self._extractor.identifier)
         df = df.assign(**properties)
