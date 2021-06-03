@@ -68,6 +68,8 @@ def get_benchmark(benchmark, region, regression, data_dir):
             benchmark._identifier = benchmark.identifier.replace('pls', 'lin')
             benchmark._similarity_metric.regression = linear_regression()
     elif benchmark == 'object2vec':
+        if region == 'all':
+            region = None
         regions = region if region is None or ',' not in region else region.split(',')
         benchmark = Object2VecEncoderBenchmark(data_dir=data_dir, regions=regions, regression=regression)
     else:
