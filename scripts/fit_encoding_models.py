@@ -87,11 +87,8 @@ if __name__ == '__main__':
                         help='Partial-least-squares or ordinary-least-squares for fitting')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory for neural benchmark (only required for "object2vec")')
-    parser.add_argument('--pooling', dest='pooling', action='store_true',
-                        help='Perform global max-pooling prior to fitting')
     parser.add_argument('--no_pooling', dest='pooling', action='store_false',
                         help='Do not perform global max-pooling prior to fitting')
-    parser.set_defaults(pooling=True)
     parser.add_argument('--debug', action='store_true',
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()
