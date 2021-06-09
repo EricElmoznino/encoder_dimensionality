@@ -25,15 +25,11 @@ class ImageNetLayerEigenspectrum:
         self._layer_eigenspectra = {}
 
     def fit(self, layers):
-        missing_layers = [layer for layer in layers if layer not in self._layer_eigenspectra]
-        if len(missing_layers) == 0:
-            return
         transform_name = None if self._image_transform is None else self._image_transform.name
-        layer_eigenspectra = self._fit(identifier=self._extractor.identifier,
-                                       layers=missing_layers,
-                                       pooling=self._pooling,
-                                       image_transform_name=transform_name)
-        self._layer_eigenspectra = {**self._layer_eigenspectra, **layer_eigenspectra}
+        self._layer_eigenspectra = self._fit(identifier=self._extractor.identifier,
+                                             layers=layers,
+                                             pooling=self._pooling,
+                                             image_transform_name=transform_name)
 
     def effective_dimensionalities(self):
         effdims = {layer: eigspec.sum() ** 2 / (eigspec ** 2).sum()
