@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+import os.path
 from result_caching import store_dict
 from sklearn.decomposition import PCA
 from scipy.spatial.distance import euclidean
@@ -30,6 +31,15 @@ class LayerManifoldStatisticsBase:
                                                     layers=layers,
                                                     pooling=self._pooling)
 
+    def as_df(self):
+        df = pd.DataFrame()
+        for layer, statistics in self._layer_manifold_statistics.items():
+            statistics['layer'] = layer
+            df = df.append(statistics, ignore_index=True)
+        properties = id_to_properties(self._extractor.identifier)
+        df = df.assign(**properties)
+        return df
+
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
     def _fit(self, identifier, stimuli_identifier, layers, pooling):
         if self._pooling:
@@ -48,11 +58,34 @@ class LayerManifoldStatisticsBase:
                 activations = self._extractor(stimuli_paths, layers=[layer])
                 activations = activations.sel(layer=layer).values
                 activations = flatten(activations)
-                concept_manifolds.append(ManifoldGeometry().fit(activations))
+                concept_manifolds.append(ManifoldGeometry(activations))
 
             self._logger.debug('Computing concept manifold statistics')
             progress = tqdm(total=1, desc="manifold statistics")
-
+            radius = manifold_radius(concept_manifolds)
+            signal = manifold_signal(concept_manifolds)
+            bias = manifold_bias(concept_manifolds)
+            dim = manifold_dimensionality(concept_manifolds)
+            sno_a, sno_b = manifold_signal_noise_overlap(concept_manifolds)
+            snr = manifold_signal_noise_ratio(signal, bias, dim, sno_a, sno_b, concept_manifolds[0].num_examples)
+            radius_mean, radius_std = statistics(radius)
+            signal_mean, signal_std = statistics(signal)
+            bias_mean, bias_std = statistics(bias)
+            dim_mean, dim_std = statistics(dim)
+            sno_a_mean, sno_a_std = statistics(sno_a)
+            sno_b_mean, sno_b_std = statistics(sno_b)
+            snr_mean, snr_std = statistics(snr)
+            global_radius, global_dim = manifold_global_statistics(concept_manifolds)
+            layer_manifold_statistics[layer] = {
+                'within-concept radius (mean)': radius_mean, 'within-concept radius (std)': radius_std,
+                'within-concept dimensionality (mean)': dim_mean, 'within-concept dimensionality (std)': dim_std,
+                'between-concept radius': global_radius, 'between-concept dimensionality': global_dim,
+                'signal (mean)': signal_mean, 'signal (std)': signal_std,
+                'bias (mean)': bias_mean, 'bias (std)': bias_std,
+                'self signal-noise-overlap (mean)': sno_a_mean, 'self signal-noise-overlap (std)': sno_a_std,
+                'other signal-noise-overlap (mean)': sno_b_mean, 'other signal-noise-overlap (std)': sno_b_std,
+                'signal-noise-ratio (mean)': snr_mean, 'signal-noise-ratio (std)': snr_std
+            }
             progress.update(1)
             progress.close()
 
@@ -63,6 +96,25 @@ class LayerManifoldStatisticsBase:
 
     def get_image_concept_paths(self) -> List[List[str]]:
         raise NotImplementedError()
+
+
+class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsBase):
+
+    def __init__(self, data_dir, activations_extractor, pooling=True):
+        super().__init__(activations_extractor, pooling, 'object2vec')
+        data_dir = os.path.join(data_dir, 'stimuli')
+        assert os.path.exists(data_dir)
+        self.data_dir = data_dir
+
+    def get_image_concept_paths(self) -> List[List[str]]:
+        concept_paths = []
+        concepts = os.listdir(self.data_dir)
+        for concept in concepts:
+            concept_dir = os.path.join(self.data_dir, concept)
+            files = os.listdir(concept_dir)
+            paths = [os.path.join(concept_dir, file) for file in files]
+            concept_paths.append(paths)
+        return concept_paths
 
 
 class ManifoldGeometry:

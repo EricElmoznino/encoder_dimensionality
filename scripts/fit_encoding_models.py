@@ -20,6 +20,8 @@ def main(benchmark, pooling, debug=False):
     for model, layers in get_activation_models():
         layer_scores = fit_encoder(model, layers, pooling)
         scores = scores.append(layer_scores)
+        if debug:
+            break
     if not debug:
         scores.to_csv(f'results/encoding|benchmark:{benchmark._identifier}|pooling:{pooling}.csv', index=False)
 
