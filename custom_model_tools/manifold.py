@@ -8,11 +8,10 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
-from model_tools.activations.pca import _get_imagenet_val
 from model_tools.utils import fullname
 from custom_model_tools.hooks import GlobalMaxPool2d
 from custom_model_tools.image_transform import ImageDatasetTransformer
-from utils import id_to_properties
+from utils import id_to_properties, get_imagenet_val
 from typing import List, Tuple
 
 
@@ -98,15 +97,27 @@ class LayerManifoldStatisticsBase:
         raise NotImplementedError()
 
 
+class LayerManifoldStatisticsImageNet(LayerManifoldStatisticsBase):
+
+    def __init__(self, activations_extractor, num_classes=50, num_per_class=50, pooling=True):
+        super().__init__(activations_extractor, pooling, 'imagenet')
+        assert 2 <= num_classes <= 1000 and 2 <= num_per_class <= 50
+        self.num_classes = num_classes
+        self.num_per_class = num_per_class
+        self.concept_paths = get_imagenet_val(num_classes, num_per_class, separate_classes=True)
+
+    def get_image_concept_paths(self) -> List[List[str]]:
+        return self.concept_paths
+
+
 class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsBase):
 
     def __init__(self, data_dir, activations_extractor, pooling=True):
         super().__init__(activations_extractor, pooling, 'object2vec')
-        data_dir = os.path.join(data_dir, 'stimuli')
+        data_dir = os.path.join(data_dir, 'stimuli_rgb')
         assert os.path.exists(data_dir)
         self.data_dir = data_dir
 
-    def get_image_concept_paths(self) -> List[List[str]]:
         concept_paths = []
         concepts = os.listdir(self.data_dir)
         for concept in concepts:
@@ -114,7 +125,10 @@ class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsBase):
             files = os.listdir(concept_dir)
             paths = [os.path.join(concept_dir, file) for file in files]
             concept_paths.append(paths)
-        return concept_paths
+        self.concept_paths = concept_paths
+
+    def get_image_concept_paths(self) -> List[List[str]]:
+        return self.concept_paths
 
 
 class ManifoldGeometry:

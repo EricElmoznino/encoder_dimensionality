@@ -6,7 +6,7 @@ import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 from torchvision import transforms
 from activation_models.generators import get_activation_models
-from custom_model_tools.manifold import LayerManifoldStatisticsObject2Vec
+from custom_model_tools.manifold import LayerManifoldStatisticsObject2Vec, LayerManifoldStatisticsImageNet
 from custom_model_tools.image_transform import ImageDatasetTransformer
 from utils import timed
 
@@ -25,7 +25,10 @@ def main(dataset, data_dir, pooling, debug=False):
 
 
 def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
-    if dataset == 'object2vec':
+    if dataset == 'imagenet':
+        return LayerManifoldStatisticsImageNet(activations_extractor=activations_extractor,
+                                               pooling=pooling)
+    elif dataset == 'object2vec':
         return LayerManifoldStatisticsObject2Vec(data_dir=data_dir,
                                                  activations_extractor=activations_extractor,
                                                  pooling=pooling)
@@ -36,6 +39,7 @@ def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Compute and store manifold statistics of models')
     parser.add_argument('--dataset', type=str,
+                        choices=['imagenet', 'object2vec'],
                         help='Dataset of concepts for which to compute manifold statistics')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory containing stimuli')

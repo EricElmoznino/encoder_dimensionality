@@ -6,11 +6,10 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
-from model_tools.activations.pca import _get_imagenet_val
 from model_tools.utils import fullname
 from custom_model_tools.hooks import GlobalMaxPool2d
 from custom_model_tools.image_transform import ImageDatasetTransformer
-from utils import id_to_properties
+from utils import id_to_properties, get_imagenet_val
 from typing import Optional
 
 
@@ -86,7 +85,7 @@ class ImageNetLayerEigenspectrum:
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
     def _fit(self, identifier, layers, pooling, image_transform_name):
-        imagenet_paths = _get_imagenet_val(num_images=10000)
+        imagenet_paths = get_imagenet_val(num_per_class=10)
         if self._image_transform is not None:
             imagenet_paths = self._image_transform.transform_dataset('imagenetval', imagenet_paths)
         if self._pooling:

@@ -6,7 +6,7 @@ from typing import List, Callable
 
 class ImageDatasetTransformer:
 
-    def __init__(self, name:str, transform: Callable[[Image.Image], Image.Image], n_samples: int = 1):
+    def __init__(self, name: str, transform: Callable[[Image.Image], Image.Image], n_samples: int = 1):
         self.name = name
         self.transform = transform
         self.n_samples = n_samples
