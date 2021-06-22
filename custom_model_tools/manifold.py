@@ -251,24 +251,24 @@ def test_manifold_geometry():
     sno_a, sno_b = manifold_signal_noise_overlap([man_a, man_b])
     snr = manifold_signal_noise_ratio(signal, bias, dim, sno_a, sno_b, man_a.num_examples)
     text_a = 'Concept A\n' \
-             f'Radius:       {rad[0]:.3g}\n' \
-             f'Signal:       {signal[0, 1]:.3g}\n' \
-             f'Bias:         {bias[0, 1]:.3g}\n' \
-             f'Dimension:    {dim[0]:.3g}\n' \
-             f'SN Overlap A: {sno_a[0, 1]:.3g}\n' \
-             f'SN Overlap B: {sno_b[0, 1]:.3g}\n' \
-             f'SNR:          {snr[0, 1]:.3g}'
+             f'Radius:    {rad[0]:.3g}\n' \
+             f'Signal:    {signal[0, 1]:.3g}\n' \
+             f'Bias:      {bias[0, 1]:.3g}\n' \
+             f'Dimension: {dim[0]:.3g}\n' \
+             f'Self-SNO:  {sno_a[0, 1]:.3g}\n' \
+             f'Other-SNO: {sno_b[0, 1]:.3g}\n' \
+             f'SNR:       {snr[0, 1]:.3g}'
     plt.figtext(1.1, 0.9, text_a,
                 fontsize=12, fontfamily='monospace', va='top',
                 transform=plt.gca().transAxes)
     text_b = 'Concept B\n' \
-             f'Radius:       {rad[1]:.3g}\n' \
-             f'Signal:       {signal[1, 0]:.3g}\n' \
-             f'Bias:         {bias[1, 0]:.3g}\n' \
-             f'Dimension:    {dim[1]:.3g}\n' \
-             f'SN Overlap A: {sno_a[1, 0]:.3g}\n' \
-             f'SN Overlap B: {sno_b[1, 0]:.3g}\n' \
-             f'SNR:          {snr[1, 0]:.3g}'
+             f'Radius:    {rad[1]:.3g}\n' \
+             f'Signal:    {signal[1, 0]:.3g}\n' \
+             f'Bias:      {bias[1, 0]:.3g}\n' \
+             f'Dimension: {dim[1]:.3g}\n' \
+             f'Self-SNO:  {sno_a[1, 0]:.3g}\n' \
+             f'Other-SNO: {sno_b[1, 0]:.3g}\n' \
+             f'SNR:       {snr[1, 0]:.3g}'
     plt.figtext(1.1, 0.4, text_b,
                 fontsize=12, fontfamily='monospace', va='top',
                 transform=plt.gca().transAxes)
