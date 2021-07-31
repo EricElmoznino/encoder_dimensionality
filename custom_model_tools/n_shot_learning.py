@@ -120,7 +120,7 @@ class NShotLearningImageNet(NShotLearningBase):
         super(NShotLearningImageNet, self).__init__(*args, **kwargs, stimuli_identifier='imagenet')
 
     def get_image_paths(self, n_cats, n_samples) -> List[List[str]]:
-        raise get_imagenet_val(num_classes=n_cats, num_per_class=n_samples, separate_classes=True)
+        return get_imagenet_val(num_classes=n_cats, num_per_class=n_samples, separate_classes=True)
 
 
 class NShotLearningImageFolder(NShotLearningBase):
