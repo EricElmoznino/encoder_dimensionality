@@ -10,7 +10,6 @@ from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
 from custom_model_tools.hooks import GlobalMaxPool2d
-from custom_model_tools.image_transform import ImageDatasetTransformer
 from utils import id_to_properties, get_imagenet_val
 from typing import List, Tuple
 
@@ -47,7 +46,7 @@ class LayerManifoldStatisticsBase:
         concept_paths = self.get_image_concept_paths()
 
         # Compute manifold geometry statistics for every layer individually to save on memory.
-        # This is more inefficient because we we'run images through the network several times,
+        # This is more inefficient because we run images through the network several times,
         # but it is a more scalable approach when using many images and large layers.
         layer_manifold_statistics = {}
         for layer in layers:

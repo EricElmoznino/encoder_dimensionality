@@ -4,10 +4,8 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
-from torchvision import transforms
 from activation_models.generators import get_activation_models
 from custom_model_tools.manifold import LayerManifoldStatisticsObject2Vec, LayerManifoldStatisticsImageNet
-from custom_model_tools.image_transform import ImageDatasetTransformer
 from utils import timed
 
 

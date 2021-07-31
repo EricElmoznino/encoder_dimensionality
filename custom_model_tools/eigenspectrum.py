@@ -92,7 +92,7 @@ class ImageNetLayerEigenspectrum:
             handle = GlobalMaxPool2d.hook(self._extractor)
 
         # Compute activations and PCA for every layer individually to save on memory.
-        # This is more inefficient because we we'run images through the network several times,
+        # This is more inefficient because we run images through the network several times,
         # but it is a more scalable approach when using many images and large layers.
         layer_eigenspectra = {}
         for layer in layers:
