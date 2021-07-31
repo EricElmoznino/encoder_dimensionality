@@ -21,7 +21,7 @@ from typing import List, Dict
 class NShotLearningBase:
 
     def __init__(self, activations_extractor, classifier,
-                 n_cats=50, n_train=(1, 5, 20, 100), n_test=100,
+                 n_cats=50, n_train=(1, 5, 20, 50), n_test=50,
                  n_repeats=10, pooling=True, stimuli_identifier=None):
         assert classifier in ['linear', 'prototype']
         self._logger = logging.getLogger(fullname(self))
@@ -154,7 +154,7 @@ class NShotLearningObject2Vec(NShotLearningImageFolder):
     def __init__(self, data_dir, *args, **kwargs):
         data_dir = os.path.join(data_dir, 'stimuli_rgb')
         super(NShotLearningObject2Vec, self).__init__(data_dir, *args, **kwargs,
-                                                      n_train=(1, 5, 20, 72), n_test=9,
+                                                      n_train=(1, 5, 20, 50), n_test=31,
                                                       stimuli_identifier='object2vec')
 
 
@@ -189,5 +189,5 @@ class NearestCentroidDistances(NearestCentroid):
     def predict_distances(self, X):
         check_is_fitted(self)
         X = check_array(X, accept_sparse='csr')
-        distances = pairwise_distances(X, self.centroids_, metric=self.metric).argmin(axis=1)
+        distances = pairwise_distances(X, self.centroids_, metric=self.metric)
         return distances
