@@ -65,7 +65,7 @@ class NShotLearningBase:
         layer_performance_statistics = {}
         for layer in layers:
             self._logger.debug('Retrieving activations')
-            activations = self._extractor([path for cat in cat_paths for path in cat])
+            activations = self._extractor([path for cat in cat_paths for path in cat], layers=[layer])
             activations = activations.sel(layer=layer).values
             activations = flatten(activations)
             activations = activations.reshape(self._n_cats, n_samples, -1)
