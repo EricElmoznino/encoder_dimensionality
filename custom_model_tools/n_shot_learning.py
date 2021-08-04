@@ -2,8 +2,9 @@ from __future__ import annotations
 import logging
 import os.path
 from result_caching import store_dict
-from sklearn.metrics import top_k_accuracy_score, log_loss
+from sklearn.metrics import top_k_accuracy_score, label_ranking_average_precision_score, log_loss
 from sklearn.metrics.pairwise import pairwise_distances
+from sklearn.preprocessing import label_binarize
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import NearestCentroid
 from sklearn.utils.validation import check_array, check_is_fitted
@@ -165,10 +166,12 @@ def logistic_performance(X_train, y_train, X_test, y_test) -> Dict[str, float]:
 
         top1 = top_k_accuracy_score(y_test, y_pred, k=1)
         top5 = top_k_accuracy_score(y_test, y_pred, k=5)
+        mmr = label_ranking_average_precision_score(label_binarize(y_test, classes=range(y_pred.shape[1])), y_pred)
         ll = -log_loss(y_test, y_pred)
 
         return {'accuracy (top 1)': top1,
                 'accuracy (top 5)': top5,
+                'MMR': mmr,
                 'log likelihood': ll}
 
 
@@ -180,9 +183,11 @@ def prototype_performance(X_train, y_train, X_test, y_test) -> Dict[str, float]:
 
         top1 = top_k_accuracy_score(y_test, y_pred, k=1)
         top5 = top_k_accuracy_score(y_test, y_pred, k=5)
+        mmr = label_ranking_average_precision_score(label_binarize(y_test, classes=range(y_pred.shape[1])), y_pred)
 
         return {'accuracy (top 1)': top1,
-                'accuracy (top 5)': top5}
+                'accuracy (top 5)': top5,
+                'MMR': mmr}
 
 
 class NearestCentroidDistances(NearestCentroid):
