@@ -39,6 +39,7 @@ class NShotLearningBase:
     def fit(self, layers):
         self._layer_performance_statistics = self._fit(identifier=self._extractor.identifier,
                                                        stimuli_identifier=self._stimuli_identifier,
+                                                       classifier=self._classifier,
                                                        layers=layers,
                                                        pooling=self._pooling)
 
@@ -53,7 +54,7 @@ class NShotLearningBase:
         return df
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
-    def _fit(self, identifier, stimuli_identifier, layers, pooling):
+    def _fit(self, identifier, stimuli_identifier, classifier, layers, pooling):
         if self._pooling:
             handle = GlobalMaxPool2d.hook(self._extractor)
 
