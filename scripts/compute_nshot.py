@@ -52,7 +52,7 @@ if __name__ == '__main__':
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory containing stimuli')
     parser.add_argument('--classifier', type=str, default=None,
-                        choices=['linear', 'prototype'],
+                        choices=['linear', 'prototype', 'maxmargin'],
                         help='Type of classifier to use')
     parser.add_argument('--no_pooling', dest='pooling', action='store_false',
                         help='Do not perform global max-pooling prior to computing the n-shot learning performance')

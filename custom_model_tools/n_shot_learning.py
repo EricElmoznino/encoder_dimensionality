@@ -7,6 +7,7 @@ from sklearn.metrics.pairwise import pairwise_distances
 from sklearn.preprocessing import label_binarize
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import NearestCentroid
+from sklearn.svm import LinearSVC
 from sklearn.utils.validation import check_array, check_is_fitted
 from scipy.special import softmax
 import pandas as pd
@@ -24,7 +25,7 @@ class NShotLearningBase:
     def __init__(self, activations_extractor, classifier,
                  n_cats=50, n_train=(1, 5, 20, 50), n_test=50,
                  n_repeats=10, pooling=True, stimuli_identifier=None):
-        assert classifier in ['linear', 'prototype']
+        assert classifier in ['linear', 'prototype', 'maxmargin']
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
         self._classifier = classifier
@@ -109,6 +110,8 @@ class NShotLearningBase:
             return logistic_performance(X_train, y_train, X_test, y_test)
         elif self._classifier == 'prototype':
             return prototype_performance(X_train, y_train, X_test, y_test)
+        elif self._classifier == 'maxmargin':
+            return maxmargin_performance(X_train, y_train, X_test, y_test)
         else:
             raise ValueError(f'Unknown classifier {self._classifier}')
 
@@ -189,6 +192,16 @@ def prototype_performance(X_train, y_train, X_test, y_test) -> Dict[str, float]:
         return {'accuracy (top 1)': top1,
                 'accuracy (top 5)': top5,
                 'MMR': mmr}
+
+
+def maxmargin_performance(X_train, y_train, X_test, y_test) -> Dict[str, float]:
+        model = LinearSVC()
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+
+        top1 = top_k_accuracy_score(y_test, y_pred, k=1)
+
+        return {'accuracy (top 1)': top1}
 
 
 class NearestCentroidDistances(NearestCentroid):
