@@ -11,7 +11,7 @@ def annotate_corr_grid(g, x, y, method='pearson'):
     g.map_dataframe(annotate_corr, x=x, y=y, method=method)
 
 
-def annotate_corr(data, x, y, ax=None, method='pearson', **kwargs):
+def annotate_corr(data, x, y, ax=None, method='spearman', **kwargs):
     if method == 'pearson':
         r, p = stats.pearsonr(data[x], data[y])
     elif method == 'spearman':
@@ -43,10 +43,12 @@ def plot_correlations(data, x, y, hue, grid=None, plt_kwargs=None, grid_kwargs=N
     if grid is None:
         ax = sns.scatterplot(data=data, x=x, y=y, hue=hue, **plt_kwargs)
         ax.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
+        annotate_corr(data, x=x, y=y, ax=ax)
         return ax
     else:
         g = sns.FacetGrid(data=data, hue=hue, col=grid, **grid_kwargs)
         g.map(sns.scatterplot, x, y, **plt_kwargs)
+        annotate_corr_grid(g, x=x, y=y)
         return g
 
 
@@ -160,6 +162,8 @@ def plot_metrics_vs_other(data, xs, y, hue, labels=None, col_wrap=5,
         else:
             ax.set_title(labels[i])
         ax.legend().remove()
+
+        annotate_corr(data, x=x, y=y, ax=ax)
 
     handles, labels = ax.get_legend_handles_labels()
     fig.legend(handles=handles, labels=labels, loc='upper left', bbox_to_anchor=(1.05, 0.65))
