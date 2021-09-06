@@ -1,9 +1,27 @@
 import math
+from scipy import stats
 import scipy.cluster.hierarchy as spc
 import seaborn as sns
 from matplotlib import pyplot as plt
 from matplotlib.gridspec import GridSpec
 from matplotlib.patches import Patch
+
+
+def annotate_corr_grid(g, x, y, method='pearson'):
+    g.map_dataframe(annotate_corr, x=x, y=y, method=method)
+
+
+def annotate_corr(data, x, y, ax=None, method='pearson', **kwargs):
+    if method == 'pearson':
+        r, p = stats.pearsonr(data[x], data[y])
+    elif method == 'spearman':
+        r, p = stats.spearmanr(data[x], data[y])
+    else:
+        raise NotImplementedError()
+    if ax is None:
+        ax = plt.gca()
+    ax.text(.05, .8, 'r={:.2f}, p={:.2g}'.format(r, p),
+            transform=ax.transAxes)
 
 
 def plot_eigenspectrum(data, x, y, hue=None, ax=None, log_scale=True, **kwargs):
