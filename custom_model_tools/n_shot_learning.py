@@ -170,12 +170,12 @@ def logistic_performance(X_train, y_train, X_test, y_test) -> Dict[str, float]:
 
         top1 = top_k_accuracy_score(y_test, y_pred, k=1)
         top5 = top_k_accuracy_score(y_test, y_pred, k=5)
-        mmr = label_ranking_average_precision_score(label_binarize(y_test, classes=range(y_pred.shape[1])), y_pred)
+        mrr = label_ranking_average_precision_score(label_binarize(y_test, classes=range(y_pred.shape[1])), y_pred)
         ll = -log_loss(y_test, y_pred)
 
         return {'accuracy (top 1)': top1,
                 'accuracy (top 5)': top5,
-                'MMR': mmr,
+                'MRR': mrr,
                 'log likelihood': ll}
 
 
@@ -187,11 +187,11 @@ def prototype_performance(X_train, y_train, X_test, y_test) -> Dict[str, float]:
 
         top1 = top_k_accuracy_score(y_test, y_pred, k=1)
         top5 = top_k_accuracy_score(y_test, y_pred, k=5)
-        mmr = label_ranking_average_precision_score(label_binarize(y_test, classes=range(y_pred.shape[1])), y_pred)
+        mrr = label_ranking_average_precision_score(label_binarize(y_test, classes=range(y_pred.shape[1])), y_pred)
 
         return {'accuracy (top 1)': top1,
                 'accuracy (top 5)': top5,
-                'MMR': mmr}
+                'MRR': mrr}
 
 
 def maxmargin_performance(X_train, y_train, X_test, y_test) -> Dict[str, float]:
