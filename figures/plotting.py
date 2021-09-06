@@ -34,24 +34,6 @@ def plot_eigenspectrum(data, x, y, hue=None, ax=None, log_scale=True, **kwargs):
     return ax
 
 
-def plot_correlations(data, x, y, hue, grid=None, plt_kwargs=None, grid_kwargs=None):
-    if plt_kwargs is None:
-        plt_kwargs = {}
-    if grid_kwargs is None:
-        grid_kwargs = {}
-
-    if grid is None:
-        ax = sns.scatterplot(data=data, x=x, y=y, hue=hue, **plt_kwargs)
-        ax.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
-        annotate_corr(data, x=x, y=y, ax=ax)
-        return ax
-    else:
-        g = sns.FacetGrid(data=data, hue=hue, col=grid, **grid_kwargs)
-        g.map(sns.scatterplot, x, y, **plt_kwargs)
-        annotate_corr_grid(g, x=x, y=y)
-        return g
-
-
 def plot_metrics_categorical(kind, data, x, ys, labels=None, col_wrap=5,
                              fig_kwargs=None, plt_kwargs=None, grid_kwargs=None):
     if fig_kwargs is None:
@@ -125,45 +107,6 @@ def plot_metrics_trend(data, x, ys, hue, labels=None, col_wrap=5,
         else:
             ax.set_title(labels[i])
         ax.legend().remove()
-
-    handles, labels = ax.get_legend_handles_labels()
-    fig.legend(handles=handles, labels=labels, loc='upper left', bbox_to_anchor=(1.05, 0.65))
-
-    fig.tight_layout()
-
-    return fig, axs
-
-
-def plot_metrics_vs_other(data, xs, y, hue, labels=None, col_wrap=5,
-                          fig_kwargs=None, plt_kwargs=None, grid_kwargs=None):
-    if fig_kwargs is None:
-        fig_kwargs = {}
-    if plt_kwargs is None:
-        plt_kwargs = {}
-    if grid_kwargs is None:
-        grid_kwargs = {}
-
-    ncols = min(len(xs), col_wrap)
-    nrows = math.ceil(len(xs) / col_wrap)
-    fig = plt.figure(**fig_kwargs)
-    gs = GridSpec(nrows=nrows, ncols=ncols, **grid_kwargs)
-
-    axs = []
-    for i, x in enumerate(xs):
-        row, col = i // ncols, i % ncols
-        ax = fig.add_subplot(gs[row, col])
-        axs.append(ax)
-
-        sns.scatterplot(data=data, x=x, y=y, hue=hue, ax=ax, **plt_kwargs)
-
-        ax.set(xlabel=None, ylabel=None)
-        if labels is None:
-            ax.set_title(x)
-        else:
-            ax.set_title(labels[i])
-        ax.legend().remove()
-
-        annotate_corr(data, x=x, y=y, ax=ax)
 
     handles, labels = ax.get_legend_handles_labels()
     fig.legend(handles=handles, labels=labels, loc='upper left', bbox_to_anchor=(1.05, 0.65))
