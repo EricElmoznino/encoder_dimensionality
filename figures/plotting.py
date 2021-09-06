@@ -7,7 +7,7 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.patches import Patch
 
 
-def annotate_corr_grid(g, x, y, method='pearson'):
+def annotate_corr_grid(g, x, y, method='spearman'):
     g.map_dataframe(annotate_corr, x=x, y=y, method=method)
 
 
