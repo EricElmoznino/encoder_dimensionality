@@ -18,7 +18,7 @@ from utils import timed, id_to_properties
 def main(benchmark, pooling, debug=False):
     scores = pd.DataFrame()
     for model, layers in get_activation_models():
-        layer_scores = fit_encoder(model, layers, pooling)
+        layer_scores = fit_encoder(benchmark, model, layers, pooling)
         scores = scores.append(layer_scores)
         if debug:
             break
@@ -26,7 +26,7 @@ def main(benchmark, pooling, debug=False):
         scores.to_csv(f'results/encoding|benchmark:{benchmark._identifier}|pooling:{pooling}.csv', index=False)
 
 
-def fit_encoder(model, layers, pooling):
+def fit_encoder(benchmark, model, layers, pooling):
     """Fit layers one at a time to save on memory"""
 
     layer_scores = pd.DataFrame()
