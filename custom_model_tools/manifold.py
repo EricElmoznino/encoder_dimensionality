@@ -109,11 +109,11 @@ class LayerManifoldStatisticsImageNet(LayerManifoldStatisticsBase):
         return self.concept_paths
 
 
-class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsBase):
+class LayerManifoldStatisticsImageFolder(LayerManifoldStatisticsBase):
 
-    def __init__(self, data_dir, activations_extractor, pooling=True):
-        super().__init__(activations_extractor, pooling, 'object2vec')
-        data_dir = os.path.join(data_dir, 'stimuli_rgb')
+    def __init__(self, data_dir, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
         assert os.path.exists(data_dir)
         self.data_dir = data_dir
 
@@ -128,6 +128,28 @@ class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsBase):
 
     def get_image_concept_paths(self) -> List[List[str]]:
         return self.concept_paths
+
+
+class LayerManifoldStatisticsImageNet21k(LayerManifoldStatisticsImageFolder):
+
+    def __init__(self, data_dir, num_classes=50, num_per_class=50, *args, **kwargs):
+        super().__init__(data_dir, *args, **kwargs)
+        self.num_classes = num_classes
+        self.num_per_class = num_per_class
+
+        assert len(self.concept_paths) >= num_classes
+        self.concept_paths = self.concept_paths[:num_classes]
+        for i in range(len(self.concept_paths)):
+            assert len(self.concept_paths[i]) >= num_per_class
+            self.concept_paths[i] = self.concept_paths[i][:num_classes]
+
+
+class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsImageFolder):
+
+    def __init__(self, data_dir, *args, **kwargs):
+        data_dir = os.path.join(data_dir, 'stimuli_rgb')
+        super().__init__(data_dir, *args, **kwargs,
+                         stimuli_identifier='object2vec')
 
 
 class ManifoldGeometry:
