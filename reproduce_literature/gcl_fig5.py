@@ -37,4 +37,4 @@ if __name__ == '__main__':
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()
 
-    main(dataset=args.dataset, data_dir=args.data_dir, pooling=args.pooling, debug=args.debug)
+    main(pooling=args.pooling, debug=args.debug)
