@@ -152,6 +152,26 @@ class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsImageFolder):
                          stimuli_identifier='object2vec')
 
 
+class LayerManifoldStatisticsMajajHong2015(LayerManifoldStatisticsBase):
+    # Brainscore IT benchmark images (64 objects, 50 images/object)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, stimuli_identifier='dicarlo.hvm-public')
+
+        data_dir = os.getenv('BRAINIO_HOME', os.path.expanduser('~/.brainio'))
+        data_dir = os.path.join(data_dir, 'image_dicarlo_hvm-public')
+        assert os.path.exists(data_dir)
+
+        concept_paths = pd.read_csv(os.path.join(data_dir, 'image_dicarlo_hvm-public.csv'))
+        concept_paths = concept_paths[['object_name', 'filename']]
+        concept_paths = concept_paths.groupby('object_name')['filename'].agg(list)
+        concept_paths = concept_paths.values.tolist()
+        self.concept_paths = concept_paths
+
+    def get_image_concept_paths(self) -> List[List[str]]:
+        return self.concept_paths
+
+
 class ManifoldGeometry:
     """
     Implementation of https://www.biorxiv.org/content/10.1101/2021.03.21.436284v1.full.pdf

@@ -5,8 +5,9 @@ import pandas as pd
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 from activation_models.generators import get_activation_models
-from custom_model_tools.manifold import LayerManifoldStatisticsImageNet21k, LayerManifoldStatisticsObject2Vec, \
-    LayerManifoldStatisticsImageNet
+from custom_model_tools.manifold import LayerManifoldStatisticsImageNet21k, LayerManifoldStatisticsImageNet, \
+    LayerManifoldStatisticsObject2Vec, LayerManifoldStatisticsMajajHong2015
+
 from utils import timed
 
 
@@ -36,6 +37,9 @@ def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
         return LayerManifoldStatisticsObject2Vec(data_dir=data_dir,
                                                  activations_extractor=activations_extractor,
                                                  pooling=pooling)
+    elif dataset == 'majajhong2015':
+        return LayerManifoldStatisticsMajajHong2015(activations_extractor=activations_extractor,
+                                                    pooling=pooling)
     else:
         raise ValueError(f'Unknown manifold dataset: {dataset}')
 
@@ -43,7 +47,7 @@ def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Compute and store manifold statistics of models')
     parser.add_argument('--dataset', type=str,
-                        choices=['imagenet', 'imagenet21k', 'object2vec'],
+                        choices=['imagenet', 'imagenet21k', 'object2vec', 'majajhong2015'],
                         help='Dataset of concepts for which to compute manifold statistics')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory containing stimuli')
