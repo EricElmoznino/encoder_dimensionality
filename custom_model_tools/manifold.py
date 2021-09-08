@@ -164,6 +164,7 @@ class LayerManifoldStatisticsMajajHong2015(LayerManifoldStatisticsBase):
 
         concept_paths = pd.read_csv(os.path.join(data_dir, 'image_dicarlo_hvm-public.csv'))
         concept_paths = concept_paths[['object_name', 'filename']]
+        concept_paths['filename'] = data_dir + '/' + concept_paths['filename']
         concept_paths = concept_paths.groupby('object_name')['filename'].agg(list)
         concept_paths = concept_paths.values.tolist()
         self.concept_paths = concept_paths
