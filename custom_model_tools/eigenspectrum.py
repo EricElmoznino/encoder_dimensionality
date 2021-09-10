@@ -7,7 +7,7 @@ import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
-from custom_model_tools.hooks import GlobalMaxPool2d
+from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
 from custom_model_tools.image_transform import ImageDatasetTransformer
 from utils import id_to_properties, get_imagenet_val
 from typing import Optional
@@ -88,19 +88,22 @@ class ImageNetLayerEigenspectrum:
         imagenet_paths = get_imagenet_val(num_per_class=10)
         if self._image_transform is not None:
             imagenet_paths = self._image_transform.transform_dataset('imagenetval', imagenet_paths)
-        if self._pooling:
-            handle = GlobalMaxPool2d.hook(self._extractor)
 
         # Compute activations and PCA for every layer individually to save on memory.
         # This is more inefficient because we run images through the network several times,
         # but it is a more scalable approach when using many images and large layers.
         layer_eigenspectra = {}
         for layer in layers:
-            self._logger.debug('Retrieving ImageNet activations')
+            if pooling:
+                handle = GlobalMaxPool2d.hook(self._extractor)
+            else:
+                handle = RandomProjection(self._extractor)
+
+            self._logger.debug('Retrieving stimulus activations')
             activations = self._extractor(imagenet_paths, layers=[layer])
             activations = activations.sel(layer=layer).values
 
-            self._logger.debug('Computing ImageNet principal components')
+            self._logger.debug('Computing principal components')
             progress = tqdm(total=1, desc="layer principal components")
             activations = flatten(activations)
             pca = PCA(random_state=0)
@@ -111,7 +114,6 @@ class ImageNetLayerEigenspectrum:
 
             layer_eigenspectra[layer] = eigenspectrum
 
-        if self._pooling:
             handle.remove()
 
         return layer_eigenspectra
