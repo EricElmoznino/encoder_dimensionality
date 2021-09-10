@@ -9,7 +9,7 @@ import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
-from custom_model_tools.hooks import GlobalMaxPool2d
+from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
 from utils import id_to_properties, get_imagenet_val
 from typing import List, Tuple
 
@@ -40,9 +40,6 @@ class LayerManifoldStatisticsBase:
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
     def _fit(self, identifier, stimuli_identifier, layers, pooling):
-        if self._pooling:
-            handle = GlobalMaxPool2d.hook(self._extractor)
-
         concept_paths = self.get_image_concept_paths()
 
         # Compute manifold geometry statistics for every layer individually to save on memory.
@@ -50,6 +47,11 @@ class LayerManifoldStatisticsBase:
         # but it is a more scalable approach when using many images and large layers.
         layer_manifold_statistics = {}
         for layer in layers:
+            if pooling:
+                handle = GlobalMaxPool2d.hook(self._extractor)
+            else:
+                handle = RandomProjection.hook(self._extractor)
+
             self._logger.debug('Computing concept manifold geometries')
             concept_manifolds = []
             for stimuli_paths in tqdm(concept_paths, desc='concept manifolds'):
@@ -87,7 +89,6 @@ class LayerManifoldStatisticsBase:
             progress.update(1)
             progress.close()
 
-        if self._pooling:
             handle.remove()
 
         return layer_manifold_statistics

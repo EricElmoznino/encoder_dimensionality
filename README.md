@@ -27,6 +27,10 @@
       extracting representations suitable for few-shot prototype learning 
       of novel objects, and discusses the computational properties
       that such representations would require.
+- The V1 paper that finds eigenspectra decay with a power law to be as
+  expressive as possible while still being smooth/differentiable
+- The 1/n paper that found if you make the eigenspectra decay slower, models
+  are more robust to adversarial attacks.
 - TODO: papers on the usefulness of high-dimensional representations which
   I've read. Some of these might be referenced in the presentation I made for Mick.
 

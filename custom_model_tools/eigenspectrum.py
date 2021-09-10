@@ -97,7 +97,7 @@ class ImageNetLayerEigenspectrum:
             if pooling:
                 handle = GlobalMaxPool2d.hook(self._extractor)
             else:
-                handle = RandomProjection(self._extractor)
+                handle = RandomProjection.hook(self._extractor)
 
             self._logger.debug('Retrieving stimulus activations')
             activations = self._extractor(imagenet_paths, layers=[layer])

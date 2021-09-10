@@ -15,7 +15,7 @@ import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
-from custom_model_tools.hooks import GlobalMaxPool2d
+from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
 from utils import id_to_properties, get_imagenet_val
 from typing import List, Dict
 
@@ -56,9 +56,6 @@ class NShotLearningBase:
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
     def _fit(self, identifier, stimuli_identifier, classifier, layers, pooling):
-        if self._pooling:
-            handle = GlobalMaxPool2d.hook(self._extractor)
-
         n_samples = max(self._n_train) + self._n_test
         cat_paths = self.get_image_paths(self._n_cats, n_samples)
 
@@ -67,6 +64,11 @@ class NShotLearningBase:
         # but it is a more scalable approach when using many images and large layers.
         layer_performance_statistics = {}
         for layer in layers:
+            if pooling:
+                handle = GlobalMaxPool2d.hook(self._extractor)
+            else:
+                handle = RandomProjection.hook(self._extractor)
+
             self._logger.debug('Retrieving activations')
             activations = self._extractor([path for cat in cat_paths for path in cat], layers=[layer])
             activations = activations.sel(layer=layer).values
@@ -100,7 +102,6 @@ class NShotLearningBase:
 
             layer_performance_statistics[layer] = performance_statistics
 
-        if self._pooling:
             handle.remove()
 
         return layer_performance_statistics
