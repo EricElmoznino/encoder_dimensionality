@@ -46,7 +46,7 @@ class RandomProjection:
         def apply(layer, activations):
             activations = activations.reshape(activations.shape[0], -1)
             if layer not in self.layer_ws:
-                w = np.random.rand(activations.shape[-1], self.n_components) / np.sqrt(self.n_components)
+                w = np.random.normal(size=(activations.shape[-1], self.n_components)) / np.sqrt(self.n_components)
                 self.layer_ws[layer] = w
             else:
                 w = self.layer_ws[layer]
@@ -57,8 +57,8 @@ class RandomProjection:
                            multithread=os.getenv('MT_MULTITHREAD', '1') == '1')
 
     @classmethod
-    def hook(cls, activations_extractor):
-        hook = RandomProjection(activations_extractor=activations_extractor)
+    def hook(cls, activations_extractor, n_components=1024):
+        hook = RandomProjection(activations_extractor=activations_extractor, n_components=n_components)
         assert not cls.is_hooked(activations_extractor), "RandomProjection already hooked"
         handle = activations_extractor.register_batch_activations_hook(hook)
         hook.handle = handle
