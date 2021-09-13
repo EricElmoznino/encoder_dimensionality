@@ -134,7 +134,8 @@ class LayerManifoldStatisticsImageFolder(LayerManifoldStatisticsBase):
 class LayerManifoldStatisticsImageNet21k(LayerManifoldStatisticsImageFolder):
 
     def __init__(self, data_dir, num_classes=50, num_per_class=50, *args, **kwargs):
-        super().__init__(data_dir, *args, **kwargs)
+        super().__init__(data_dir, *args, **kwargs,
+                         stimuli_identifier='imagenet21k')
         self.num_classes = num_classes
         self.num_per_class = num_per_class
 
@@ -157,7 +158,8 @@ class LayerManifoldStatisticsMajajHong2015(LayerManifoldStatisticsBase):
     # Brainscore IT benchmark images (64 objects, 50 images/object)
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs, stimuli_identifier='dicarlo.hvm-public')
+        super().__init__(*args, **kwargs,
+                         stimuli_identifier='dicarlo.hvm-public')
 
         data_dir = os.getenv('BRAINIO_HOME', os.path.expanduser('~/.brainio'))
         data_dir = os.path.join(data_dir, 'image_dicarlo_hvm-public')

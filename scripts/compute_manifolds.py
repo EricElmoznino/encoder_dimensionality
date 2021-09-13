@@ -31,8 +31,7 @@ def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
     elif dataset == 'imagenet21k':
         return LayerManifoldStatisticsImageNet21k(data_dir=data_dir,
                                                   activations_extractor=activations_extractor,
-                                                  pooling=pooling,
-                                                  stimuli_identifier='imagenet21k')
+                                                  pooling=pooling)
     elif dataset == 'object2vec':
         return LayerManifoldStatisticsObject2Vec(data_dir=data_dir,
                                                  activations_extractor=activations_extractor,
