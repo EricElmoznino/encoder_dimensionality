@@ -5,8 +5,8 @@ import pandas as pd
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 from activation_models.generators import get_activation_models
-from custom_model_tools.manifold import LayerManifoldStatisticsImageNet21k, LayerManifoldStatisticsImageNet, \
-    LayerManifoldStatisticsObject2Vec, LayerManifoldStatisticsMajajHong2015
+from custom_model_tools.manifold import ManifoldStatisticsImageNet21k, ManifoldStatisticsImageNet, \
+    ManifoldStatisticsObject2Vec, ManifoldStatisticsMajajHong2015
 
 from utils import timed
 
@@ -26,19 +26,19 @@ def main(dataset, data_dir, pooling, debug=False):
 
 def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
     if dataset == 'imagenet':
-        return LayerManifoldStatisticsImageNet(activations_extractor=activations_extractor,
-                                               pooling=pooling)
+        return ManifoldStatisticsImageNet(activations_extractor=activations_extractor,
+                                          pooling=pooling)
     elif dataset == 'imagenet21k':
-        return LayerManifoldStatisticsImageNet21k(data_dir=data_dir,
-                                                  activations_extractor=activations_extractor,
-                                                  pooling=pooling)
+        return ManifoldStatisticsImageNet21k(data_dir=data_dir,
+                                             activations_extractor=activations_extractor,
+                                             pooling=pooling)
     elif dataset == 'object2vec':
-        return LayerManifoldStatisticsObject2Vec(data_dir=data_dir,
-                                                 activations_extractor=activations_extractor,
-                                                 pooling=pooling)
+        return ManifoldStatisticsObject2Vec(data_dir=data_dir,
+                                            activations_extractor=activations_extractor,
+                                            pooling=pooling)
     elif dataset == 'majajhong2015':
-        return LayerManifoldStatisticsMajajHong2015(activations_extractor=activations_extractor,
-                                                    pooling=pooling)
+        return ManifoldStatisticsMajajHong2015(activations_extractor=activations_extractor,
+                                               pooling=pooling)
     else:
         raise ValueError(f'Unknown manifold dataset: {dataset}')
 

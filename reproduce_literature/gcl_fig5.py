@@ -11,7 +11,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
 from reproduce_literature.generators import get_gcl_fig5_models
-from custom_model_tools.manifold import LayerManifoldStatisticsMajajHong2015
+from custom_model_tools.manifold import ManifoldStatisticsMajajHong2015
 from utils import timed
 
 
@@ -19,8 +19,8 @@ from utils import timed
 def main(pooling, debug=False):
     manifold_statistics_df = pd.DataFrame()
     for model, layers in get_gcl_fig5_models():
-        manifold_statistics = LayerManifoldStatisticsMajajHong2015(activations_extractor=model,
-                                                                   pooling=pooling)
+        manifold_statistics = ManifoldStatisticsMajajHong2015(activations_extractor=model,
+                                                              pooling=pooling)
         manifold_statistics.fit(layers)
         manifold_statistics_df = manifold_statistics_df.append(manifold_statistics.as_df())
         if debug:

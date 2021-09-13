@@ -14,7 +14,7 @@ from utils import id_to_properties, get_imagenet_val
 from typing import List, Tuple
 
 
-class LayerManifoldStatisticsBase:
+class ManifoldStatisticsBase:
 
     def __init__(self, activations_extractor, pooling=True, stimuli_identifier=None):
         self._logger = logging.getLogger(fullname(self))
@@ -97,7 +97,7 @@ class LayerManifoldStatisticsBase:
         raise NotImplementedError()
 
 
-class LayerManifoldStatisticsImageNet(LayerManifoldStatisticsBase):
+class ManifoldStatisticsImageNet(ManifoldStatisticsBase):
 
     def __init__(self, activations_extractor, num_classes=50, num_per_class=50, pooling=True):
         super().__init__(activations_extractor, pooling, 'imagenet')
@@ -110,7 +110,7 @@ class LayerManifoldStatisticsImageNet(LayerManifoldStatisticsBase):
         return self.concept_paths
 
 
-class LayerManifoldStatisticsImageFolder(LayerManifoldStatisticsBase):
+class ManifoldStatisticsImageFolder(ManifoldStatisticsBase):
 
     def __init__(self, data_dir, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -131,7 +131,7 @@ class LayerManifoldStatisticsImageFolder(LayerManifoldStatisticsBase):
         return self.concept_paths
 
 
-class LayerManifoldStatisticsImageNet21k(LayerManifoldStatisticsImageFolder):
+class ManifoldStatisticsImageNet21k(ManifoldStatisticsImageFolder):
 
     def __init__(self, data_dir, num_classes=50, num_per_class=50, *args, **kwargs):
         super().__init__(data_dir, *args, **kwargs,
@@ -146,7 +146,7 @@ class LayerManifoldStatisticsImageNet21k(LayerManifoldStatisticsImageFolder):
             self.concept_paths[i] = self.concept_paths[i][:num_classes]
 
 
-class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsImageFolder):
+class ManifoldStatisticsObject2Vec(ManifoldStatisticsImageFolder):
 
     def __init__(self, data_dir, *args, **kwargs):
         data_dir = os.path.join(data_dir, 'stimuli_rgb')
@@ -154,7 +154,7 @@ class LayerManifoldStatisticsObject2Vec(LayerManifoldStatisticsImageFolder):
                          stimuli_identifier='object2vec')
 
 
-class LayerManifoldStatisticsMajajHong2015(LayerManifoldStatisticsBase):
+class ManifoldStatisticsMajajHong2015(ManifoldStatisticsBase):
     # Brainscore IT benchmark images (64 objects, 50 images/object)
 
     def __init__(self, *args, **kwargs):
