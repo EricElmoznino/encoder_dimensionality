@@ -7,6 +7,7 @@ from scipy.spatial.distance import euclidean
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
+from brainio_base.assemblies import NeuroidAssembly
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
 from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
@@ -62,30 +63,7 @@ class ManifoldStatisticsBase:
 
             self._logger.debug('Computing concept manifold statistics')
             progress = tqdm(total=1, desc="manifold statistics")
-            radius = manifold_radius(concept_manifolds)
-            signal = manifold_signal(concept_manifolds)
-            bias = manifold_bias(concept_manifolds)
-            dim = manifold_dimensionality(concept_manifolds)
-            sno_a, sno_b = manifold_signal_noise_overlap(concept_manifolds)
-            snr = manifold_signal_noise_ratio(signal, bias, dim, sno_a, sno_b, concept_manifolds[0].num_examples)
-            radius_mean, radius_std = statistics(radius)
-            signal_mean, signal_std = statistics(signal)
-            bias_mean, bias_std = statistics(bias)
-            dim_mean, dim_std = statistics(dim)
-            sno_a_mean, sno_a_std = statistics(sno_a)
-            sno_b_mean, sno_b_std = statistics(sno_b)
-            snr_mean, snr_std = statistics(snr)
-            global_radius, global_dim = manifold_global_statistics(concept_manifolds)
-            layer_manifold_statistics[layer] = {
-                'within-concept radius (mean)': radius_mean, 'within-concept radius (std)': radius_std,
-                'within-concept dimensionality (mean)': dim_mean, 'within-concept dimensionality (std)': dim_std,
-                'between-concept radius': global_radius, 'between-concept dimensionality': global_dim,
-                'signal (mean)': signal_mean, 'signal (std)': signal_std,
-                'bias (mean)': bias_mean, 'bias (std)': bias_std,
-                'self signal-noise-overlap (mean)': sno_a_mean, 'self signal-noise-overlap (std)': sno_a_std,
-                'other signal-noise-overlap (mean)': sno_b_mean, 'other signal-noise-overlap (std)': sno_b_std,
-                'signal-noise-ratio (mean)': snr_mean, 'signal-noise-ratio (std)': snr_std
-            }
+            layer_manifold_statistics[layer] = get_manifold_statistics(concept_manifolds)
             progress.update(1)
             progress.close()
 
@@ -176,6 +154,17 @@ class ManifoldStatisticsMajajHong2015(ManifoldStatisticsBase):
         return self.concept_paths
 
 
+def neural_assembly_manifold_statistics(assembly: NeuroidAssembly, concept_coord: str):
+        concept_manifolds = [g[1].values for g in assembly.groupby(concept_coord)]
+        concept_manifolds = [ManifoldGeometry(activations)
+                             for activations in tqdm(concept_manifolds, desc='concept manifolds')]
+        progress = tqdm(total=1, desc="manifold statistics")
+        manifold_statistics = get_manifold_statistics(concept_manifolds)
+        progress.update(1)
+        progress.close()
+        return manifold_statistics
+
+
 class ManifoldGeometry:
     """
     Implementation of https://www.biorxiv.org/content/10.1101/2021.03.21.436284v1.full.pdf
@@ -193,6 +182,34 @@ class ManifoldGeometry:
         self.radius = np.sqrt(squared_radii.mean())
         self.dimensionality = (squared_radii).sum() ** 2 / (squared_radii ** 2).sum()
         self.directions_of_variance = np.sqrt(squared_radii)[:, np.newaxis] * eigvecs / self.radius
+
+
+def get_manifold_statistics(concept_manifolds):
+    radius = manifold_radius(concept_manifolds)
+    signal = manifold_signal(concept_manifolds)
+    bias = manifold_bias(concept_manifolds)
+    dim = manifold_dimensionality(concept_manifolds)
+    sno_a, sno_b = manifold_signal_noise_overlap(concept_manifolds)
+    snr = manifold_signal_noise_ratio(signal, bias, dim, sno_a, sno_b, concept_manifolds[0].num_examples)
+    radius_mean, radius_std = statistics(radius)
+    signal_mean, signal_std = statistics(signal)
+    bias_mean, bias_std = statistics(bias)
+    dim_mean, dim_std = statistics(dim)
+    sno_a_mean, sno_a_std = statistics(sno_a)
+    sno_b_mean, sno_b_std = statistics(sno_b)
+    snr_mean, snr_std = statistics(snr)
+    global_radius, global_dim = manifold_global_statistics(concept_manifolds)
+    manifold_statistics = {
+        'within-concept radius (mean)': radius_mean, 'within-concept radius (std)': radius_std,
+        'within-concept dimensionality (mean)': dim_mean, 'within-concept dimensionality (std)': dim_std,
+        'between-concept radius': global_radius, 'between-concept dimensionality': global_dim,
+        'signal (mean)': signal_mean, 'signal (std)': signal_std,
+        'bias (mean)': bias_mean, 'bias (std)': bias_std,
+        'self signal-noise-overlap (mean)': sno_a_mean, 'self signal-noise-overlap (std)': sno_a_std,
+        'other signal-noise-overlap (mean)': sno_b_mean, 'other signal-noise-overlap (std)': sno_b_std,
+        'signal-noise-ratio (mean)': snr_mean, 'signal-noise-ratio (std)': snr_std
+    }
+    return manifold_statistics
 
 
 def manifold_signal(manifolds: List[ManifoldGeometry]) -> np.ndarray:
