@@ -101,7 +101,7 @@ def main(data_dir, scrambled_labels):
     )
     if scrambled_labels:
         cifar10_dm.setup()
-        random.shuffle(cifar10_dm.dataset_train.targets)
+        random.shuffle(cifar10_dm.dataset_train.dataset.targets)
 
     model = LitResnet(lr=0.05)
 
