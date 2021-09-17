@@ -103,6 +103,7 @@ def main(data_dir, scrambled_labels):
 
     trainer = Trainer(
         default_root_dir=save_dir,
+        checkpoint_callback=False,
         progress_bar_refresh_rate=10,
         max_epochs=30,
         gpus=AVAIL_GPUS,
