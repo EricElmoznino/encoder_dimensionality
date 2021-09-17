@@ -24,7 +24,7 @@ NUM_WORKERS = int(os.cpu_count() / 2)
 
 class LitResnet(LightningModule):
 
-    def __init__(self, lr=1e-3):
+    def __init__(self, lr=0.1):
         super().__init__()
 
         self.save_hyperparameters()
@@ -96,7 +96,7 @@ def main(data_dir, scrambled_labels):
         cifar10_dm.setup()
         random.shuffle(cifar10_dm.dataset_train.dataset.targets)
 
-    model = LitResnet(lr=0.05)
+    model = LitResnet()
 
     trainer = Trainer(
         default_root_dir=save_dir,
