@@ -12,7 +12,7 @@ import torchvision
 from pl_bolts.datamodules import CIFAR10DataModule
 from pytorch_lightning import LightningModule, seed_everything, Trainer
 from pytorch_lightning.callbacks import LearningRateMonitor
-from torch.optim.lr_scheduler import OneCycleLR
+from torch.optim.lr_scheduler import MultiplicativeLR
 from torchmetrics.functional import accuracy
 
 seed_everything(27)
@@ -65,20 +65,13 @@ class LitResnet(LightningModule):
         optimizer = torch.optim.SGD(
             self.parameters(),
             lr=self.hparams.lr,
-            momentum=0.9,
-            weight_decay=5e-4,
+            momentum=0.9
         )
-        steps_per_epoch = 45000 // BATCH_SIZE
-        scheduler_dict = {
-            'scheduler': OneCycleLR(
-                optimizer,
-                0.1,
-                epochs=self.trainer.max_epochs,
-                steps_per_epoch=steps_per_epoch,
-            ),
-            'interval': 'step',
-        }
-        return {'optimizer': optimizer, 'lr_scheduler': scheduler_dict}
+        scheduler = MultiplicativeLR(
+            optimizer,
+            lambda epoch: 0.95
+        )
+        return {'optimizer': optimizer, 'lr_scheduler': scheduler}
 
 
 def create_model():
@@ -109,7 +102,7 @@ def main(data_dir, scrambled_labels):
         default_root_dir=save_dir,
         checkpoint_callback=False,
         progress_bar_refresh_rate=10,
-        max_epochs=30,
+        max_epochs=90 if scrambled_labels else 30,
         gpus=AVAIL_GPUS,
         callbacks=[LearningRateMonitor(logging_interval='step')],
     )
