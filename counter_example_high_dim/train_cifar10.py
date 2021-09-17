@@ -41,7 +41,7 @@ class LitResnet(LightningModule):
         preds = torch.argmax(logits, dim=1)
         acc = accuracy(preds, y)
         self.log('train_loss', loss)
-        self.log(f'train_acc', acc, prog_bar=True, on_epoch=True)
+        self.log(f'train_acc', acc, prog_bar=True, on_step=False, on_epoch=True)
         return loss
 
     def evaluate(self, batch, stage=None):
