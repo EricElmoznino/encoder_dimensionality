@@ -79,7 +79,9 @@ def create_cifar10_resnet18(pretrained_ckpt=None):
     model.conv1 = nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
     model.maxpool = nn.Identity()
     if pretrained_ckpt is not None:
-        model.load_state_dict(torch.load(pretrained_ckpt)['state_dict'])
+        state_dict = torch.load(pretrained_ckpt)['state_dict']
+        state_dict = {k.replace('model.', ''): v for k, v in state_dict.items()}
+        model.load_state_dict(state_dict)
     return model
 
 
