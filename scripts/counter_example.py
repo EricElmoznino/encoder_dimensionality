@@ -22,7 +22,7 @@ def main():
         eigmetrics_df = eigmetrics_df.append(eigspec.metrics_as_df())
         del eigspec
 
-        layer_scores = fit_encoder(benchmark, model, layers, True)
+        layer_scores = fit_encoder(benchmark, model, layers, False)
         scores_df = scores_df.append(layer_scores)
 
     eigspec_df.to_csv('results/counter-example|eigspectra.csv', index=False)
