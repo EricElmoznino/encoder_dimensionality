@@ -28,7 +28,7 @@ class LitResnet(LightningModule):
         super().__init__()
 
         self.save_hyperparameters()
-        self.model = create_model()
+        self.model = create_cifar10_resnet18()
 
     def forward(self, x):
         out = self.model(x)
@@ -74,10 +74,12 @@ class LitResnet(LightningModule):
         return {'optimizer': optimizer, 'lr_scheduler': scheduler}
 
 
-def create_model():
+def create_cifar10_resnet18(pretrained_ckpt=None):
     model = torchvision.models.resnet18(pretrained=False, num_classes=10)
     model.conv1 = nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
     model.maxpool = nn.Identity()
+    if pretrained_ckpt is not None:
+        model.load_state_dict(torch.load(pretrained_ckpt)['state_dict'])
     return model
 
 

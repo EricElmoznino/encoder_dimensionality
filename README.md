@@ -112,7 +112,10 @@
 
 ---
 # To Do
-- Look at dimensionality of our CNN models on the fMRI datasets we're fitting encoding models too. This is relevant for answering the question of what to make of the fact that the neural representations are low-dimensional, but the model representations that are good at explaining them are high-dimensional (but high-dimensional on a different dataset).
+- Histograms/KDEs of voxel-wise encoding accuracies as a function of dimensionality. Does the entire distribution shift to the right? Is the change restricted to the tails?
+- Counter-example where dimensionality is high but performance is bad.
+- Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?
+- ~~Look at dimensionality of our CNN models on the fMRI datasets we're fitting encoding models too. This is relevant for answering the question of what to make of the fact that the neural representations are low-dimensional, but the model representations that are good at explaining them are high-dimensional (but high-dimensional on a different dataset).~~
     - Our working hypothesis is that the neural representations are just low-dimensional because the neural dataset is small.
     - Have done this before, and it turned out that the CNNs had lower dimensionality, but still higher than the fMRI data and exhibited the same trend where higher dimensionality translated to better encoding performance.
 - ~~Use new classes and images from "The Geometry of Concept Learning~~"

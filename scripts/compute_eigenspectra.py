@@ -16,18 +16,18 @@ from utils import timed
 def main(dataset, data_dir, pooling, grayscale, debug=False):
     image_transform = ImageDatasetTransformer('grayscale', Grayscale()) if grayscale else None
     eigspec_df = pd.DataFrame()
-    eig_metrics_df = pd.DataFrame()
+    eigmetrics_df = pd.DataFrame()
     for model, layers in get_activation_models():
         eigspec = get_eigenspectrum(dataset, data_dir, model, pooling, image_transform)
         eigspec.fit(layers)
         eigspec_df = eigspec_df.append(eigspec.as_df())
-        eig_metrics_df = eig_metrics_df.append(eigspec.metrics_as_df())
+        eigmetrics_df = eigmetrics_df.append(eigspec.metrics_as_df())
         if debug:
             break
 
     if not debug:
         eigspec_df.to_csv(f'results/eigspectra|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv', index=False)
-        eig_metrics_df.to_csv(f'results/eigmetrics|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv', index=False)
+        eigmetrics_df.to_csv(f'results/eigmetrics|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv', index=False)
 
 
 def get_eigenspectrum(dataset, data_dir, activations_extractor, pooling, image_transform):
