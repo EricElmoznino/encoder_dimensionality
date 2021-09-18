@@ -84,7 +84,7 @@ def create_cifar10_resnet18(pretrained_ckpt=None):
 
 
 def main(data_dir, scrambled_labels):
-    save_dir = 'counter_example_high_dim/saved_runs/resnet18'
+    save_dir = 'counter_example/saved_runs/resnet18'
     if scrambled_labels:
         save_dir += '_scrambled_labels'
 

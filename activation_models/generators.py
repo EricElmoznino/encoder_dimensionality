@@ -7,7 +7,7 @@ from model_tools.activations.pytorch import PytorchWrapper, load_preprocess_imag
 from visualpriors.taskonomy_network import TASKONOMY_PRETRAINED_URLS, TaskonomyEncoder
 from functools import partial
 from utils import properties_to_id
-from counter_example_high_dim.train_cifar10 import create_cifar10_resnet18
+from counter_example.train_cifar10 import create_cifar10_resnet18
 
 
 resnet18_pt_layers = [f'layer1.{i}.relu' for i in range(2)] + \
