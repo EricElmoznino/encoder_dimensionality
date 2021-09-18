@@ -7,6 +7,7 @@ from model_tools.activations.pytorch import PytorchWrapper, load_preprocess_imag
 from visualpriors.taskonomy_network import TASKONOMY_PRETRAINED_URLS, TaskonomyEncoder
 from functools import partial
 from utils import properties_to_id
+from counter_example_high_dim.train_cifar10 import create_cifar10_resnet18
 
 
 resnet18_pt_layers = [f'layer1.{i}.relu' for i in range(2)] + \
@@ -123,13 +124,23 @@ def taskonomy_models():
         yield model, resnet50_pt_layers
 
 
-def wrap_pt(model, identifier, res=224, imagenet_norm=True):
-    if imagenet_norm:
-        preprocess = partial(load_preprocess_images, image_size=res)
-    else:
-        preprocess = partial(load_preprocess_images, image_size=res,
-                             normalize_mean=(0.5, 0.5, 0.5),
-                             normalize_std=(0.5, 0.5, 0.5))
+def counterexample_models():
+    model = create_cifar10_resnet18(pretrained_ckpt='counter_example/saved_runs/resnet18/final.ckpt')
+    identifier = properties_to_id('ResNet18', 'Object Classification (CIFAR10)', 'Supervised', 'Counter-Example')
+    model = wrap_pt(model, identifier, res=32, norm=([x / 255.0 for x in [125.3, 123.0, 113.9]],
+                                                     [x / 255.0 for x in [63.0, 62.1, 66.7]]))
+    yield model, resnet18_pt_layers
+
+    model = create_cifar10_resnet18(pretrained_ckpt='counter_example/saved_runs/resnet18_scrambled_labels/final.ckpt')
+    identifier = properties_to_id('ResNet18', 'Object Classification (CIFAR10)', 'Supervised Random Labels', 'Counter-Example')
+    model = wrap_pt(model, identifier, res=32, norm=([x / 255.0 for x in [125.3, 123.0, 113.9]],
+                                                     [x / 255.0 for x in [63.0, 62.1, 66.7]]))
+    yield model, resnet18_pt_layers
+
+
+def wrap_pt(model, identifier, res=224, norm=((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))):
+    preprocess = partial(load_preprocess_images, image_size=res,
+                         normalize_mean=norm[0], normalize_std=norm[1])
     return PytorchWrapper(model=model,
                           preprocessing=preprocess,
                           identifier=identifier)
