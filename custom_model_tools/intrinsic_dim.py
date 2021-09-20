@@ -51,6 +51,7 @@ class IntrinsicDimBase:
         # This is more inefficient because we run images through the network several times,
         # but it is a more scalable approach when using many images and large layers.
         layer_dims = {}
+        two_nn = TwoNearestNeighbors()
         for layer in layers:
             if pooling:
                 handle = GlobalMaxPool2d.hook(self._extractor)
@@ -59,10 +60,8 @@ class IntrinsicDimBase:
 
             self._logger.debug('Retrieving activations')
             activations = self._extractor(image_paths, layers=layers)
-            activations = flatten(activations)
             activations = activations.sel(layer=layer).values
-
-            two_nn = TwoNearestNeighbors()
+            activations = flatten(activations)
 
             self._logger.debug('Computing ID')
             dim_global = two_nn.fit(activations).dim_
