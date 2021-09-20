@@ -99,7 +99,7 @@ class IntrinsicDimImageNet(IntrinsicDimBase):
     def __init__(self, *args, num_classes=100, num_per_class=100, **kwargs):
         super().__init__(*args, **kwargs, 
                          stimuli_identifier='imagenet')
-        assert 2 <= num_classes <= 1000 and 2 <= num_per_class <= 50
+        assert 2 <= num_classes <= 1000 and 2 <= num_per_class <= 100
         self.num_classes = num_classes
         self.num_per_class = num_per_class
         self.image_paths = get_imagenet_val(num_classes, num_per_class, separate_classes=True)

@@ -77,7 +77,7 @@ class ManifoldStatisticsImageNet(ManifoldStatisticsBase):
 
     def __init__(self, activations_extractor, num_classes=50, num_per_class=50, pooling=True):
         super().__init__(activations_extractor, pooling, 'imagenet')
-        assert 2 <= num_classes <= 1000 and 2 <= num_per_class <= 50
+        assert 2 <= num_classes <= 1000 and 2 <= num_per_class <= 100
         self.num_classes = num_classes
         self.num_per_class = num_per_class
         self.concept_paths = get_imagenet_val(num_classes, num_per_class, separate_classes=True)
