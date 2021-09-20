@@ -1,6 +1,7 @@
 import argparse
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+from tqdm import tqdm
 import pandas as pd
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
@@ -13,12 +14,15 @@ from utils import timed
 @timed
 def main(dataset, data_dir, pooling, debug=False):
     intrinsic_dim_df = pd.DataFrame()
+    progress = tqdm(desc="Models ran")
     for model, layers in get_activation_models():
         intrinsic_dim = get_intrinsic_dim(dataset, data_dir, model, pooling)
         intrinsic_dim.fit(layers)
         intrinsic_dim_df = intrinsic_dim_df.append(intrinsic_dim.as_df())
+        progress.update(1)
         if debug:
             break
+    progress.close()
     if not debug:
         intrinsic_dim_df.to_csv(f'results/intrinsic-dim|dataset:{dataset}|pooling:{pooling}.csv', index=False)
 
