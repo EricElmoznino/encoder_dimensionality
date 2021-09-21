@@ -11,7 +11,7 @@ def annotate_corr_grid(g, x, y, method='spearman'):
     g.map_dataframe(annotate_corr, x=x, y=y, method=method)
 
 
-def annotate_corr(data, x, y, ax=None, method='spearman', **kwargs):
+def annotate_corr(data, x, y, ax=None, method='pearson', **kwargs):
     if method == 'pearson':
         r, p = stats.pearsonr(data[x], data[y])
     elif method == 'spearman':
