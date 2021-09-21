@@ -15,6 +15,13 @@
 - There are disagreements about whether the dimensinoality of useful visual representations should be high or low.
 - Here, we investigate the dimensionality of CNN models of visual cortex and how it relates to the quality of the model. Specifically, we compute both the effective dimensionality of diverse CNNs as well as their ability to explain neural activity in high-level regions of the ventral stream. 
 - Our subsequent findings reveal a surprising computational principle underlying the performance of deep learning in visual neuroscience: performance scales as models embed visual features in a higher dimensional space.
+- Explain intra/inter-class dimensionality at some point and what the tradeoffs are. Say that we model the manifolds as elipses.
+    - **FIGURE**: Grid of 2D scatter plots. Rows show increasing inter-class dimensionality, columns show increasing intra-class dimensionality.
+    - High inter -> supports higher number of classes (but don't want it to be too high to run into statistical issues and not have features that will generalize to new classes).
+    - High intra -> more variation along class separator, potentially problematic.
+    - High intra -> good for few-shot prototype learning.
+    - High intra -> meaningful variance within classes (mention relationship to transfer learning, where ideal classifier maps class instances to a point with no variation, but ImageNet-trained models learn features within classes).
+    - How do CNN models of visual cortex balance these factors? What is their inter/intra-class dimensionality?
 
 #### Draft 2
 - A central goal in the computational neuroscience of vision is to characterize the geometry of latent manifolds underlying neural population responses and, in particular, their dimensionality. The dimensionality of a representation has significant implications for nearly every aspect of computation, including expressiveness, generalization, downstream decoding, and control (TODO: references for each). A mechanistic theory of human vision and how it interacts with other neural processes, then, necessitates a better understanding of the dimensionailty of visual representations.
@@ -48,11 +55,8 @@
 ### Background
 
 ### Methodology
-- Explain intrinsic dimensionality, embedding dimensionality, and our effective dimensionality metric.
-    - **FIGURE**: Show 3 plots, each with a 2D manifold in a 3D space.
-        - First plot: Flat 2D plane. Intrinsic dimensionality is 2, embedding dimensionality is 2, and ED is 2.
-        - Second plot: Slightly numpy 2D surface. Intrinsic dimensionality is 2, embedding dimensionality is 3, and ED is 2.x. ED weighs dimensions with high-variance larger, and is the continuous equivalent of picking a certain number of PCs to explain a certain percent of variance.
-        - Third plot: A very curved 2D surface. Intrinsic dimensionality is 2, embedding dimensionality is 3, and ED is 3.
+- Explain the effective dimensionality metric, which is just a continuous measure of how quickly the eigenvalues decay. Similar to a hard threshold such as "%80 variance", but continuous.
+    - **FIGURE**: 3 point clouds showing increasing ED, similar to what I had in my VSS poster.
 - Overview of method. Take multiple CNNs, and for each:
     1. Compute the ED of each layer on a large naturalistic dataset.
     2. Fit an encoding model from each layer to a brain region (in our case Monkey IT or human LOC).
@@ -60,20 +64,22 @@
     - **FIGURE**: Diagram depicting each of these components and how they connect, similar to what I had in my poster. Path for fitting encoding model, path for computing ED, and connections from them leading to a scatterplot of ED vs. encoding performance.
 - Fitting encoding models. Discuss the dataset, and how we fit CNN activations to the neural data.
 - Computing ED. Discuss the dataset, the spatial max-pooling, and give the equation. Discuss inter-class dimensionality and intra-class dimensionality, and why we might care about both (manifolds for classification vs. manifolds describing objects).
-    - **FIGURE**: Show the distinction between global ED, inter-class ED, and inter-class ED with some examples manifolds.
+    - **FIGURE**: Show the distinction between inter-class ED, and inter-class ED with some examples manifolds.
 - CNN models. Discuss where they come from, what datasets they were trained on, what tasks, the architectures.
 
 ### Results
-- Dimensionality global/inter/intra correlate with encoding performance.
-    - **FIGURE**: Main figure where we show the correlation between global/inter/intra dimensionality with encoding performance. Standard scatterplot.
-- Dimensionality global/inter/intra increase along the hierarchy.
+- Dimensionality inter/intra correlate with encoding performance.
+    - **FIGURE**: Main figure where we show the correlation between inter/intra dimensionality with encoding performance. Standard scatterplot.
+- Dimensionality inter/intra increase along the hierarchy.
     - **FIGURE**: Normalize every trained model's dimenensionality to be between 0-1 across the layers. Plot all models together.
 - Dimensionality correlates with encoding performance even within layers.
     - **FIGURE**: For ResNet18 and ResNet50 models, show a bar plot with layer depth on the x-axis and dim/encoding correlation on the y-axis, labeling significance.
-- Training increases global/inter/intra dimensionality.
+- Training increases inter/intra dimensionality.
     - **FIGURE**: Show dimensionality across the layers with and without training.
-- Higher dimensional models perform better at object classification. Specifically, dimensionality correlates best with prototype classification on novel object categories. Maybe discuss briefly in the context of The Geometry of Concept Learning.
+- Higher dimensional models perform better at object classification. Dimensionality correlates best with prototype classification on novel object categories. Maybe discuss briefly in the context of The Geometry of Concept Learning.
     - **Figure**: Linear/Protytype/ImageNet/ImageNet21k dimensionality vs. classification performance plots.
+- Dimensionality alone is not sufficient to achieve good encoding performance.
+    - **FIGURE**: Counter-example where overfitting a random label dataset has higher dimensionality but lower encoding performance.
 
 ### Discussion
 

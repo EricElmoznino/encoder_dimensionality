@@ -20,7 +20,7 @@ def annotate_corr(data, x, y, ax=None, method='spearman', **kwargs):
         raise NotImplementedError()
     if ax is None:
         ax = plt.gca()
-    ax.text(.05, .8, 'r={:.2f}, p={:.2g}'.format(r, p),
+    ax.text(.05, .9, 'r={:.2f}, p={:.2g}'.format(r, p),
             transform=ax.transAxes)
 
 
