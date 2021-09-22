@@ -59,7 +59,7 @@ class IntrinsicDimBase:
                 handle = RandomProjection.hook(self._extractor)
 
             self._logger.debug('Retrieving activations')
-            activations = self._extractor(image_paths, layers=layers)
+            activations = self._extractor(image_paths, layers=layer)
             activations = activations.sel(layer=layer).values
             activations = flatten(activations)
 
