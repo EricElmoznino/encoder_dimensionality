@@ -7,11 +7,11 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.patches import Patch
 
 
-def annotate_corr_grid(g, x, y, method='spearman'):
+def annotate_corr_grid(g, x, y, method='pearson'):
     g.map_dataframe(annotate_corr, x=x, y=y, method=method)
 
 
-def annotate_corr(data, x, y, ax=None, method='pearson', **kwargs):
+def annotate_corr(data, x, y, ax=None, method='pearson', pos=(0.05, 0.9), color=None, **kwargs):
     if method == 'pearson':
         r, p = stats.pearsonr(data[x], data[y])
     elif method == 'spearman':
@@ -20,8 +20,18 @@ def annotate_corr(data, x, y, ax=None, method='pearson', **kwargs):
         raise NotImplementedError()
     if ax is None:
         ax = plt.gca()
-    ax.text(.05, .9, 'r={:.2f}, p={:.2g}'.format(r, p),
-            transform=ax.transAxes)
+    if p <= 0.0001:
+        p = '****'
+    elif p <= 0.001:
+        p = '***'
+    elif p <= 0.01:
+        p = '**'
+    elif p <= 0.05:
+        p = '*'
+    else:
+        p = 'ns'
+    ax.text(pos[0], pos[1], f'{r:.2f}{p}'.lstrip('0'), color=color,
+            weight='bold', style='italic', transform=ax.transAxes)
 
 
 def plot_eigenspectrum(data, x, y, hue=None, ax=None, log_scale=True, **kwargs):
