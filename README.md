@@ -63,8 +63,7 @@
     3. Assess the relationship between the ED of a representation and its performance in explaining activity in the brain.
     - **FIGURE**: Diagram depicting each of these components and how they connect, similar to what I had in my poster. Path for fitting encoding model, path for computing ED, and connections from them leading to a scatterplot of ED vs. encoding performance.
 - Fitting encoding models. Discuss the dataset, and how we fit CNN activations to the neural data.
-- Computing ED. Discuss the dataset, the spatial max-pooling, and give the equation. Discuss inter-class dimensionality and intra-class dimensionality, and why we might care about both (manifolds for classification vs. manifolds describing objects).
-    - **FIGURE**: Show the distinction between inter-class ED, and inter-class ED with some examples manifolds.
+- Computing ED. Discuss the dataset, the spatial max-pooling, and give the equation for intra/inter ED.
 - CNN models. Discuss where they come from, what datasets they were trained on, what tasks, the architectures.
 
 ### Results
