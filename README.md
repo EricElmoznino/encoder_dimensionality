@@ -13,7 +13,7 @@
 - A poorly understood property of CNN models of visual cortex is how their performance relates to the dimensionality of these manifolds.
 - The dimensionality of a representation has significant implications for nearly every aspect of computation, including expressiveness, generalization, downstream decoding, and control (TODO: references for each). 
 - There are disagreements about whether the dimensinoality of useful visual representations should be high or low.
-- Here, we investigate the dimensionality of CNN models of visual cortex and how it relates to the quality of the model. Specifically, we compute both the effective dimensionality of diverse CNNs as well as their ability to explain neural activity in high-level regions of the ventral stream. 
+- Here, we investigate the dimensionality of CNN models of visual cortex and how it relates to the quality of the model. Specifically, we compute both the effective dimensionality of diverse CNNs as well as their abxility to explain neural activity in high-level regions of the ventral stream. 
 - Our subsequent findings reveal a surprising computational principle underlying the performance of deep learning in visual neuroscience: performance scales as models embed visual features in a higher dimensional space.
 - Explain intra/inter-class dimensionality at some point and what the tradeoffs are. Say that we model the manifolds as elipses.
     - **FIGURE**: Grid of 2D scatter plots. Rows show increasing inter-class dimensionality, columns show increasing intra-class dimensionality.
@@ -117,6 +117,8 @@
 
 ---
 # To Do
+- Do CNNs with high-dimensional concept manifolds have projections along classification readout directions that cluster around their mean? Basically testing GOCL's theory that this is one reason why high-dimensional manifolds are good.
+    - Make a 3D tensor that is of shape #concepts X #concepts X #models+layers. The value at cell ijk will be what the average projection of concept-i samples along the unit-vector from concept-i's centroid to concept-j's centroid, for model/layer k. We can then see how different directions in this tensor relate to effective dimensionality.
 - Histograms/KDEs of voxel-wise encoding accuracies as a function of dimensionality. Does the entire distribution shift to the right? Is the change restricted to the tails?
 - Counter-example where dimensionality is high but performance is bad.
 - Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?
