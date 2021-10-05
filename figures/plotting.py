@@ -30,7 +30,7 @@ def annotate_corr(data, x, y, ax=None, method='pearson', pos=(0.05, 0.9), color=
         p = '*'
     else:
         p = 'ns'
-    ax.text(pos[0], pos[1], f'{r:.2f}{p}'.lstrip('0'), color=color,
+    ax.text(pos[0], pos[1], f'r = {r:.2f}{p}'.lstrip('0'), color=color,
             weight='bold', style='italic', transform=ax.transAxes)
 
 
