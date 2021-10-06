@@ -85,28 +85,6 @@
 ### Supplementary
 - **FIGURE**: global/inter/intra dimensionality by layer. There's a correlation within layers for inter/intra, but not really for global.
 - **FIGURE**: global/inter/intra dimensionality without max-pooling.
- 
-## References
-- Unsupervised neural network models of the ventral visual stream
-    - Used their models
-    - Show that models which transfer better to many visual tasks
-      on OOD are better encoding models
--  Explicit information for category-orthogonal object properties increases along the ventral stream
-    - To argue that intra-dimensionality increases
--  Performance-optimized hierarchical models predict neural responses in higher visual cortex
-    - Early Yamins paper showing that object classification correlates with performance
--  Deep neural networks: A new framework for modeling biological vision and brain information processing
-    - Early Kriegeskorte paper discussing object classification CNN encoding models
-- The Geometry of Concept Learning
-    - Argues that the ventral stream and IT are optimized for extracting representations suitable for few-shot prototype learning of novel objects, and discusses the computational properties that such representations would require.
-- The V1 paper that finds eigenspectra decay with a power law to be as expressive as possible while still being smooth/differentiable
-- The 1/n paper that found if you make the eigenspectra decay slower, models are more robust to adversarial attacks.
-    - Also has lots of good references on dimensionality in neuroscience/ML in the sections starting with:
-      - "In this work, we use adversarial robustness"
-      - "Existing results in theoretical neuroscience point to the fact"
-- TODO: papers on the usefulness of high-dimensional representations which I've read. Some of these might be referenced in the presentation I made for Mick.
-- TODO: Sara Solla mentioned that someone at Stanford argues that the dimensionality of neural manifolds is actually large if you look at a large number of tasks.
-- TODO: read Interpreting neural computations by examining intrinsic and embedding dimensionality of neural activity
 
 ## Notes
 - Present all results on BrainScore, replicate figures on Object2Vec in appendix.
