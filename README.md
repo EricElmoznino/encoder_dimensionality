@@ -99,7 +99,9 @@
     - Make a 3D tensor that is of shape #concepts X #concepts X #models+layers. The value at cell ijk will be what the average projection of concept-i samples along the unit-vector from concept-i's centroid to concept-j's centroid, for model/layer k. We can then see how different directions in this tensor relate to effective dimensionality.
 - Histograms/KDEs of voxel-wise encoding accuracies as a function of dimensionality. Does the entire distribution shift to the right? Is the change restricted to the tails?
 - Counter-example where dimensionality is high but performance is bad.
-- Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?
+  - Orthogonal kernels
+- For a high-performing high-dimensional model, try removing one PC at a time and seeing how encoding performance evolves. We might expect to see low declines in encoding performance at first, but then much faster rates of decline once we approach and pass the effective dimensionality of the model.
+- ~~Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?~~
 - ~~Look at dimensionality of our CNN models on the fMRI datasets we're fitting encoding models too. This is relevant for answering the question of what to make of the fact that the neural representations are low-dimensional, but the model representations that are good at explaining them are high-dimensional (but high-dimensional on a different dataset).~~
     - Our working hypothesis is that the neural representations are just low-dimensional because the neural dataset is small.
     - Have done this before, and it turned out that the CNNs had lower dimensionality, but still higher than the fMRI data and exhibited the same trend where higher dimensionality translated to better encoding performance.
