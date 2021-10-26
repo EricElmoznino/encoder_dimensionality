@@ -2,14 +2,12 @@ from tqdm import tqdm
 import numpy as np
 import pandas as pd
 from scipy.stats import ortho_group
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-from typing import Tuple, Optional
+from typing import Optional
 from numpy.typing import ArrayLike
+from theory_simulation.regression import regression_performance
 
 
-def run_simulation(dim_nat: int = 30, dim_eco: int = 10, dim_exp: int = 3,
+def run_simulation(dim_nat: int = 30, dim_eco: int = 20, dim_exp: int = 3,
                    max_shared: Optional[int] = None,
                    dims_model: ArrayLike = np.linspace(1, 20, 20),
                    n_repeats: int = 10, method: str = 'proj') -> pd.DataFrame:
@@ -53,7 +51,7 @@ def validate_dims(func):
 @validate_dims
 def make_dataset_proj(dim_nat: int, dim_eco: int, dim_exp: int,
                       dim_model: int, dim_shared_eco_model: int,
-                      n_samples: int = 1000) -> Tuple[np.array, np.array]:
+                      n_samples: int = 1000) -> (np.array, np.array):
     # Create projection matrices
     nat_basis = ortho_group.rvs(dim_nat)
     nat_to_eco = nat_basis[:, :dim_eco]
@@ -75,7 +73,7 @@ def make_dataset_proj(dim_nat: int, dim_eco: int, dim_exp: int,
 @validate_dims
 def make_dataset_pick(dim_nat: int, dim_eco: int, dim_exp: int,
                       dim_model: int, dim_shared_eco_model: int,
-                      n_samples: int = 1000) -> Tuple[np.array, np.array]:
+                      n_samples: int = 1000) -> (np.array, np.array):
     # Select dimension subsets
     nat_to_eco = np.random.choice(range(dim_nat), dim_eco, replace=False)
     eco_to_exp = np.random.choice(range(dim_eco), dim_exp, replace=False)
@@ -92,11 +90,3 @@ def make_dataset_pick(dim_nat: int, dim_eco: int, dim_exp: int,
                                    axis=1)
 
     return samples_model, samples_exp
-
-
-def regression_performance(X: np.ndarray, y: np.ndarray):
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-    model = LinearRegression().fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-    r2 = r2_score(y_test, y_pred)
-    return r2

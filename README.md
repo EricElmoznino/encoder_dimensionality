@@ -1,7 +1,30 @@
 # Encoder Dimensionality
 
 ---
-# Paper
+# To Do
+- Larger sample size for within and between manifolds.
+- Simulations.
+- Do CNNs with high-dimensional concept manifolds have projections along classification readout directions that cluster around their mean? Basically testing GOCL's theory that this is one reason why high-dimensional manifolds are good.
+    - Make a 3D tensor that is of shape #concepts X #concepts X #models+layers. The value at cell ijk will be what the average projection of concept-i samples along the unit-vector from concept-i's centroid to concept-j's centroid, for model/layer k. We can then see how different directions in this tensor relate to effective dimensionality.
+- For a high-performing high-dimensional model, try removing one PC at a time and seeing how encoding performance evolves. We might expect to see low declines in encoding performance at first, but then much faster rates of decline once we approach and pass the effective dimensionality of the model.
+- More models from PyTorch hub.
+- Counter-example where dimensionality is high but performance is bad.
+  - Orthogonal kernels
+- ~~Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?~~
+- ~~Look at dimensionality of our CNN models on the fMRI datasets we're fitting encoding models too. This is relevant for answering the question of what to make of the fact that the neural representations are low-dimensional, but the model representations that are good at explaining them are high-dimensional (but high-dimensional on a different dataset).~~
+    - Our working hypothesis is that the neural representations are just low-dimensional because the neural dataset is small.
+    - Have done this before, and it turned out that the CNNs had lower dimensionality, but still higher than the fMRI data and exhibited the same trend where higher dimensionality translated to better encoding performance.
+- ~~Use new classes and images from "The Geometry of Concept Learning~~"
+- ~~Try prototype vs. linear regression generalization error as explanatory factors for a number of different number of training examples. It could be that a model's capacity for few-shot prototype-learning generalization error is the best explanatory factor for model performance, in which case the equation from "The Geometry of Concept Learning" would provide the theoretical explanation as to why different geometrical properties of the representations (e.g. high dimensionality) are correlated with encoding performance.~~
+
+---
+# Notes
+
+---
+# Readings
+
+---
+# SVRHM 2021
 
 ## Outline
 
@@ -92,24 +115,3 @@
     - *Unsupervised neural network models of the ventral visual stream* makes the argument that models which transfer better to a wide variety of tasks (e.g. object classification, pose-estimation, etc.) on an OOD dataset are better models of visual cortex.
 - Low-dimensionality not important for generalization, what's more important is that the manifold is flat (because then if you have a good basis set you can describe any point in the space). Would be interesting to see if the manifold was curved as well.
 - ISOMAP or other intrinsic dimensionality neighbour like 2NN. Curvature can be computed as ratio between geodesic distances between pairs of points in ISOMAP vs. euclidean distances.
-
----
-# To Do
-- Do CNNs with high-dimensional concept manifolds have projections along classification readout directions that cluster around their mean? Basically testing GOCL's theory that this is one reason why high-dimensional manifolds are good.
-    - Make a 3D tensor that is of shape #concepts X #concepts X #models+layers. The value at cell ijk will be what the average projection of concept-i samples along the unit-vector from concept-i's centroid to concept-j's centroid, for model/layer k. We can then see how different directions in this tensor relate to effective dimensionality.
-- Histograms/KDEs of voxel-wise encoding accuracies as a function of dimensionality. Does the entire distribution shift to the right? Is the change restricted to the tails?
-- Counter-example where dimensionality is high but performance is bad.
-  - Orthogonal kernels
-- For a high-performing high-dimensional model, try removing one PC at a time and seeing how encoding performance evolves. We might expect to see low declines in encoding performance at first, but then much faster rates of decline once we approach and pass the effective dimensionality of the model.
-- ~~Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?~~
-- ~~Look at dimensionality of our CNN models on the fMRI datasets we're fitting encoding models too. This is relevant for answering the question of what to make of the fact that the neural representations are low-dimensional, but the model representations that are good at explaining them are high-dimensional (but high-dimensional on a different dataset).~~
-    - Our working hypothesis is that the neural representations are just low-dimensional because the neural dataset is small.
-    - Have done this before, and it turned out that the CNNs had lower dimensionality, but still higher than the fMRI data and exhibited the same trend where higher dimensionality translated to better encoding performance.
-- ~~Use new classes and images from "The Geometry of Concept Learning~~"
-- ~~Try prototype vs. linear regression generalization error as explanatory factors for a number of different number of training examples. It could be that a model's capacity for few-shot prototype-learning generalization error is the best explanatory factor for model performance, in which case the equation from "The Geometry of Concept Learning" would provide the theoretical explanation as to why different geometrical properties of the representations (e.g. high dimensionality) are correlated with encoding performance.~~
-
----
-# Notes
-
----
-# Readings
