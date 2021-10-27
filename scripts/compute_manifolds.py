@@ -32,6 +32,13 @@ def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
         return ManifoldStatisticsImageNet21k(data_dir=data_dir,
                                              activations_extractor=activations_extractor,
                                              pooling=pooling)
+    elif dataset == 'imagenet21klarge':
+        return ManifoldStatisticsImageNet21k(data_dir=data_dir,
+                                             activations_extractor=activations_extractor,
+                                             pooling=pooling,
+                                             stimuli_identifier=dataset,
+                                             num_classes=725,
+                                             num_per_class=725)
     elif dataset == 'object2vec':
         return ManifoldStatisticsObject2Vec(data_dir=data_dir,
                                             activations_extractor=activations_extractor,
@@ -46,7 +53,7 @@ def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Compute and store manifold statistics of models')
     parser.add_argument('--dataset', type=str,
-                        choices=['imagenet', 'imagenet21k', 'object2vec', 'majajhong2015'],
+                        choices=['imagenet', 'imagenet21k', 'imagenet21klarge', 'object2vec', 'majajhong2015'],
                         help='Dataset of concepts for which to compute manifold statistics')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory containing stimuli')

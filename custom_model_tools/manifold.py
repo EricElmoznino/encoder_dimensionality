@@ -109,9 +109,12 @@ class ManifoldStatisticsImageFolder(ManifoldStatisticsBase):
 
 class ManifoldStatisticsImageNet21k(ManifoldStatisticsImageFolder):
 
-    def __init__(self, data_dir, num_classes=50, num_per_class=50, *args, **kwargs):
+    def __init__(self, data_dir, num_classes=50, num_per_class=50,
+                 stimuli_identifier=None, *args, **kwargs):
+        if stimuli_identifier is None:
+            stimuli_identifier = 'imagenet21k'
         super().__init__(data_dir, *args, **kwargs,
-                         stimuli_identifier='imagenet21k')
+                         stimuli_identifier=stimuli_identifier)
         self.num_classes = num_classes
         self.num_per_class = num_per_class
 
