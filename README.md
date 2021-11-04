@@ -26,6 +26,23 @@
 ---
 # SVRHM 2021
 
+## Reviewer comments
+- Clearly define ambient dimensionality.
+- Justify ED over % variance explained.
+  - Say that ED is similar, and show some results with % variance explained in supplemental.
+- Mention which models are being included in which plots.
+- Clearly demonstrate and emphasize that the findings cannot be explained by depth.
+- More discussion on how ED can be increased?
+- More explicitly explain how are results differ from the stories in the Ansuini and Cohen papers.
+- Explain that having more dimensions does not necessarily translate to better regression performance; those dimensions must contain additional information about the targets. A low-dimensional model with target-related features could obtain better performance than a high-dimensional model with features unrelated to the target.
+  - Show example(s) of high-dimensional representations that do a poor job of explaining neural activity.
+- Justify why variance along a dimension matters if readouts of those dimensions can just be rescaled by downstream weights (e.g. maybe relate the variance along a dimension to signal to noise ratio, if possible).
+- What is the role of ambient dimensionality? Can the results be explained simply because ambient dimensionality increases along the network hierarchy?
+  - No, because of within-layer results.
+  - Perhaps also show results using ambient dimensionality on x-axis, and show that the fit is not as tight.
+- Drop distinction of within vs. between-class dimensionality? Not theoretically relevant in our framing, and results do not depend on it.
+- More closely tied to our theory of natural/ecological/experimental/model manifolds. Is there a way we can explicitly test this theory, by considering the same models across a wide range of neural experimental datasets? What is the most direct way to test the theory?
+
 ## Outline
 
 ### Introduction

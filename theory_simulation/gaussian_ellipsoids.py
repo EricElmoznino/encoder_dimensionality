@@ -4,7 +4,7 @@ from numpy.random import multivariate_normal
 import pandas as pd
 from numpy.typing import ArrayLike
 from theory_simulation.regression import regression_performance
-from theory_simulation.utils import fsolve_bounded_monotonic
+from theory_simulation.utils import fsolve_bounded_monotonic, project_onto_subspace
 
 
 def run_simulation(dim_eco: int = 20, dim_exp: int = 3, ed_eco: float = 8,
@@ -111,12 +111,3 @@ sampled according to probability under a multivariate normal distribution
     ed = eigvals.sum() ** 2 / (eigvals ** 2).sum()
 
     return basis, eigvecs, ed
-
-
-def project_onto_subspace(x: np.ndarray, normal: np.ndarray):
-    assert x.ndim == 2 and \
-           normal.ndim == 1 and \
-           x.shape[1] == normal.shape[0]
-    normal = normal / np.linalg.norm(normal)
-    normal = normal.reshape(-1, 1)
-    return x - x @ normal * normal.T
