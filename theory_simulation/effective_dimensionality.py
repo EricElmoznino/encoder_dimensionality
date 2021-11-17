@@ -1,12 +1,10 @@
-from tqdm import tqdm
 import numpy as np
 from numpy.random import multivariate_normal
-import pandas as pd
 from scipy.stats import ortho_group
-from numpy.typing import ArrayLike
+from sklearn.metrics import r2_score
 from typing import Optional
 from theory_simulation.regression import regression_performance
-from theory_simulation.utils import fsolve_bounded_monotonic, project_onto_subspace, get_ed
+from theory_simulation.utils import fsolve_bounded_monotonic, project_onto_subspace
 
 
 class EDSimulation:
@@ -50,13 +48,14 @@ class EDSimulation:
         self.data_samples = None
         self.neural_samples = None
         self.model_samples = None
+        self.neural_noise_ceiling = None
 
     def make_nat_manifold(self, ed):
         self.nat_eigvecs, self.nat_eigvals = sample_subspace(ambient=self.ambient, ed=ed)
         self.nat_ed = ed
 
         self.data_init = self.eco_init = self.model_init = False
-        self.data_samples = self.neural_samples = self.model_samples = None
+        self.data_samples = self.neural_samples = self.model_samples = self.neural_noise_ceiling = None
         self.nat_init = True
 
     def make_eco_manifold(self, ed, alignment=None, alignment_strength=None):
@@ -75,7 +74,7 @@ class EDSimulation:
         self.eco_alignment_strength = alignment_strength
 
         self.data_init = self.model_init = False
-        self.data_samples = self.neural_samples = self.model_samples = None
+        self.data_samples = self.neural_samples = self.model_samples = self.neural_noise_ceiling = None
         self.eco_init = True
 
     def make_model_manifold(self, ed, alignment=None, alignment_strength=None):
@@ -115,15 +114,15 @@ class EDSimulation:
         self.data_alignment = alignment
         self.data_alignment_strength = alignment_strength
 
-        self.data_samples = self.neural_samples = self.model_samples = None
+        self.data_samples = self.neural_samples = self.model_samples = self.neural_noise_ceiling = None
         self.data_init = True
 
     def sample_data(self):
         assert self.data_init
         cov = self.data_eigvecs @ np.diag(self.data_eigvals) @ self.data_eigvecs.T
         self.data_samples = np.random.multivariate_normal(mean=np.zeros(self.ambient), cov=cov,
-                                                          size=(self.n_samples))
-        self.neural_samples = self.model_samples = None
+                                                          size=self.n_samples)
+        self.neural_samples = self.model_samples = self.neural_noise_ceiling = None
 
     def sample_neural(self):
         assert self.eco_init and self.data_samples is not None
@@ -131,6 +130,7 @@ class EDSimulation:
         signal = self.data_samples @ projection_basis
         noise = np.random.normal(scale=self.resolution, size=(self.n_samples, self.ambient))
         self.neural_samples = (signal + noise) @ ortho_group.rvs(self.ambient)
+        self.neural_noise_ceiling = r2_score(signal + noise, signal, multioutput='variance_weighted')
 
     def sample_model(self):
         assert self.model_init and self.data_samples is not None
@@ -150,9 +150,18 @@ class EDSimulation:
         self.sample_neural()
         self.sample_model()
 
-    def encoding_performance(self):
+    def encoding_performance(self, return_state=True):
         assert self.neural_samples is not None and self.model_samples is not None
-        return regression_performance(self.model_samples, self.neural_samples)
+        r2 = regression_performance(self.model_samples, self.neural_samples)
+        r2_ceiled = r2 / self.neural_noise_ceiling
+        if not return_state:
+            return r2, r2_ceiled
+        return {'r2': r2, 'r2_ceiled': r2_ceiled,
+                'nat_ed': self.nat_ed, 'eco_ed': self.eco_ed, 'model_ed': self.model_ed, 'data_ed': self.data_ed,
+                'eco_alignment': self.eco_alignment, 'eco_alignment_strength': self.eco_alignment_strength,
+                'model_alignment': self.model_alignment, 'model_alignment_strength': self.model_alignment_strength,
+                'data_alignment': self.data_alignment, 'data_alignment_strength': self.data_alignment_strength,
+                'ambient': self.ambient, 'n_samples': self.n_samples, 'resolution': self.resolution}
 
 
 def sample_subspace(ambient: int, ed: float, max_var: float = 1,
@@ -167,7 +176,8 @@ may have eigenvectors that preferentially align with those of another manifold.
     :param alignment_eigvecs: Optional eigenvectors for the subspace to preferentially align to.
     :param alignment_strength: Strength of alignment pressure.
         0 will have no alignment pressure,
-        1 will lead to alignment pressure that essentially perfectly aligns all eigenvectors.
+        1 will lead to alignment pressure that perfectly aligns all eigenvectors,
+        -1 will lead to misalignment pressure that perfectly misaligns all eigenvectors
     :returns: Eigenvectors and eigenvalues of the resulting subspace.
     """
     assert 1 <= ed <= ambient
@@ -185,10 +195,13 @@ may have eigenvectors that preferentially align with those of another manifold.
         return eigvecs, eigvals
     elif alignment_strength == 1:
         return alignment_eigvecs, eigvals
+    elif alignment_strength == -1:
+        return alignment_eigvecs[:, ::-1], eigvals
 
-    alignment_eigvals = 10 * np.ones(ambient)
-    alignment_exponents = np.linspace(2, -8, ambient) * alignment_strength
-    alignment_eigvals = alignment_eigvals ** alignment_exponents
+    alignment_eigvals = np.linspace(0, 1, ambient)
+    if alignment_strength < 0:
+        alignment_eigvals -= 1
+    alignment_eigvals = np.exp(-(alignment_strength * 20 * alignment_eigvals))
 
     eigvecs = []
     L = alignment_eigvecs * np.sqrt(alignment_eigvals).reshape(1, -1)

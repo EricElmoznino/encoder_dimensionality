@@ -3,13 +3,13 @@
 ---
 # To Do
 - Larger sample size for within and between manifolds.
-- Simulations.
 - Do CNNs with high-dimensional concept manifolds have projections along classification readout directions that cluster around their mean? Basically testing GOCL's theory that this is one reason why high-dimensional manifolds are good.
     - Make a 3D tensor that is of shape #concepts X #concepts X #models+layers. The value at cell ijk will be what the average projection of concept-i samples along the unit-vector from concept-i's centroid to concept-j's centroid, for model/layer k. We can then see how different directions in this tensor relate to effective dimensionality.
 - For a high-performing high-dimensional model, try removing one PC at a time and seeing how encoding performance evolves. We might expect to see low declines in encoding performance at first, but then much faster rates of decline once we approach and pass the effective dimensionality of the model.
 - More models from PyTorch hub.
 - Counter-example where dimensionality is high but performance is bad.
-  - Orthogonal kernels
+  - ~~Orthogonal kernels~~ Doesn't work.
+- ~~Simulations.~~
 - ~~Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?~~
 - ~~Look at dimensionality of our CNN models on the fMRI datasets we're fitting encoding models too. This is relevant for answering the question of what to make of the fact that the neural representations are low-dimensional, but the model representations that are good at explaining them are high-dimensional (but high-dimensional on a different dataset).~~
     - Our working hypothesis is that the neural representations are just low-dimensional because the neural dataset is small.
@@ -36,6 +36,7 @@
 - More explicitly explain how are results differ from the stories in the Ansuini and Cohen papers.
 - Explain that having more dimensions does not necessarily translate to better regression performance; those dimensions must contain additional information about the targets. A low-dimensional model with target-related features could obtain better performance than a high-dimensional model with features unrelated to the target.
   - Show example(s) of high-dimensional representations that do a poor job of explaining neural activity.
+  - Boosting the dimensionality of a model representation can also lead to overfitting in the context of encoding models. Can try taking polynomial features or cosines at different frequencies to show increased ED with an overfit encoder.
 - Justify why variance along a dimension matters if readouts of those dimensions can just be rescaled by downstream weights (e.g. maybe relate the variance along a dimension to signal to noise ratio, if possible).
 - What is the role of ambient dimensionality? Can the results be explained simply because ambient dimensionality increases along the network hierarchy?
   - No, because of within-layer results.
