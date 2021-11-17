@@ -74,7 +74,7 @@ class LitResnet(LightningModule):
 
 
 def main(data_dir, scrambled_labels):
-    save_dir = 'counter_example/saved_runs/resnet18'
+    save_dir = 'counter_example/saved_runs/imagenet_resnet18'
     if scrambled_labels:
         save_dir += '_scrambled_labels'
 

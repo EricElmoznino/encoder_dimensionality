@@ -125,13 +125,13 @@ def taskonomy_models():
 
 
 def counterexample_models():
-    model = create_cifar10_resnet18(pretrained_ckpt='counter_example/saved_runs/resnet18/final.ckpt')
+    model = create_cifar10_resnet18(pretrained_ckpt='counter_example/saved_runs/cifar10_resnet18/final.ckpt')
     identifier = properties_to_id('ResNet18', 'CIFAR10', 'Supervised', 'Counter-Example')
     model = wrap_pt(model, identifier, res=32, norm=([x / 255.0 for x in [125.3, 123.0, 113.9]],
                                                      [x / 255.0 for x in [63.0, 62.1, 66.7]]))
     yield model, resnet18_pt_layers
 
-    model = create_cifar10_resnet18(pretrained_ckpt='counter_example/saved_runs/resnet18_scrambled_labels/final.ckpt')
+    model = create_cifar10_resnet18(pretrained_ckpt='counter_example/saved_runs/cifar10_resnet18_scrambled_labels/final.ckpt')
     identifier = properties_to_id('ResNet18', 'CIFAR10', 'Supervised Random Labels', 'Counter-Example')
     model = wrap_pt(model, identifier, res=32, norm=([x / 255.0 for x in [125.3, 123.0, 113.9]],
                                                      [x / 255.0 for x in [63.0, 62.1, 66.7]]))
