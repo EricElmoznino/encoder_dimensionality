@@ -98,7 +98,7 @@ def main(data_dir, scrambled_labels):
         progress_bar_refresh_rate=10,
         max_epochs=90 if scrambled_labels else 30,
         gpus=AVAIL_GPUS,
-        callbacks=[ModelCheckpoint(monitor='val_loss'),
+        callbacks=[ModelCheckpoint(monitor='val_loss', filename='best'),
                    LearningRateMonitor(logging_interval='step')],
     )
 
