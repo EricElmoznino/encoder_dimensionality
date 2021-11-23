@@ -10,7 +10,7 @@ import torch.nn.functional as F
 import torchvision
 from pl_bolts.datamodules import ImagenetDataModule
 from pytorch_lightning import LightningModule, seed_everything, Trainer
-from pytorch_lightning.callbacks import LearningRateMonitor
+from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from torch.optim.lr_scheduler import MultiplicativeLR
 from torchmetrics.functional import accuracy
 
@@ -98,13 +98,12 @@ def main(data_dir, scrambled_labels):
         progress_bar_refresh_rate=10,
         max_epochs=90 if scrambled_labels else 30,
         gpus=AVAIL_GPUS,
-        callbacks=[LearningRateMonitor(logging_interval='step')],
+        callbacks=[ModelCheckpoint(monitor='val_loss'),
+                   LearningRateMonitor(logging_interval='step')],
     )
 
     trainer.fit(model, train_dataloader=train_dataloader, val_dataloaders=val_dataloader)
     trainer.test(model, test_dataloaders=test_dataloader)
-
-    trainer.save_checkpoint(f'{save_dir}/final.ckpt')
 
 
 if __name__ == '__main__':
