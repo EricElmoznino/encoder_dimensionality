@@ -80,6 +80,7 @@ def main(data_dir, scrambled_labels):
 
     imagenet_dm = ImagenetDataModule(
         data_dir=data_dir,
+        meta_dir=data_dir,
         batch_size=BATCH_SIZE,
         num_workers=NUM_WORKERS,
     )

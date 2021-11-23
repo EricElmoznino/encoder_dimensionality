@@ -8,6 +8,7 @@
 - For a high-performing high-dimensional model, try removing one PC at a time and seeing how encoding performance evolves. We might expect to see low declines in encoding performance at first, but then much faster rates of decline once we approach and pass the effective dimensionality of the model.
 - More models from PyTorch hub.
 - Counter-example where dimensionality is high but performance is bad.
+  - ImageNet random labels
   - ~~Orthogonal kernels~~ Doesn't work.
 - ~~Simulations.~~
 - ~~Intrinsic dimensionality. Is this phenomenon specific to the embedding dimensionality only?~~
