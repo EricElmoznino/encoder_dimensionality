@@ -90,6 +90,11 @@ def main(data_dir, scrambled_labels):
                                                         imagenet_dm.test_dataloader()
     if scrambled_labels:
         random.shuffle(train_dataloader.dataset.targets)
+        for i in range(len(train_dataloader.dataset)):
+            train_dataloader.dataset.imgs[i] = (train_dataloader.dataset.imgs[i][0],
+                                                train_dataloader.dataset.targets[i])
+            train_dataloader.dataset.samples[i] = (train_dataloader.dataset.samples[i][0],
+                                                   train_dataloader.dataset.targets[i])
 
     model = LitResnet()
 

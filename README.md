@@ -1,6 +1,15 @@
 # Encoder Dimensionality
 
 ---
+# Manuscript
+
+## Simulations
+- Say that our results don't have to follow any single one of these curves, because our models will have different alignment pressures.
+- Limitations:
+  - Manifolds are likely non-linear
+  - Ambient spaces are not identical in reality. Models and brain nonlinearly warp image dimensions to varying degrees. A dimension which is linear in the ecological manifold's embedding space can be highly curved and warped in the model's embedding space.
+
+---
 # To Do
 - Larger sample size for within and between manifolds.
 - Do CNNs with high-dimensional concept manifolds have projections along classification readout directions that cluster around their mean? Basically testing GOCL's theory that this is one reason why high-dimensional manifolds are good.
