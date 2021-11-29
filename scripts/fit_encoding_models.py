@@ -5,7 +5,7 @@ import pandas as pd
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 import brainscore.benchmarks as bench
-from brainscore.metrics.regression import linear_regression
+from brainscore.metrics.regression import linear_regression, ridge_regression
 from bonnerlab_brainscore.benchmarks.object2vec import Object2VecEncoderBenchmark
 from model_tools.activations.pca import LayerPCA
 from model_tools.brain_transformation.neural import LayerScores
@@ -69,6 +69,9 @@ def get_benchmark(benchmark, region, regression, data_dir):
         if regression == 'lin':
             benchmark._identifier = benchmark.identifier.replace('pls', 'lin')
             benchmark._similarity_metric.regression = linear_regression()
+        elif regression == 'l2':
+            benchmark._identifier = benchmark.identifier.replace('pls', 'l2')
+            benchmark._similarity_metric.regression = ridge_regression()
     elif benchmark == 'object2vec':
         if region == 'all':
             region = None
@@ -87,7 +90,7 @@ if __name__ == '__main__':
     parser.add_argument('--region', type=str, default='IT',
                         help='Region(s) to fit. Valid region(s) depend on the neural benchmark')
     parser.add_argument('--regression', type=str, default='pls',
-                        choices=['pls', 'lin'],
+                        choices=['pls', 'lin', 'l2'],
                         help='Partial-least-squares or ordinary-least-squares for fitting')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory for neural benchmark (only required for "object2vec")')
