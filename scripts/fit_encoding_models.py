@@ -41,7 +41,6 @@ def fit_encoder(benchmark, model, layers, pooling):
             handle = LayerPCA.hook(model, n_components=1000)
             model.identifier = model_identifier + f'|layer:{layer}|pooling:False|n_components:1000'
 
-
         model_scores = LayerScores(model_identifier=model.identifier,
                                    activations_model=model,
                                    visual_degrees=8)
@@ -69,6 +68,7 @@ def get_benchmark(benchmark, region, regression, data_dir):
         if regression == 'lin':
             benchmark._identifier = benchmark.identifier.replace('pls', 'lin')
             benchmark._similarity_metric.regression = linear_regression()
+            benchmark._similarity_metric.regression._regression.alpha = 0.1
         elif regression == 'l2':
             benchmark._identifier = benchmark.identifier.replace('pls', 'l2')
             benchmark._similarity_metric.regression = ridge_regression()
