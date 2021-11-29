@@ -77,6 +77,9 @@ def main(data_dir, scrambled_labels):
     save_dir = 'counter_example/saved_runs/imagenet_resnet18'
     if scrambled_labels:
         save_dir += '_scrambled_labels'
+        monitor = 'train_loss'
+    else:
+        monitor = 'val_loss'
 
     imagenet_dm = ImagenetDataModule(
         data_dir=data_dir,
@@ -103,7 +106,7 @@ def main(data_dir, scrambled_labels):
         progress_bar_refresh_rate=10,
         max_epochs=90 if scrambled_labels else 30,
         gpus=AVAIL_GPUS,
-        callbacks=[ModelCheckpoint(monitor='val_loss', filename='best'),
+        callbacks=[ModelCheckpoint(monitor=monitor, filename='best'),
                    LearningRateMonitor(logging_interval='step')],
     )
 
