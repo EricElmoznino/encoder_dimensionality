@@ -1,21 +1,14 @@
 # Encoder Dimensionality
 
 ---
-# Manuscript
-
-## Simulations
-- Say that our results don't have to follow any single one of these curves, because our models will have different alignment pressures.
-- Limitations:
-  - Manifolds are likely non-linear
-  - Ambient spaces are not identical in reality. Models and brain nonlinearly warp image dimensions to varying degrees. A dimension which is linear in the ecological manifold's embedding space can be highly curved and warped in the model's embedding space.
-
----
 # To Do
 - Larger sample size for within and between manifolds.
 - Do CNNs with high-dimensional concept manifolds have projections along classification readout directions that cluster around their mean? Basically testing GOCL's theory that this is one reason why high-dimensional manifolds are good.
     - Make a 3D tensor that is of shape #concepts X #concepts X #models+layers. The value at cell ijk will be what the average projection of concept-i samples along the unit-vector from concept-i's centroid to concept-j's centroid, for model/layer k. We can then see how different directions in this tensor relate to effective dimensionality.
 - For a high-performing high-dimensional model, try removing one PC at a time and seeing how encoding performance evolves. We might expect to see low declines in encoding performance at first, but then much faster rates of decline once we approach and pass the effective dimensionality of the model.
-- More models from PyTorch hub.
+- More models:
+  - From PyTorch hub.
+  - Models used in https://openreview.net/forum?id=QkljT4mrfs
 - Counter-example where dimensionality is high but performance is bad.
   - ImageNet random labels
   - ~~Orthogonal kernels~~ Doesn't work.
