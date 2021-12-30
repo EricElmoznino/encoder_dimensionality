@@ -103,14 +103,13 @@ def main(data_dir, scrambled_labels):
 
     trainer = Trainer(
         default_root_dir=save_dir,
-        progress_bar_refresh_rate=10,
         max_epochs=90 if scrambled_labels else 30,
         gpus=AVAIL_GPUS,
         callbacks=[ModelCheckpoint(monitor=monitor, filename='best'),
                    LearningRateMonitor(logging_interval='step')],
     )
 
-    trainer.fit(model, train_dataloader=train_dataloader, val_dataloaders=val_dataloader)
+    trainer.fit(model, train_dataloaders=train_dataloader, val_dataloaders=val_dataloader)
     trainer.test(model, test_dataloaders=test_dataloader)
 
 
