@@ -9,7 +9,7 @@ from model_tools.activations.pytorch import PytorchWrapper, load_preprocess_imag
 from visualpriors.taskonomy_network import TASKONOMY_PRETRAINED_URLS, TaskonomyEncoder
 from functools import partial
 from utils import properties_to_id
-from counter_example.train_cifar10 import create_cifar10_resnet18
+from counter_example.train_imagenet import LitResnet
 
 
 resnet18_pt_layers = [f'layer1.{i}.relu' for i in range(2)] + \
@@ -133,14 +133,12 @@ def counterexample_models():
         ckpt_path = f'{ckpt_path}/version_{latest_version}/checkpoints/best.ckpt'
         return ckpt_path
 
-    model = resnet18(pretrained=False)
-    model.load_state_dict(torch.load(most_recent_ckpt('imagenet_resnet18')))
+    model = LitResnet.load_from_checkpoint(most_recent_ckpt('imagenet_resnet18')).model
     identifier = properties_to_id('ResNet18', 'Object Classification', 'Supervised', 'Counter-Example')
     model = wrap_pt(model, identifier)
     yield model, resnet18_pt_layers
 
-    model = resnet18(pretrained=False)
-    model.load_state_dict(torch.load(most_recent_ckpt('imagenet_resnet18_scrambled_labels')))
+    model = LitResnet.load_from_checkpoint(most_recent_ckpt('imagenet_resnet18_scrambled_labels')).model
     identifier = properties_to_id('ResNet18', 'Object Classification', 'Supervised Random Labels', 'Counter-Example')
     model = wrap_pt(model, identifier)
     yield model, resnet18_pt_layers
