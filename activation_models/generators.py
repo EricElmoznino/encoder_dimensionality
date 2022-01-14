@@ -139,7 +139,7 @@ def counterexample_models():
     yield model, resnet18_pt_layers
 
     model = LitResnet.load_from_checkpoint(most_recent_ckpt('imagenet_resnet18_scrambled_labels')).model
-    identifier = properties_to_id('ResNet18', 'Object Classification', 'Supervised Random Labels', 'Counter-Example')
+    identifier = properties_to_id('ResNet18', 'Object Classification', 'Supervised Random', 'Counter-Example')
     model = wrap_pt(model, identifier)
     yield model, resnet18_pt_layers
 
