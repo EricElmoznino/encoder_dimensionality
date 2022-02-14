@@ -17,10 +17,12 @@ from typing import Optional, List
 class EigenspectrumBase:
 
     def __init__(self, activations_extractor, pooling=True, stimuli_identifier=None,
-                 image_transform: Optional[ImageDatasetTransformer] = None):
+                 image_transform: Optional[ImageDatasetTransformer] = None,
+                 hooks: Optional[List] = None):
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
         self._pooling = pooling
+        self._hooks = hooks
         self._stimuli_identifier = stimuli_identifier
         self._image_transform = image_transform
         self._layer_eigenspectra = {}
@@ -102,6 +104,10 @@ class EigenspectrumBase:
             else:
                 handle = RandomProjection.hook(self._extractor)
 
+            handles = []
+            if self._hooks is not None:
+                handles = [cls.hook(self._extractor) for cls in self._hooks]
+
             self._logger.debug('Retrieving stimulus activations')
             activations = self._extractor(image_paths, layers=[layer])
             activations = activations.sel(layer=layer).values
@@ -118,6 +124,9 @@ class EigenspectrumBase:
             layer_eigenspectra[layer] = eigenspectrum
 
             handle.remove()
+
+            for h in handles:
+                h.remove()
 
         return layer_eigenspectra
 

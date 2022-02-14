@@ -26,7 +26,7 @@ def main(benchmark, pooling, debug=False):
         scores.to_csv(f'results/encoding|benchmark:{benchmark._identifier}|pooling:{pooling}.csv', index=False)
 
 
-def fit_encoder(benchmark, model, layers, pooling):
+def fit_encoder(benchmark, model, layers, pooling, hooks=None):
     """Fit layers one at a time to save on memory"""
 
     layer_scores = pd.DataFrame()
@@ -41,11 +41,18 @@ def fit_encoder(benchmark, model, layers, pooling):
             handle = LayerPCA.hook(model, n_components=1000)
             model.identifier = model_identifier + f'|layer:{layer}|pooling:False|n_components:1000'
 
+        handles = []
+        if hooks is not None:
+            handles = [cls.hook(model) for cls in hooks]
+
         model_scores = LayerScores(model_identifier=model.identifier,
                                    activations_model=model,
                                    visual_degrees=8)
         score = model_scores(benchmark=benchmark, layers=[layer], prerun=True)
         handle.remove()
+
+        for h in handles:
+            h.remove()
 
         if 'aggregation' in score.dims:
             score = score.to_dataframe(name='').unstack(level='aggregation').reset_index()
