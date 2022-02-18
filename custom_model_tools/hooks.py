@@ -8,7 +8,7 @@ from model_tools.activations.core import change_dict, flatten
 from model_tools.activations.pca import _get_imagenet_val
 from model_tools.utils import fullname
 from result_caching import store_dict
-from custom_model_tools.utils import ZCA
+from custom_model_tools.zca import ZCA
 
 
 class GlobalMaxPool2d:
