@@ -31,7 +31,7 @@ class ProjectionDistancesBase:
         assert self._layer_projection_distances is not None
         da = self._layer_projection_distances
         properties = id_to_properties(self._extractor.identifier)
-        property_coords = {prop: ('layer', [val] * da.sizes('layer'))
+        property_coords = {prop: ('layer', [val] * da.sizes['layer'])
                            for prop, val in properties.items()}
         da = da.assign_coords(property_coords)
         da = da.set_index(identifier=[prop for prop in properties] + ['layer'])
