@@ -94,7 +94,7 @@ class ProjectionDistancesBase:
                 layer_projection_distances.loc[{'layer': layer,
                                                 'source_category': cat_names[i],
                                                 'target_category': cat_names[j]}] = \
-                    [cat_i_to_j_distance, cat_i_to_j_projections_scaled]
+                    [cat_i_to_j_distance, cat_i_to_j_projections_scaled.mean()]
 
             handle.remove()
 
