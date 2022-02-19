@@ -24,7 +24,7 @@ def main(dataset, data_dir, pooling, debug=False):
     proj_da = xr.concat(proj_da, dim='identifier')
     proj_da = proj_da.reset_index('identifier')
     if not debug:
-        proj_da.to_netcdf(f'results/projections|dataset:{dataset}|pooling:{pooling}.csv')
+        proj_da.to_netcdf(f'results/projections|dataset:{dataset}|pooling:{pooling}.nc')
 
 
 def get_projection(dataset, data_dir, activations_extractor, pooling):
