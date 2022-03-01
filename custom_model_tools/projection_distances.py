@@ -51,7 +51,7 @@ class ProjectionDistancesBase:
         # Compute sample projections along class reading directions for every layer individually to save on memory.
         # This is more inefficient because we run images through the network several times,
         # but it is a more scalable approach when using many images and large layers.
-        layer_projection_distances = xr.DataArray(data=np.zeros((2, len(cat_paths), len(cat_paths), len(layers))),
+        layer_projection_distances = xr.DataArray(data=np.zeros((3, len(cat_paths), len(cat_paths), len(layers))),
                                                   dims=['metric', 'source_category', 'target_category', 'layer'],
                                                   coords={
                                                       'metric': ['centroid_distances',
