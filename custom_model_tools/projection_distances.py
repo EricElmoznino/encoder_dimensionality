@@ -54,7 +54,9 @@ class ProjectionDistancesBase:
         layer_projection_distances = xr.DataArray(data=np.zeros((2, len(cat_paths), len(cat_paths), len(layers))),
                                                   dims=['metric', 'source_category', 'target_category', 'layer'],
                                                   coords={
-                                                      'metric': ['centroid_distances', 'scaled_projections'],
+                                                      'metric': ['centroid_distances',
+                                                                 'scaled_projections',
+                                                                 'projections_raw'],
                                                       'source_category': cat_names,
                                                       'target_category': cat_names,
                                                       'layer': layers})
@@ -94,7 +96,7 @@ class ProjectionDistancesBase:
                 layer_projection_distances.loc[{'layer': layer,
                                                 'source_category': cat_names[i],
                                                 'target_category': cat_names[j]}] = \
-                    [cat_i_to_j_distance, cat_i_to_j_projections_scaled.mean()]
+                    [cat_i_to_j_distance, cat_i_to_j_projections_scaled.mean(), cat_i_to_j_projections.mean()]
 
             handle.remove()
 
