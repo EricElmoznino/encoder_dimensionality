@@ -85,7 +85,7 @@ class ProjectionDistancesBase:
                 # Compute class sample projections along readout direction
                 cat_i_samples = activations[i]
                 cat_i_samples = cat_i_samples - cat_i_centroid
-                cat_i_to_j_projections = (cat_i_samples @ cat_i_to_j) / cat_i_to_j_distance
+                cat_i_to_j_projections = np.abs(cat_i_samples @ cat_i_to_j) / cat_i_to_j_distance
 
                 # Scale projections according to manifold radius (sqrt of average dimension variance)
                 radius = np.sqrt(cat_i_samples.var(axis=0, ddof=1).mean())
