@@ -25,7 +25,7 @@ resnet50_pt_layers = [f'layer1.{i}.relu' for i in range(3)] + \
 resnet18_tf_layers = [f'encode_{i}' for i in range(2, 10)]
 
 
-def get_activation_models(pytorch=True, vvs=True, taskonomy=True):
+def get_activation_models(pytorch=True, vvs=True, taskonomy=True, pytorch_hub=True):
     if pytorch:
         for model, layers in pytorch_models():
             yield model, layers
@@ -34,6 +34,9 @@ def get_activation_models(pytorch=True, vvs=True, taskonomy=True):
             yield model, layers
     if taskonomy:
         for model, layers in taskonomy_models():
+            yield model, layers
+    if pytorch_hub:
+        for model, layers in pytorch_hub_models():
             yield model, layers
 
 
@@ -55,6 +58,13 @@ def pytorch_models():
 
     model = resnet50(pretrained=True)
     identifier = properties_to_id('ResNet50', 'Object Classification', 'Supervised', 'PyTorch')
+    model = wrap_pt(model, identifier)
+    yield model, resnet50_pt_layers
+
+
+def pytorch_hub_models():
+    model = torch.hub.load('facebookresearch/barlowtwins:main', 'resnet50')
+    identifier = properties_to_id('ResNet50', 'Barlow-Twins', 'Self-Supervised', 'Pytorch Hub')
     model = wrap_pt(model, identifier)
     yield model, resnet50_pt_layers
 
