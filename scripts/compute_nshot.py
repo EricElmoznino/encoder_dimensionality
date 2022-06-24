@@ -51,7 +51,7 @@ if __name__ == '__main__':
                         help='Classification dataset for which to compute n-shot learning performance')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory containing stimuli')
-    parser.add_argument('--classifier', type=str, default=None,
+    parser.add_argument('--classifier', type=str,
                         choices=['linear', 'prototype', 'maxmargin'],
                         help='Type of classifier to use')
     parser.add_argument('--no_pooling', dest='pooling', action='store_false',
