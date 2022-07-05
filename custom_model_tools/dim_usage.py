@@ -117,6 +117,7 @@ class DimUsageMajajHongIT(DimUsageBase):
         return self._benchmark._assembly.stimulus_set
 
     def get_score(self, assembly):
+        self._benchmark._similarity_metric.regression._regression.n_components = min(25, assembly.sizes['neuroid'])
         raw_score = self._benchmark._similarity_metric(assembly, self._benchmark._assembly)
         score = explained_variance(raw_score, self._benchmark.ceiling)
         score = score.sel(aggregation='center').item()
