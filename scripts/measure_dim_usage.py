@@ -42,4 +42,4 @@ if __name__ == '__main__':
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()
 
-    main(bench=args.dataset, pooling=args.pooling, debug=args.debug)
+    main(bench=args.bench, pooling=args.pooling, debug=args.debug)
