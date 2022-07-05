@@ -39,6 +39,7 @@ class DimUsageBase(ABC):
 
     @store_dict(dict_key='layers', identifier_ignore=['layers'])
     def _fit(self, model_identifier, benchmark_identifier, layers, pooling):
+        self._extractor.identifier += '|pcs'
         layer_results = {}
         for layer in layers:
             if pooling:
@@ -70,6 +71,7 @@ class DimUsageBase(ABC):
 
             handle_pca.remove()
             handle_pool.remove()
+        self._extractor.identifier = self._extractor.identifier.replace('|pcs', '')
 
         return layer_results
 
