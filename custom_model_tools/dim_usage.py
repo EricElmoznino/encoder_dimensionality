@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 import logging
 import os
 import numpy as np
+import pandas as pd
 from tqdm import tqdm
 from sklearn.decomposition import PCA
 from result_caching import store_dict
@@ -11,6 +12,7 @@ from model_tools.activations.pca import LayerPCA, _get_imagenet_val
 from model_tools.activations.core import flatten, change_dict
 from model_tools.utils import fullname
 from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
+from utils import id_to_properties
 
 
 class DimUsageBase(ABC):
@@ -27,7 +29,7 @@ class DimUsageBase(ABC):
         self._pooling = pooling
         self._interval = interval
         self._max = max
-        self._layer_results = {}
+        self._layer_results = None
 
     def fit(self, layers):
         self._layer_results = self._fit(model_identifier=self._extractor.identifier,
@@ -70,6 +72,17 @@ class DimUsageBase(ABC):
             handle_pool.remove()
 
         return layer_results
+
+    def as_df(self):
+        assert self._layer_results is not None
+        df = pd.DataFrame()
+        for layer, results in self._layer_results.items():
+            layer_df = pd.DataFrame(results)
+            layer_df = layer_df.assign(layer=layer)
+            df = df.append(layer_df)
+        properties = id_to_properties(self._extractor.identifier)
+        df = df.assign(**properties)
+        return df
 
     @property
     @abstractmethod
