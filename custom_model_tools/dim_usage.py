@@ -20,15 +20,14 @@ class DimUsageBase(ABC):
     def __init__(self,
                  activations_extractor,
                  pooling=True,
-                 interval=5,
-                 max=32):
+                 num_points=21,
+                 max_pcs=2048):
         assert not LayerPCA.is_hooked(activations_extractor)
 
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
         self._pooling = pooling
-        self._interval = interval
-        self._max = max
+        self._num_pcs_used = np.unique(np.logspace(0, np.log10(max_pcs), num=num_points).astype(np.int))
         self._layer_results = None
 
     def fit(self, layers):
@@ -53,10 +52,10 @@ class DimUsageBase(ABC):
             activations = activations.sel(layer=layer)
 
             self._logger.debug('Fitting with multiple numbers of PCs')
-            progress = tqdm(total=min(self._max, activations.sizes['neuroid']) // self._interval + 1,
-                            desc="different PCs")
+            num_pcs_used = self._num_pcs_used[self._num_pcs_used <= activations.sizes['neuroid']]
+            progress = tqdm(total=len(num_pcs_used), desc="different PCs")
             pc_is, scores = [], []
-            for pc_i in range(1, min(self._max, activations.sizes['neuroid']), self._interval):
+            for pc_i in num_pcs_used:
                 pc_activations = activations.isel(neuroid=slice(pc_i))
                 score = self.get_score(pc_activations)
                 pc_is.append(pc_i)
@@ -66,7 +65,8 @@ class DimUsageBase(ABC):
 
             layer_results[layer] = {
                 'num_pcs': pc_is,
-                'scores': scores
+                'scores': scores,
+                'ambient_dim': [activations.sizes['neuroid']] * len(num_pcs_used)
             }
 
             handle_pca.remove()
