@@ -3,6 +3,8 @@ import os
 from time import time
 import datetime
 import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
 import h5py
 from PIL import Image
 from model_tools.utils import fullname, s3
@@ -63,3 +65,29 @@ def get_imagenet_val(num_classes=1000, num_per_class=1, separate_classes=False):
                      for i in range(num_classes)]
 
     return filepaths
+
+
+def fix_alpha(eigspectra_path, eigmetrics_path):
+    id_columns = ['architecture', 'task', 'kind', 'source', 'layer']
+    eigspectra, eigmetrics = pd.read_csv(eigspectra_path), pd.read_csv(eigmetrics_path)
+
+    def is_outlier(n):
+        n = np.log(n)
+        cutoff = 0.95 * n.iloc[-1]
+        return n > cutoff
+    outlier = eigspectra.groupby(id_columns)['n'].transform(is_outlier)
+    eigspectra = eigspectra[~outlier]
+
+    def get_alpha(x):
+        n, y = x['n'].values, x['variance'].values
+        n, y = np.log(n), np.log(y)
+        coef = LinearRegression().fit(n.reshape(-1, 1), y).coef_[0]
+        alpha = -coef
+        return alpha
+    alphas = eigspectra.groupby(id_columns).apply(get_alpha)
+
+    eigmetrics = eigmetrics.set_index(id_columns)
+    eigmetrics['alpha'] = alphas
+    eigmetrics = eigmetrics.reset_index(id_columns)
+
+    eigmetrics.to_csv(eigmetrics_path, index=False)
