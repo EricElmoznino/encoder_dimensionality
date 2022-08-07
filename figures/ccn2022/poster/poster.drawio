@@ -77,7 +77,7 @@
                     <mxGeometry x="1220" y="820" width="500" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="44" value="&lt;font style=&quot;font-size: 20px&quot;&gt;&lt;b style=&quot;color: rgb(206 , 114 , 56)&quot;&gt;Higher-dimensional models&lt;br&gt;&lt;/b&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 20px&quot;&gt;can better recognize&amp;nbsp;&lt;br&gt;&lt;/font&gt;&lt;b style=&quot;font-size: 20px&quot;&gt;&lt;i style=&quot;font-size: 20px&quot;&gt;&lt;font color=&quot;#6b84e6&quot; style=&quot;font-size: 20px&quot;&gt;novel object categories&lt;/font&gt;&lt;/i&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 20px&quot;&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;glass=0;comic=0;sketch=0;fontFamily=Garamond;fontSize=20;fontColor=#8B625F;strokeColor=#000000;strokeWidth=2;fillColor=#FFFFFF;dashed=1;dashPattern=1 1;" parent="1" vertex="1">
-                    <mxGeometry x="1600" y="967" width="280" height="120" as="geometry"/>
+                    <mxGeometry x="1592.5" y="965" width="280" height="107" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" value="" style="whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=30;fillColor=#FAF2F6;strokeColor=#9C0050;strokeWidth=2;" parent="1" vertex="1">
                     <mxGeometry x="1940" y="220" width="360" height="380" as="geometry"/>
