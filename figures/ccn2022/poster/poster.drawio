@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="zP0t6rtBQLQKd2C4ZnGT" name="Poster">
-        <mxGraphModel dx="2016" dy="936" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2350" pageHeight="1150" math="1" shadow="0">
+        <mxGraphModel dx="2478" dy="936" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2350" pageHeight="1150" math="1" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -61,7 +61,7 @@
                 <mxCell id="32" value="Results: &lt;i&gt;Dimensionality of encoding models&lt;/i&gt;" style="whiteSpace=wrap;html=1;fontFamily=Garamond;fontSize=25;strokeColor=none;strokeWidth=0.5;fillColor=#FFFFFF;shadow=1;sketch=0;rounded=0;glass=0;comic=0;fontStyle=1;fontColor=#6B84E6;" parent="1" vertex="1">
                     <mxGeometry x="1220" y="200" width="500" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="&lt;font style=&quot;font-size: 20px&quot;&gt;&lt;font style=&quot;font-size: 20px&quot; color=&quot;#ce7238&quot;&gt;&lt;b&gt;Higher-dimensional models&lt;/b&gt;&lt;/font&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 20px&quot;&gt; can reliably&amp;nbsp;&lt;/font&gt;&lt;b style=&quot;font-size: 20px&quot;&gt;&lt;i style=&quot;font-size: 20px&quot;&gt;&lt;font color=&quot;#6b84e6&quot; style=&quot;font-size: 20px&quot;&gt;better predict neural activity&lt;/font&gt;&lt;/i&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 20px&quot;&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;glass=0;comic=0;sketch=0;fontFamily=Garamond;fontSize=20;fontColor=#8B625F;strokeColor=#000000;strokeWidth=2;fillColor=#FFFFFF;dashed=1;dashPattern=1 1;" parent="1" vertex="1">
+                <mxCell id="33" value="&lt;font style=&quot;font-size: 20px&quot;&gt;&lt;font style=&quot;font-size: 20px&quot; color=&quot;#ce7238&quot;&gt;&lt;b&gt;Higher-dimensional models&lt;/b&gt;&lt;/font&gt;&lt;font color=&quot;#000000&quot; style=&quot;font-size: 20px&quot;&gt; can reliably better&amp;nbsp;&lt;/font&gt;&lt;b style=&quot;font-size: 20px&quot;&gt;&lt;i style=&quot;font-size: 20px&quot;&gt;&lt;font color=&quot;#6b84e6&quot; style=&quot;font-size: 20px&quot;&gt;predict neural activity&lt;/font&gt;&lt;/i&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 20px&quot;&gt;&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;glass=0;comic=0;sketch=0;fontFamily=Garamond;fontSize=20;fontColor=#8B625F;strokeColor=#000000;strokeWidth=2;fillColor=#FFFFFF;dashed=1;dashPattern=1 1;" parent="1" vertex="1">
                     <mxGeometry x="1080" y="730" width="780" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" value="" style="whiteSpace=wrap;html=1;fontFamily=Times New Roman;fontSize=30;fillColor=#F9F7F7;strokeColor=#8B625F;strokeWidth=2;" parent="1" vertex="1">
