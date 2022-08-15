@@ -1,0 +1,73 @@
+architecture,task,layer,effective dimensionality,score,postfix,Signal dimensionality,id,Signal dimensionality threshold
+ResNet18,Auto-Encoder,encode_2,2.854927562,0.225927072,_ae,13.88515599,ResNet18_Auto-Encoder,12.39343798
+ResNet18,Auto-Encoder,encode_3,3.296749307,0.242553686,_ae,15.72342254,ResNet18_Auto-Encoder,15.03634014
+ResNet18,Auto-Encoder,encode_4,4.507988538,0.251849737,_ae,20.74506496,ResNet18_Auto-Encoder,16.62932901
+ResNet18,Auto-Encoder,encode_5,4.109872418,0.258511571,_ae,19.53007061,ResNet18_Auto-Encoder,15.25579159
+ResNet18,Auto-Encoder,encode_6,5.290268844,0.252588155,_ae,20.22959981,ResNet18_Auto-Encoder,15.09561108
+ResNet18,Auto-Encoder,encode_7,3.926096384,0.236821806,_ae,19.81584064,ResNet18_Auto-Encoder,13.76986077
+ResNet18,Auto-Encoder,encode_8,4.961915165,0.217962906,_ae,19.92515306,ResNet18_Auto-Encoder,12.66085008
+ResNet18,Auto-Encoder,encode_9,7.996334673,0.211707442,_ae,19.47088329,ResNet18_Auto-Encoder,10.89475053
+ResNet18,Instance Recognition,encode_2,5.202332172,0.276899236,_ir,27.62077372,ResNet18_Instance Recognition,27.4617795
+ResNet18,Instance Recognition,encode_3,7.732828403,0.295797079,_ir,26.05034506,ResNet18_Instance Recognition,26.05034506
+ResNet18,Instance Recognition,encode_4,15.99561376,0.362308298,_ir,40.64340496,ResNet18_Instance Recognition,40.1921798
+ResNet18,Instance Recognition,encode_5,21.13259905,0.371255663,_ir,39.15682302,ResNet18_Instance Recognition,39.07306299
+ResNet18,Instance Recognition,encode_6,19.28464883,0.469229355,_ir,75.2062785,ResNet18_Instance Recognition,73.26361629
+ResNet18,Instance Recognition,encode_7,3.838953443,0.486451297,_ir,74.15683202,ResNet18_Instance Recognition,73.54624224
+ResNet18,Instance Recognition,encode_8,3.081166562,0.529354862,_ir,141.4931577,ResNet18_Instance Recognition,134.4968374
+ResNet18,Instance Recognition,encode_9,60.8443211,0.527809653,_ir,159.2627552,ResNet18_Instance Recognition,159.2627552
+ResNet18,Local Aggregation,encode_2,4.458864486,0.278457189,_la,26.2869721,ResNet18_Local Aggregation,26.2869721
+ResNet18,Local Aggregation,encode_3,7.318860129,0.295482665,_la,24.91792511,ResNet18_Local Aggregation,24.91792511
+ResNet18,Local Aggregation,encode_4,15.70903534,0.367037817,_la,38.54404517,ResNet18_Local Aggregation,38.35284992
+ResNet18,Local Aggregation,encode_5,12.9450282,0.382853162,_la,36.31755127,ResNet18_Local Aggregation,36.14904321
+ResNet18,Local Aggregation,encode_6,15.63196619,0.481321659,_la,74.65326188,ResNet18_Local Aggregation,72.78152728
+ResNet18,Local Aggregation,encode_7,1.934108508,0.493201442,_la,73.80789888,ResNet18_Local Aggregation,73.44496526
+ResNet18,Local Aggregation,encode_8,1.875272,0.545652325,_la,146.3916349,ResNet18_Local Aggregation,140.8894404
+ResNet18,Local Aggregation,encode_9,62.553511,0.547408035,_la,153.6241578,ResNet18_Local Aggregation,153.4406226
+ResNet50,Auto-Encoder,layer1.0.relu,3.460240868,0.217448517,_ae,20.72710932,ResNet50_Auto-Encoder,13.88281673
+ResNet50,Auto-Encoder,layer1.1.relu,3.523275965,0.204630601,_ae,21.22977633,ResNet50_Auto-Encoder,14.50956049
+ResNet50,Auto-Encoder,layer1.2.relu,2.551846534,0.175712658,_ae,18.26131526,ResNet50_Auto-Encoder,11.76556271
+ResNet50,Auto-Encoder,layer2.0.relu,1.69227959,0.130115588,_ae,22.42404543,ResNet50_Auto-Encoder,14.0846489
+ResNet50,Auto-Encoder,layer2.1.relu,1.850349594,0.119849958,_ae,21.01844655,ResNet50_Auto-Encoder,11.05179019
+ResNet50,Auto-Encoder,layer2.2.relu,1.797541176,0.120092163,_ae,20.61986451,ResNet50_Auto-Encoder,10.98732348
+ResNet50,Auto-Encoder,layer2.3.relu,1.977145909,0.122692076,_ae,18.67599,ResNet50_Auto-Encoder,9.064384417
+ResNet50,Auto-Encoder,layer3.0.relu,1.571774908,0.111079634,_ae,22.14857242,ResNet50_Auto-Encoder,8.506730659
+ResNet50,Auto-Encoder,layer3.1.relu,1.014843486,0.075981687,_ae,18.49149009,ResNet50_Auto-Encoder,5.262133457
+ResNet50,Auto-Encoder,layer3.2.relu,1.005443025,0.062660031,_ae,15.66333753,ResNet50_Auto-Encoder,3.625428029
+ResNet50,Auto-Encoder,layer3.3.relu,1.003185469,0.048785044,_ae,12.11107351,ResNet50_Auto-Encoder,2.443443957
+ResNet50,Auto-Encoder,layer3.4.relu,1.003469195,0.047219775,_ae,10.97381648,ResNet50_Auto-Encoder,1.791798201
+ResNet50,Auto-Encoder,layer3.5.relu,1.012920249,0.059369444,_ae,11.79337615,ResNet50_Auto-Encoder,1.596434038
+ResNet50,Auto-Encoder,layer4.0.relu,1.024631858,0.074296996,_ae,16.28765698,ResNet50_Auto-Encoder,2.237159623
+ResNet50,Auto-Encoder,layer4.1.relu,1.010450863,0.054422912,_ae,14.33981526,ResNet50_Auto-Encoder,1.153507275
+ResNet50,Auto-Encoder,layer4.2.relu,1.003923485,0.04847811,_ae,11.49730012,ResNet50_Auto-Encoder,0.863484679
+ResNet50,Keypoint Detection (2D),layer1.0.relu,2.591947139,0.216252067,_kp2d,17.80840338,ResNet50_Keypoint Detection (2D),12.00396894
+ResNet50,Keypoint Detection (2D),layer1.1.relu,2.544549095,0.218793016,_kp2d,17.90821776,ResNet50_Keypoint Detection (2D),11.45076803
+ResNet50,Keypoint Detection (2D),layer1.2.relu,3.084708232,0.213112493,_kp2d,15.91702547,ResNet50_Keypoint Detection (2D),9.786268778
+ResNet50,Keypoint Detection (2D),layer2.0.relu,2.286779462,0.201376369,_kp2d,21.94641196,ResNet50_Keypoint Detection (2D),13.11987404
+ResNet50,Keypoint Detection (2D),layer2.1.relu,1.588310191,0.184762515,_kp2d,23.17836095,ResNet50_Keypoint Detection (2D),13.57128957
+ResNet50,Keypoint Detection (2D),layer2.2.relu,1.31901958,0.16646625,_kp2d,21.88786964,ResNet50_Keypoint Detection (2D),12.74196151
+ResNet50,Keypoint Detection (2D),layer2.3.relu,1.255897284,0.162617424,_kp2d,16.18992114,ResNet50_Keypoint Detection (2D),8.435078608
+ResNet50,Keypoint Detection (2D),layer3.0.relu,1.020504027,0.101261565,_kp2d,22.52483417,ResNet50_Keypoint Detection (2D),11.95396168
+ResNet50,Keypoint Detection (2D),layer3.1.relu,1.012836363,0.098359314,_kp2d,22.60531846,ResNet50_Keypoint Detection (2D),11.56837816
+ResNet50,Keypoint Detection (2D),layer3.2.relu,1.021928259,0.10163122,_kp2d,22.79931967,ResNet50_Keypoint Detection (2D),11.49914751
+ResNet50,Keypoint Detection (2D),layer3.3.relu,1.030229835,0.11167749,_kp2d,25.05696623,ResNet50_Keypoint Detection (2D),11.30351207
+ResNet50,Keypoint Detection (2D),layer3.4.relu,1.081166589,0.128802256,_kp2d,26.44055427,ResNet50_Keypoint Detection (2D),12.14151236
+ResNet50,Keypoint Detection (2D),layer3.5.relu,1.216904064,0.136497485,_kp2d,27.02158074,ResNet50_Keypoint Detection (2D),12.17220368
+ResNet50,Keypoint Detection (2D),layer4.0.relu,1.072238294,0.149873181,_kp2d,28.62429788,ResNet50_Keypoint Detection (2D),9.053449704
+ResNet50,Keypoint Detection (2D),layer4.1.relu,1.079627667,0.146642338,_kp2d,25.45029569,ResNet50_Keypoint Detection (2D),7.479305694
+ResNet50,Keypoint Detection (2D),layer4.2.relu,1.072865139,0.136714766,_kp2d,22.05129152,ResNet50_Keypoint Detection (2D),5.901413324
+ResNet50,Reshading,layer1.0.relu,3.313120901,0.264774905,_reshading,20.8009417,ResNet50_Reshading,13.56797223
+ResNet50,Reshading,layer1.1.relu,3.387422314,0.275133247,_reshading,21.08844921,ResNet50_Reshading,14.05110354
+ResNet50,Reshading,layer1.2.relu,4.194432144,0.276046965,_reshading,20.60089961,ResNet50_Reshading,13.12345133
+ResNet50,Reshading,layer2.0.relu,4.582392724,0.276499436,_reshading,29.51328594,ResNet50_Reshading,19.21673936
+ResNet50,Reshading,layer2.1.relu,4.564930079,0.278945531,_reshading,30.06633988,ResNet50_Reshading,18.79967182
+ResNet50,Reshading,layer2.2.relu,4.643669441,0.28917423,_reshading,30.42948315,ResNet50_Reshading,19.29828691
+ResNet50,Reshading,layer2.3.relu,5.792025477,0.30489967,_reshading,27.65587143,ResNet50_Reshading,17.38527516
+ResNet50,Reshading,layer3.0.relu,4.959608268,0.304692949,_reshading,42.08796395,ResNet50_Reshading,27.83780173
+ResNet50,Reshading,layer3.1.relu,5.497462357,0.317816175,_reshading,42.87913872,ResNet50_Reshading,27.65991354
+ResNet50,Reshading,layer3.2.relu,6.097165069,0.329207944,_reshading,43.31167687,ResNet50_Reshading,27.65819453
+ResNet50,Reshading,layer3.3.relu,6.73413491,0.338726378,_reshading,43.6936257,ResNet50_Reshading,28.04606691
+ResNet50,Reshading,layer3.4.relu,7.644861969,0.342236931,_reshading,43.55459646,ResNet50_Reshading,27.53251986
+ResNet50,Reshading,layer3.5.relu,8.326510304,0.344910942,_reshading,43.26656916,ResNet50_Reshading,27.22822022
+ResNet50,Reshading,layer4.0.relu,11.38939903,0.343656714,_reshading,42.68903959,ResNet50_Reshading,26.15142771
+ResNet50,Reshading,layer4.1.relu,4.573936093,0.334189226,_reshading,41.05587999,ResNet50_Reshading,24.0600221
+ResNet50,Reshading,layer4.2.relu,4.039808495,0.31737735,_reshading,39.25620786,ResNet50_Reshading,22.37728035
