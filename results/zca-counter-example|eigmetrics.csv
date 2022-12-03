@@ -1,0 +1,537 @@
+80% variance,alpha,effective dimensionality,layer,architecture,task,kind,source
+47.0,0.18679309571724226,60.00485458544058,layer1.0.relu,ResNet18,None,Untrained,PyTorch
+46.0,0.18972533882280374,59.811204557442366,layer1.1.relu,ResNet18,None,Untrained,PyTorch
+87.0,0.2365677783347658,111.37333319667206,layer2.0.relu,ResNet18,None,Untrained,PyTorch
+87.0,0.27056816830883257,109.7799214543353,layer2.1.relu,ResNet18,None,Untrained,PyTorch
+143.0,0.668283566447471,53.039467074390565,layer3.0.relu,ResNet18,None,Untrained,PyTorch
+154.0,0.3114014690592267,189.27836053807656,layer3.1.relu,ResNet18,None,Untrained,PyTorch
+224.0,0.5888320338205428,213.49671042805164,layer4.0.relu,ResNet18,None,Untrained,PyTorch
+233.0,0.4655170480229,246.87291465386545,layer4.1.relu,ResNet18,None,Untrained,PyTorch
+155.0,0.34154061093662824,189.4625750557514,layer1.0.relu,ResNet50,None,Untrained,PyTorch
+155.0,0.31263958156762756,191.18113605518664,layer1.1.relu,ResNet50,None,Untrained,PyTorch
+155.0,1.233215591585983,189.18483513628047,layer1.2.relu,ResNet50,None,Untrained,PyTorch
+230.0,1.1404469097235366,241.47331994293174,layer2.0.relu,ResNet50,None,Untrained,PyTorch
+231.0,1.2823793297349557,244.43874627152326,layer2.1.relu,ResNet50,None,Untrained,PyTorch
+232.0,0.4735936499267052,245.52449319579966,layer2.2.relu,ResNet50,None,Untrained,PyTorch
+232.0,0.9503405194042303,247.16026965779002,layer2.3.relu,ResNet50,None,Untrained,PyTorch
+83.0,1.7636168392819465,54.10371974690417,layer3.0.relu,ResNet50,None,Untrained,PyTorch
+43.0,1.7176062106721375,20.41367834376666,layer3.1.relu,ResNet50,None,Untrained,PyTorch
+36.0,1.9403751140746046,10.945746424533668,layer3.2.relu,ResNet50,None,Untrained,PyTorch
+37.0,2.0015181546352054,10.26872231583425,layer3.3.relu,ResNet50,None,Untrained,PyTorch
+43.0,1.9943705608284017,14.264258631632163,layer3.4.relu,ResNet50,None,Untrained,PyTorch
+50.0,1.9589647123179057,26.028656253907975,layer3.5.relu,ResNet50,None,Untrained,PyTorch
+396.0,1.5973543715986944,146.3875761988561,layer4.0.relu,ResNet50,None,Untrained,PyTorch
+501.0,1.5876614704680578,165.8295432803481,layer4.1.relu,ResNet50,None,Untrained,PyTorch
+540.0,1.5271637861228369,191.42563710538644,layer4.2.relu,ResNet50,None,Untrained,PyTorch
+47.0,0.18299819535337422,60.01622670341633,layer1.0.relu,ResNet18,Object Classification,Supervised,PyTorch
+47.0,0.18627625548317342,60.00506633751605,layer1.1.relu,ResNet18,Object Classification,Supervised,PyTorch
+88.0,0.2275463202144961,112.31247398838929,layer2.0.relu,ResNet18,Object Classification,Supervised,PyTorch
+87.0,0.23736072064405467,111.71438063489884,layer2.1.relu,ResNet18,Object Classification,Supervised,PyTorch
+157.0,0.3045009910197185,192.23221854927095,layer3.0.relu,ResNet18,Object Classification,Supervised,PyTorch
+157.0,0.3100864121911753,192.1186455175487,layer3.1.relu,ResNet18,Object Classification,Supervised,PyTorch
+237.0,0.4615159707263938,250.67592179264196,layer4.0.relu,ResNet18,Object Classification,Supervised,PyTorch
+238.0,0.46220763652942715,251.31119820445406,layer4.1.relu,ResNet18,Object Classification,Supervised,PyTorch
+143.0,0.9997391842775276,177.63058840973582,layer1.0.relu,ResNet50,Object Classification,Supervised,PyTorch
+152.0,1.093922406888203,186.77258153736457,layer1.1.relu,ResNet50,Object Classification,Supervised,PyTorch
+156.0,0.30853475588808177,191.5763337942055,layer1.2.relu,ResNet50,Object Classification,Supervised,PyTorch
+226.0,1.1485869436000884,249.42650618403295,layer2.0.relu,ResNet50,Object Classification,Supervised,PyTorch
+237.0,1.1568940716581255,252.4745396933687,layer2.1.relu,ResNet50,Object Classification,Supervised,PyTorch
+238.0,0.45927159771719533,252.58554739245517,layer2.2.relu,ResNet50,Object Classification,Supervised,PyTorch
+238.0,0.4589118883922381,252.5640973974717,layer2.3.relu,ResNet50,Object Classification,Supervised,PyTorch
+26.0,2.108179889461391,19.057858871532698,layer3.0.relu,ResNet50,Object Classification,Supervised,PyTorch
+20.0,2.2697297005112818,27.92588840411797,layer3.1.relu,ResNet50,Object Classification,Supervised,PyTorch
+21.0,2.170439796214077,28.13092228443669,layer3.2.relu,ResNet50,Object Classification,Supervised,PyTorch
+20.0,2.36948467604978,27.502990998684353,layer3.3.relu,ResNet50,Object Classification,Supervised,PyTorch
+21.0,1.864863775403907,28.082965523952236,layer3.4.relu,ResNet50,Object Classification,Supervised,PyTorch
+21.0,1.8930612684591732,27.78825030799715,layer3.5.relu,ResNet50,Object Classification,Supervised,PyTorch
+608.0,1.0363507780837058,726.8127318150647,layer4.0.relu,ResNet50,Object Classification,Supervised,PyTorch
+606.0,1.050371580212486,716.894966739155,layer4.1.relu,ResNet50,Object Classification,Supervised,PyTorch
+584.0,1.0790208863049,656.1976860461116,layer4.2.relu,ResNet50,Object Classification,Supervised,PyTorch
+46.0,0.19857348246012843,59.76979126949534,encode_2,ResNet18,Object Classification,Supervised,VVS
+47.0,0.18355837027536906,60.09508955117345,encode_3,ResNet18,Object Classification,Supervised,VVS
+87.0,0.24551807934224484,111.54451857015168,encode_4,ResNet18,Object Classification,Supervised,VVS
+88.0,0.23392240835403857,111.93769017561831,encode_5,ResNet18,Object Classification,Supervised,VVS
+157.0,0.3036127699136115,192.74525803436632,encode_6,ResNet18,Object Classification,Supervised,VVS
+157.0,0.30536158862985663,193.01539290026332,encode_7,ResNet18,Object Classification,Supervised,VVS
+238.0,0.45857340704400085,252.77016404872364,encode_8,ResNet18,Object Classification,Supervised,VVS
+238.0,0.460357657786262,252.75612915000679,encode_9,ResNet18,Object Classification,Supervised,VVS
+47.0,0.19288563591935556,59.89019664632833,encode_2,ResNet18,Local Aggregation,Self-Supervised,VVS
+46.0,0.19044138446787223,59.866679176931314,encode_3,ResNet18,Local Aggregation,Self-Supervised,VVS
+87.0,0.23439292026674988,111.92492496169203,encode_4,ResNet18,Local Aggregation,Self-Supervised,VVS
+88.0,0.23281239846548912,112.33909721021422,encode_5,ResNet18,Local Aggregation,Self-Supervised,VVS
+157.0,0.3112995861889766,192.1394545924743,encode_6,ResNet18,Local Aggregation,Self-Supervised,VVS
+157.0,0.3041266110173895,193.6450297289325,encode_7,ResNet18,Local Aggregation,Self-Supervised,VVS
+237.0,0.4586359585239677,251.79374632730068,encode_8,ResNet18,Local Aggregation,Self-Supervised,VVS
+231.0,0.47839538614989774,241.93631201920584,encode_9,ResNet18,Local Aggregation,Self-Supervised,VVS
+46.0,0.19521656635121165,59.791127702257896,encode_2,ResNet18,Instance Recognition,Self-Supervised,VVS
+47.0,0.18958724887947392,59.85522429330154,encode_3,ResNet18,Instance Recognition,Self-Supervised,VVS
+87.0,0.2352691653056106,111.85160939003865,encode_4,ResNet18,Instance Recognition,Self-Supervised,VVS
+87.0,0.23464381066852572,111.7443719529482,encode_5,ResNet18,Instance Recognition,Self-Supervised,VVS
+157.0,0.310113889434341,191.7592333306595,encode_6,ResNet18,Instance Recognition,Self-Supervised,VVS
+157.0,0.3011106397924257,192.6256748267097,encode_7,ResNet18,Instance Recognition,Self-Supervised,VVS
+238.0,0.4489379142230908,255.62954769180118,encode_8,ResNet18,Instance Recognition,Self-Supervised,VVS
+238.0,0.4587413404889423,252.02442101732768,encode_9,ResNet18,Instance Recognition,Self-Supervised,VVS
+47.0,0.18864467582374522,60.01338068705837,encode_2,ResNet18,Auto-Encoder,Self-Supervised,VVS
+46.0,0.20059429682678692,59.667116952494865,encode_3,ResNet18,Auto-Encoder,Self-Supervised,VVS
+87.0,0.23230548927247313,111.14956148745077,encode_4,ResNet18,Auto-Encoder,Self-Supervised,VVS
+87.0,0.23775460136905405,111.24950246109394,encode_5,ResNet18,Auto-Encoder,Self-Supervised,VVS
+153.0,0.32394164699921585,187.25551704074468,encode_6,ResNet18,Auto-Encoder,Self-Supervised,VVS
+154.0,0.3193019585347557,188.11878521675973,encode_7,ResNet18,Auto-Encoder,Self-Supervised,VVS
+232.0,0.47019001092718454,246.38642257528147,encode_8,ResNet18,Auto-Encoder,Self-Supervised,VVS
+233.0,0.4676561035753557,247.11289000383846,encode_9,ResNet18,Auto-Encoder,Self-Supervised,VVS
+46.0,0.1894116446608711,59.73431815896175,encode_2,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+46.0,0.2118539182734823,59.49643798489225,encode_3,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+87.0,0.23867271155176584,111.35665990812906,encode_4,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+87.0,0.24081336544556178,111.23245191777684,encode_5,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+155.0,0.3162511279634754,189.25934222935268,encode_6,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+154.0,0.32898782805640164,186.2098150972971,encode_7,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+228.0,0.48235881784056184,240.72588175071465,encode_8,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+219.0,0.988585931475803,228.88225897037623,encode_9,ResNet18,Contrastive Predictive Coding,Self-Supervised,VVS
+47.0,0.20119794649456868,59.75096248053015,encode_2,ResNet18,Colorization,Self-Supervised,VVS
+46.0,0.1937444152158733,59.832117319003245,encode_3,ResNet18,Colorization,Self-Supervised,VVS
+88.0,0.23165794862419992,112.50005988393822,encode_4,ResNet18,Colorization,Self-Supervised,VVS
+88.0,0.2230812331027354,112.57221401021343,encode_5,ResNet18,Colorization,Self-Supervised,VVS
+157.0,0.3022433799337519,192.64053414786787,encode_6,ResNet18,Colorization,Self-Supervised,VVS
+155.0,0.311431698029196,189.91446089810373,encode_7,ResNet18,Colorization,Self-Supervised,VVS
+238.0,0.4698600474038683,250.07070894521596,encode_8,ResNet18,Colorization,Self-Supervised,VVS
+222.0,0.6296146431586426,87.43986952849801,encode_9,ResNet18,Colorization,Self-Supervised,VVS
+46.0,0.24663217703824222,58.45118397448867,encode_2,ResNet18,Relative Position,Self-Supervised,VVS
+46.0,0.1989607264139641,59.47207566630863,encode_3,ResNet18,Relative Position,Self-Supervised,VVS
+87.0,0.23399774996222808,111.48195163515423,encode_4,ResNet18,Relative Position,Self-Supervised,VVS
+87.0,0.23077458452335678,111.7005753180422,encode_5,ResNet18,Relative Position,Self-Supervised,VVS
+156.0,0.3099901652578667,191.27135544447452,encode_6,ResNet18,Relative Position,Self-Supervised,VVS
+156.0,0.3155844534594914,190.48120477819538,encode_7,ResNet18,Relative Position,Self-Supervised,VVS
+238.0,0.4610074727681335,251.295593862762,encode_8,ResNet18,Relative Position,Self-Supervised,VVS
+236.0,0.46509002466020555,249.15236253776328,encode_9,ResNet18,Relative Position,Self-Supervised,VVS
+46.0,1.363732732523369,59.15118936758609,encode_2,ResNet18,Depth Prediction,Supervised,VVS
+47.0,0.1819303605044601,60.23752521086442,encode_3,ResNet18,Depth Prediction,Supervised,VVS
+88.0,0.23041016660032207,112.10291586811965,encode_4,ResNet18,Depth Prediction,Supervised,VVS
+87.0,0.23222399321209655,111.88902725157428,encode_5,ResNet18,Depth Prediction,Supervised,VVS
+157.0,0.30375997118881354,192.3547715555985,encode_6,ResNet18,Depth Prediction,Supervised,VVS
+156.0,0.314486052484295,190.65222504331823,encode_7,ResNet18,Depth Prediction,Supervised,VVS
+229.0,1.1798108541325498,242.47792481546196,encode_8,ResNet18,Depth Prediction,Supervised,VVS
+228.0,0.4800591974606739,240.31312269763842,encode_9,ResNet18,Depth Prediction,Supervised,VVS
+45.0,1.3457829427698489,57.189310124308804,encode_2,ResNet18,SimCLR,Self-Supervised,VVS
+46.0,0.20704547423747058,59.46039514085532,encode_3,ResNet18,SimCLR,Self-Supervised,VVS
+87.0,0.2712468718707163,110.2902606464213,encode_4,ResNet18,SimCLR,Self-Supervised,VVS
+87.0,0.24715268936103976,111.18127778075285,encode_5,ResNet18,SimCLR,Self-Supervised,VVS
+155.0,0.3286209839938732,188.9249717169789,encode_6,ResNet18,SimCLR,Self-Supervised,VVS
+156.0,0.3090683795378315,191.74319896163726,encode_7,ResNet18,SimCLR,Self-Supervised,VVS
+237.0,1.158145629893882,251.46716382943825,encode_8,ResNet18,SimCLR,Self-Supervised,VVS
+229.0,0.5408925643190893,222.33389831476956,encode_9,ResNet18,SimCLR,Self-Supervised,VVS
+46.0,0.19353370715594137,59.73996349992709,layer1.0.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+46.0,0.1943588937564789,59.80255801192838,layer1.1.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+87.0,0.9324788400688351,110.99915961386704,layer2.0.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+87.0,0.23411844200171883,111.87096316875773,layer2.1.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+156.0,1.161561075176204,191.32757325612567,layer3.0.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+157.0,0.3133755812533804,191.97964664461102,layer3.1.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+237.0,1.1044478053942859,251.9397919885189,layer4.0.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+235.0,0.46752840397813994,247.888173104667,layer4.1.relu,ResNet18,Deep Cluster,Self-Supervised,VVS
+46.0,0.18893643343032882,59.884363727540205,layer1.0.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+46.0,0.19990826158764988,59.569140468170396,layer1.1.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+88.0,0.22868032973516783,112.23618471211577,layer2.0.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+87.0,0.22971598160785595,112.02480987735413,layer2.1.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+157.0,0.3069459035477108,192.02150356142297,layer3.0.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+157.0,0.3060783772756255,192.28447891331967,layer3.1.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+237.0,0.46016945200687714,250.70600201474747,layer4.0.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+235.0,0.4609643099834224,250.01854606066615,layer4.1.relu,ResNet18,Contrastive Multiview Coding,Self-Supervised,VVS
+155.0,0.3123070955519959,190.55269160238544,layer1.0.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+156.0,0.3060955657289545,191.22201534335903,layer1.1.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+155.0,0.31765611996077736,188.6467686265387,layer1.2.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+234.0,0.46618446182364864,249.14219476386333,layer2.0.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+233.0,0.4913734747506947,245.22648112001875,layer2.1.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+235.0,0.47160382582484905,251.21641516454306,layer2.2.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+235.0,0.4664865085259358,246.93306686697377,layer2.3.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+132.0,1.0597012450148187,34.87939910892321,layer3.0.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+379.0,0.6934140660860469,238.55092502484234,layer3.1.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+355.0,0.670448031949964,340.9475403091612,layer3.2.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+274.0,0.7564564996374833,300.6606080935306,layer3.3.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+278.0,0.7501221856294756,293.0903281513168,layer3.4.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+337.0,0.6866234756506411,299.39765413638605,layer3.5.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+541.0,0.7868532986713541,312.8651361362368,layer4.0.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+441.0,0.7676989388038905,408.93374391354655,layer4.1.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+341.0,0.8711623186808701,325.75418649323655,layer4.2.relu,ResNet50,Auto-Encoder,Self-Supervised,Taskonomy
+154.0,0.3155482171120966,188.65873671373586,layer1.0.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+154.0,0.3157983991794199,188.40893077724374,layer1.1.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+155.0,0.3141219691074467,189.74471952692946,layer1.2.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+234.0,0.4670753598501291,247.7864648912853,layer2.0.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+235.0,0.4673477503700405,249.28569936296293,layer2.1.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+234.0,0.46751254788221364,248.822021349084,layer2.2.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+234.0,0.46957990375843606,247.30133348283934,layer2.3.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+126.0,1.0936056689930942,32.19719023288575,layer3.0.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+249.0,0.9190096344597898,49.75753241896627,layer3.1.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+333.0,0.8273104917883379,65.61469941875386,layer3.2.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+345.0,0.7533296271017366,113.75289228014925,layer3.3.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+317.0,0.7369719432709194,156.74173865271712,layer3.4.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+290.0,0.78653050262307,137.21847486675662,layer3.5.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+431.0,0.8331002965336884,222.51816373055857,layer4.0.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+452.0,0.8220840548949789,262.80492136419156,layer4.1.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+478.0,0.8063853603810115,276.87652553696614,layer4.2.relu,ResNet50,Curvature Estimation,Supervised,Taskonomy
+156.0,0.3088533204569271,190.72561068251534,layer1.0.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+156.0,0.30882008367783637,191.5620567600035,layer1.1.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+155.0,0.3181361872013399,189.06863417384818,layer1.2.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+233.0,0.4757605958929512,246.0347016232123,layer2.0.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+233.0,0.4858849417992304,246.61308546460864,layer2.1.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+232.0,0.4852172861141337,246.5824113176478,layer2.2.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+229.0,0.48659885845127904,243.17754779207993,layer2.3.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+216.0,0.9246500252723577,76.43939392871282,layer3.0.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+321.0,0.7486607082200344,189.54464792896732,layer3.1.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+344.0,0.7202300670531923,243.56773309933732,layer3.2.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+339.0,0.7604112598464249,190.5156933187554,layer3.3.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+318.0,0.7838360820335042,188.99827171869828,layer3.4.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+296.0,0.7836059884583915,157.51595595342454,layer3.5.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+607.0,0.7718372282566549,356.24813599000635,layer4.0.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+594.0,0.7279803174499931,371.4899373437758,layer4.1.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+579.0,0.702017889009674,436.6992091411956,layer4.2.relu,ResNet50,Denoising,Self-Supervised,Taskonomy
+155.0,0.31760588811903356,189.15878924518728,layer1.0.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+155.0,0.31452962550373675,190.2974391185442,layer1.1.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+155.0,0.31711668848866154,189.89694011724794,layer1.2.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+233.0,0.46501549652550295,247.70637044252015,layer2.0.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+231.0,0.47567064823381916,243.93074391014727,layer2.1.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+232.0,0.47182885221238413,246.09403395884746,layer2.2.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+231.0,0.4670098816471018,246.46876747862962,layer2.3.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+23.0,1.6564612255483036,6.59450060193388,layer3.0.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+18.0,1.7022000218726516,3.7170912393541284,layer3.1.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+20.0,1.6751504227734704,5.090202361643226,layer3.2.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+22.0,1.6633972753870594,9.256003479311358,layer3.3.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+15.0,1.7314890385968973,3.310354771939361,layer3.4.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+20.0,2.1293118532763327,8.770204390427702,layer3.5.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+320.0,1.5270001064779906,384.9800639843901,layer4.0.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+308.0,1.5170905108723929,373.3420858389616,layer4.1.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+316.0,1.4727685669374497,386.58903807805905,layer4.2.relu,ResNet50,Edge Detection (2D),Supervised,Taskonomy
+154.0,0.31748753232207516,188.56109347761748,layer1.0.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+155.0,0.31478041891256475,189.23208128544127,layer1.1.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+154.0,0.31417494216267194,188.3320419659816,layer1.2.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+235.0,0.46260371613113593,250.02199161733984,layer2.0.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+236.0,0.45798001092141,252.6376737980594,layer2.1.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+235.0,0.46770258243588986,249.1148461078313,layer2.2.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+237.0,0.4594744763486457,252.67457486838478,layer2.3.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+21.0,1.7424471130105277,5.208960136136292,layer3.0.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+21.0,1.6879471861280924,4.223825945697913,layer3.1.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+21.0,1.6907961429874976,4.021225281492454,layer3.2.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+20.0,1.704622559361689,3.8394858571976824,layer3.3.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+19.0,1.724134528787889,3.526932220754445,layer3.4.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+20.0,1.703678806453548,4.0143349357928315,layer3.5.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+636.0,0.9811904788257519,396.77942488400777,layer4.0.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+630.0,0.8484800235625017,356.7343205804438,layer4.1.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+622.0,0.8362790449672209,232.31526690509233,layer4.2.relu,ResNet50,Edge Detection (3D),Supervised,Taskonomy
+155.0,0.31644381358510854,189.28029313686596,layer1.0.relu,ResNet50,Egomotion,Supervised,Taskonomy
+155.0,0.31347664865418556,190.19697668675408,layer1.1.relu,ResNet50,Egomotion,Supervised,Taskonomy
+155.0,0.3151264976392138,190.13674582904235,layer1.2.relu,ResNet50,Egomotion,Supervised,Taskonomy
+233.0,0.46247866756039147,248.88799430834865,layer2.0.relu,ResNet50,Egomotion,Supervised,Taskonomy
+233.0,0.4664933193735918,247.03229739042513,layer2.1.relu,ResNet50,Egomotion,Supervised,Taskonomy
+235.0,0.4667951139536296,249.44367103672698,layer2.2.relu,ResNet50,Egomotion,Supervised,Taskonomy
+234.0,0.4633729399717464,247.6476489862088,layer2.3.relu,ResNet50,Egomotion,Supervised,Taskonomy
+18.0,1.8696726890719106,5.122466768744705,layer3.0.relu,ResNet50,Egomotion,Supervised,Taskonomy
+16.0,1.8076567899993896,3.0087481837797823,layer3.1.relu,ResNet50,Egomotion,Supervised,Taskonomy
+15.0,1.8180834673753656,2.845047180551641,layer3.2.relu,ResNet50,Egomotion,Supervised,Taskonomy
+13.0,1.8734312227532166,2.4534000996132606,layer3.3.relu,ResNet50,Egomotion,Supervised,Taskonomy
+14.0,1.9143683923943524,2.831833194931551,layer3.4.relu,ResNet50,Egomotion,Supervised,Taskonomy
+19.0,1.8904603712724546,6.8230780266233735,layer3.5.relu,ResNet50,Egomotion,Supervised,Taskonomy
+621.0,0.9853004679722036,401.25010144064396,layer4.0.relu,ResNet50,Egomotion,Supervised,Taskonomy
+599.0,0.902518175370245,186.02789441772234,layer4.1.relu,ResNet50,Egomotion,Supervised,Taskonomy
+594.0,0.8776670297942645,128.88954418988632,layer4.2.relu,ResNet50,Egomotion,Supervised,Taskonomy
+155.0,0.3172808466085395,189.1586613064815,layer1.0.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+155.0,0.3127677978705145,189.32807507204657,layer1.1.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+155.0,0.30911068640689227,189.8983818021628,layer1.2.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+234.0,0.4577860589241866,249.9764710549385,layer2.0.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+234.0,0.4655926474031567,248.03290119609827,layer2.1.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+236.0,0.45515292232965643,252.60154020929335,layer2.2.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+236.0,0.46413849246560684,250.24444582658282,layer2.3.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+22.0,1.7375720168953093,6.303092121231597,layer3.0.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+19.0,1.759399239458054,4.1428126497326305,layer3.1.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+18.0,1.7465789701818497,3.207665851745353,layer3.2.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+18.0,1.8550881891966013,5.403891416861826,layer3.3.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+19.0,1.8461976704944405,4.539551772323837,layer3.4.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+17.0,1.8036612633214641,3.3943442372021684,layer3.5.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+625.0,1.0157612501418811,506.36993018443604,layer4.0.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+620.0,1.0211666249403077,522.6051495207132,layer4.1.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+620.0,1.0183395031682412,541.4812019913685,layer4.2.relu,ResNet50,Fixated Pose Estimation,Supervised,Taskonomy
+151.0,0.33239340370077475,183.28602406187417,layer1.0.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+150.0,0.33076374397278796,183.12475546524988,layer1.1.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+149.0,0.3346334103874454,181.4376437223426,layer1.2.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+219.0,0.48497731737948085,233.7198724145104,layer2.0.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+223.0,0.4864965506847749,236.9993247600798,layer2.1.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+227.0,0.48882949664969666,238.06173978718854,layer2.2.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+230.0,0.4713842808686961,244.8940049583393,layer2.3.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+27.0,1.6287720484803692,9.174792174720734,layer3.0.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+25.0,1.6709014377504001,8.597598370255202,layer3.1.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+25.0,1.6660080805183695,9.406793686566067,layer3.2.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+25.0,1.6538810740233518,7.200440355780831,layer3.3.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+28.0,1.609374358595077,11.74072931006805,layer3.4.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+23.0,1.7011642286633253,9.562286364965292,layer3.5.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+479.0,0.9128406549512731,317.1951130331933,layer4.0.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+493.0,0.8989374500761541,355.21754018828926,layer4.1.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+487.0,0.9058708643672793,376.45355050710924,layer4.2.relu,ResNet50,Jigsaw,Self-Supervised,Taskonomy
+155.0,0.31056113228535587,190.14470149113376,layer1.0.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+155.0,0.31928998688346366,189.59746455727347,layer1.1.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+155.0,0.3123989911205238,190.25873892787033,layer1.2.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+233.0,0.4638068821276873,247.588028202707,layer2.0.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+229.0,0.47922169773490714,240.5899546788553,layer2.1.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+226.0,0.4939918207703557,234.8147543430134,layer2.2.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+218.0,0.5122821029030723,222.82657617497787,layer2.3.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+242.0,0.8757789879367964,79.52667837218888,layer3.0.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+289.0,0.830498018286238,85.67463722937705,layer3.1.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+242.0,0.8801934038574931,78.26763777923104,layer3.2.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+244.0,0.8797213565587025,87.86786246556372,layer3.3.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+157.0,1.012598416032705,55.39885777848127,layer3.4.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+127.0,1.110451258827261,33.93869008768635,layer3.5.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+279.0,1.4832422096631515,4.875049473291092,layer4.0.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+62.0,1.6137916201071558,2.156644482722457,layer4.1.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+23.0,1.3909998424674224,1.9089063486634315,layer4.2.relu,ResNet50,Keypoint Detection (2D),Supervised,Taskonomy
+155.0,0.31712990801922797,189.36227689561423,layer1.0.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+155.0,0.3031209183816054,190.46416138807854,layer1.1.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+155.0,0.31010274527547177,190.5078823191462,layer1.2.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+236.0,0.4617368166218366,249.65538959855655,layer2.0.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+236.0,0.4622221156111181,250.44950679450716,layer2.1.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+237.0,0.4648179452155756,250.5242535983532,layer2.2.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+237.0,0.45821000930628814,252.52066035183987,layer2.3.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+24.0,1.663190107159682,6.2389800988271125,layer3.0.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+26.0,1.634311399117645,11.08704059810195,layer3.1.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+26.0,1.622928948417581,10.033783634120535,layer3.2.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+22.0,1.6832431040679683,4.870830210613277,layer3.3.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+21.0,1.669793799958986,3.931664978834523,layer3.4.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+22.0,1.733231299553309,5.76779162274143,layer3.5.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+607.0,0.9996235451547041,493.3878537191175,layer4.0.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+611.0,0.9899941214529576,618.2528697448987,layer4.1.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+604.0,0.9874663079124284,600.6259677693366,layer4.2.relu,ResNet50,Keypoint Detection (3D),Supervised,Taskonomy
+155.0,0.309371400051702,190.54643382451977,layer1.0.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+156.0,0.30573807390583185,191.78946378623093,layer1.1.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+155.0,0.31590152989841447,189.84710345497453,layer1.2.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+235.0,0.46242171750530486,250.69180414575183,layer2.0.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+235.0,0.46382270233859707,249.81455498389812,layer2.1.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+235.0,0.46346577987966153,250.05445825920364,layer2.2.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+234.0,0.47086414594225096,246.92408840051456,layer2.3.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+20.0,1.7798951342973728,6.371299989719495,layer3.0.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+20.0,1.6761593398276553,3.3133529553560837,layer3.1.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+20.0,1.6579328766773003,3.2446914272996716,layer3.2.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+22.0,1.6288636622891302,3.8200153178402565,layer3.3.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+27.0,1.578255847119824,5.411035655265665,layer3.4.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+32.0,1.5237683826867656,8.327800245535073,layer3.5.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+570.0,0.9592810583088304,217.8308844131976,layer4.0.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+567.0,0.9440499807041846,270.5589853652385,layer4.1.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+572.0,0.9566173134321866,349.7911864942135,layer4.2.relu,ResNet50,Non-Fixated Pose Estimation,Supervised,Taskonomy
+155.0,0.31248382265702657,190.38182671628923,layer1.0.relu,ResNet50,Point Matching,Supervised,Taskonomy
+155.0,0.31311818858472973,190.41673859668293,layer1.1.relu,ResNet50,Point Matching,Supervised,Taskonomy
+155.0,0.3174755302740469,189.72661296483946,layer1.2.relu,ResNet50,Point Matching,Supervised,Taskonomy
+233.0,0.46784910848693484,248.27739346586333,layer2.0.relu,ResNet50,Point Matching,Supervised,Taskonomy
+234.0,0.46433989271162107,249.80891191135183,layer2.1.relu,ResNet50,Point Matching,Supervised,Taskonomy
+234.0,0.4660756117586606,248.22253981767588,layer2.2.relu,ResNet50,Point Matching,Supervised,Taskonomy
+234.0,0.4756281056141143,246.48460825618173,layer2.3.relu,ResNet50,Point Matching,Supervised,Taskonomy
+21.0,1.6795415411760768,3.7164509932372525,layer3.0.relu,ResNet50,Point Matching,Supervised,Taskonomy
+20.0,1.673123011175354,3.266309045557594,layer3.1.relu,ResNet50,Point Matching,Supervised,Taskonomy
+22.0,1.6583192008198362,4.315504885943078,layer3.2.relu,ResNet50,Point Matching,Supervised,Taskonomy
+25.0,1.6545920297171421,6.818089346419897,layer3.3.relu,ResNet50,Point Matching,Supervised,Taskonomy
+25.0,1.630767842968085,5.727371131822787,layer3.4.relu,ResNet50,Point Matching,Supervised,Taskonomy
+26.0,1.633151155543475,9.010359845836572,layer3.5.relu,ResNet50,Point Matching,Supervised,Taskonomy
+538.0,0.9737388488018149,402.8513768303026,layer4.0.relu,ResNet50,Point Matching,Supervised,Taskonomy
+537.0,0.9555447417295123,448.7026771387805,layer4.1.relu,ResNet50,Point Matching,Supervised,Taskonomy
+539.0,0.9841836749626098,402.0804138604611,layer4.2.relu,ResNet50,Point Matching,Supervised,Taskonomy
+154.0,0.3118713808678124,189.58217219469813,layer1.0.relu,ResNet50,Reshading,Supervised,Taskonomy
+155.0,0.3157782621678362,190.06882591990328,layer1.1.relu,ResNet50,Reshading,Supervised,Taskonomy
+155.0,0.3194508400161627,188.38184454105536,layer1.2.relu,ResNet50,Reshading,Supervised,Taskonomy
+234.0,0.4727325204093683,246.58794135271572,layer2.0.relu,ResNet50,Reshading,Supervised,Taskonomy
+236.0,0.45907648152322117,251.62988337832866,layer2.1.relu,ResNet50,Reshading,Supervised,Taskonomy
+236.0,0.4650817720679593,249.91130913614572,layer2.2.relu,ResNet50,Reshading,Supervised,Taskonomy
+237.0,0.4617409574662201,251.4374657911946,layer2.3.relu,ResNet50,Reshading,Supervised,Taskonomy
+22.0,1.7631044703556058,9.495224069157555,layer3.0.relu,ResNet50,Reshading,Supervised,Taskonomy
+20.0,1.8038195759142348,6.26222298574744,layer3.1.relu,ResNet50,Reshading,Supervised,Taskonomy
+17.0,1.9222141408111058,4.63783877011648,layer3.2.relu,ResNet50,Reshading,Supervised,Taskonomy
+20.0,1.8566661235649689,10.770384853752976,layer3.3.relu,ResNet50,Reshading,Supervised,Taskonomy
+18.0,1.890903443816938,5.084639270073507,layer3.4.relu,ResNet50,Reshading,Supervised,Taskonomy
+14.0,1.9459637346067635,2.6658455793734923,layer3.5.relu,ResNet50,Reshading,Supervised,Taskonomy
+651.0,0.9889870062625086,707.8936307852248,layer4.0.relu,ResNet50,Reshading,Supervised,Taskonomy
+644.0,0.9733140270671495,525.185178051535,layer4.1.relu,ResNet50,Reshading,Supervised,Taskonomy
+643.0,0.9537036835438059,606.2488354750424,layer4.2.relu,ResNet50,Reshading,Supervised,Taskonomy
+155.0,0.3172924716691247,189.2869598427305,layer1.0.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+155.0,0.309329317629288,189.7830293764706,layer1.1.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+155.0,0.31599016365661475,189.02166882787805,layer1.2.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+235.0,0.4617860571404969,249.60338808994547,layer2.0.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+235.0,0.4669524987576361,248.3864634737048,layer2.1.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+237.0,0.461591470503741,250.76623160471823,layer2.2.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+237.0,0.46071932549119743,250.94156350579746,layer2.3.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+23.0,1.6619389249770253,5.129945648778815,layer3.0.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+25.0,1.668805301203158,9.635054200142049,layer3.1.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+28.0,1.5902383530931194,7.78787754405785,layer3.2.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+25.0,1.647732049835088,6.263895225701504,layer3.3.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+26.0,1.6239176918462448,7.5820528312706585,layer3.4.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+35.0,1.4968999745948766,11.989647755174017,layer3.5.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+595.0,0.7695276181940996,172.46974775997853,layer4.0.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+733.0,0.7229259084751395,157.74003343552508,layer4.1.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+766.0,0.6968853423521184,262.8125393251482,layer4.2.relu,ResNet50,Depth Estimation (Z-Buffer),Supervised,Taskonomy
+154.0,0.3146161104296645,189.16963782745137,layer1.0.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+155.0,0.31147175405143057,189.91291224348578,layer1.1.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+155.0,0.31222766963345133,189.88631988267764,layer1.2.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+235.0,0.46360476703432574,249.29236813151434,layer2.0.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+238.0,0.45921650050299745,254.2166706487327,layer2.1.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+236.0,0.4640577073113969,249.8931334954425,layer2.2.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+237.0,0.46109155844244637,251.7681661398331,layer2.3.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+23.0,1.7137860453615046,7.823543037864682,layer3.0.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+21.0,1.705211694493722,4.371922946830238,layer3.1.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+20.0,1.7163428976200232,4.042289799413863,layer3.2.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+20.0,1.737329314828894,4.456423850487472,layer3.3.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+18.0,1.8580686976212477,5.007148550753275,layer3.4.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+20.0,1.8220306458009743,5.6990372569469425,layer3.5.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+571.0,0.9870668024221078,655.6090473558233,layer4.0.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+564.0,1.0250072759214832,621.2289603617228,layer4.1.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+554.0,1.104504907082683,231.2545457921448,layer4.2.relu,ResNet50,Depth Estimation,Supervised,Taskonomy
+154.0,0.3159983406279993,188.2754636321764,layer1.0.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+154.0,0.3164456609316753,189.0223664861159,layer1.1.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+155.0,0.3135625260355641,189.80553829754592,layer1.2.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+235.0,0.46386918099426155,249.0518915403157,layer2.0.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+237.0,0.4596256791642004,252.06189778012018,layer2.1.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+237.0,0.46267648468646816,251.88351499448285,layer2.2.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+237.0,0.46184208297081597,251.09182780164343,layer2.3.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+19.0,1.8257563185088597,5.045621893131216,layer3.0.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+15.0,1.8938398415815534,3.0629463630975784,layer3.1.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+19.0,1.8654741990645092,5.906384084673481,layer3.2.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+21.0,1.8458112290168156,10.626431814882737,layer3.3.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+30.0,1.5545579827970188,11.285456382163124,layer3.4.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+60.0,1.3078515705277098,18.00917539482301,layer3.5.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+634.0,0.772574570316709,157.63433356252693,layer4.0.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+762.0,0.7378043078726192,145.18857199257218,layer4.1.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+807.0,0.7255634177136708,169.39289528429694,layer4.2.relu,ResNet50,Surface Normals Estimation,Supervised,Taskonomy
+155.0,0.3060605664732474,189.9736133467409,layer1.0.relu,ResNet50,Room Layout,Supervised,Taskonomy
+155.0,0.31663872459455594,189.9447467945149,layer1.1.relu,ResNet50,Room Layout,Supervised,Taskonomy
+154.0,0.3155496725536466,189.02439255111636,layer1.2.relu,ResNet50,Room Layout,Supervised,Taskonomy
+234.0,0.4653239175028471,249.72833460759804,layer2.0.relu,ResNet50,Room Layout,Supervised,Taskonomy
+235.0,0.46284528314999784,249.61333216918894,layer2.1.relu,ResNet50,Room Layout,Supervised,Taskonomy
+236.0,0.45969198305659154,251.2230461701218,layer2.2.relu,ResNet50,Room Layout,Supervised,Taskonomy
+235.0,0.4641221636924042,248.76093149111574,layer2.3.relu,ResNet50,Room Layout,Supervised,Taskonomy
+21.0,1.7889134793869044,7.099512199021524,layer3.0.relu,ResNet50,Room Layout,Supervised,Taskonomy
+19.0,1.779226757669611,4.144446137293756,layer3.1.relu,ResNet50,Room Layout,Supervised,Taskonomy
+18.0,1.8253864669639384,4.3118626851012865,layer3.2.relu,ResNet50,Room Layout,Supervised,Taskonomy
+17.0,1.861409047579423,3.394547890556127,layer3.3.relu,ResNet50,Room Layout,Supervised,Taskonomy
+16.0,1.9009474029863307,3.390581140192903,layer3.4.relu,ResNet50,Room Layout,Supervised,Taskonomy
+11.0,1.9582522729958456,2.1868431301412574,layer3.5.relu,ResNet50,Room Layout,Supervised,Taskonomy
+626.0,0.9918465431392985,727.0471230607317,layer4.0.relu,ResNet50,Room Layout,Supervised,Taskonomy
+616.0,0.9826052631247134,582.6996088655833,layer4.1.relu,ResNet50,Room Layout,Supervised,Taskonomy
+592.0,0.9643539870599468,366.6993745000228,layer4.2.relu,ResNet50,Room Layout,Supervised,Taskonomy
+155.0,0.31564327189679164,189.64342849030766,layer1.0.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+155.0,0.31141891989081016,190.299569379493,layer1.1.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+155.0,0.3174896135441501,189.1431688371916,layer1.2.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+236.0,0.4516715993966167,253.41210136228565,layer2.0.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+236.0,0.4656871633294002,249.89875547645525,layer2.1.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+236.0,0.46034317416730797,251.105125765395,layer2.2.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+237.0,0.45321625466385407,253.42443964037452,layer2.3.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+19.0,1.7564875918467742,3.9137962098452004,layer3.0.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+24.0,1.6899161391676734,8.440870768462919,layer3.1.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+21.0,1.7861996189827187,6.829476428023073,layer3.2.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+21.0,1.775645395658198,9.327863576783667,layer3.3.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+17.0,1.820087533787012,3.717284985225848,layer3.4.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+19.0,1.844411544740115,5.888129943232422,layer3.5.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+519.0,1.0227291718864144,525.7213124619673,layer4.0.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+501.0,1.2980092389043343,526.7468943840157,layer4.1.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+487.0,1.300083862645539,582.6918383829711,layer4.2.relu,ResNet50,Unsupervised Segmentation (25D),Self-Supervised,Taskonomy
+155.0,0.31333875965742686,189.71743367965732,layer1.0.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+155.0,0.3135929533643415,189.97081743305372,layer1.1.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+155.0,0.3091254316769497,190.70690926551373,layer1.2.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+235.0,0.4633998750798752,250.38648428152214,layer2.0.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+236.0,0.4598985761426121,250.5735683950912,layer2.1.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+237.0,0.4628861591148624,251.36687699705158,layer2.2.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+238.0,0.4585840278252321,252.1766981565938,layer2.3.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+19.0,1.6936712677603745,3.342084709188485,layer3.0.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+22.0,1.6927826274823279,5.793927589643842,layer3.1.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+22.0,1.7270988437509813,7.334983458267618,layer3.2.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+30.0,1.5531155309150948,9.069525720588906,layer3.3.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+38.0,1.4624063952523414,20.15047812219282,layer3.4.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+36.0,1.4873780010424384,9.179410641666017,layer3.5.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+563.0,0.7834855692969892,162.37815645766798,layer4.0.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+723.0,0.7348866457635573,245.52800817511965,layer4.1.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+695.0,0.8099906534861308,310.4969542364586,layer4.2.relu,ResNet50,Unsupervised Segmentation (2D),Self-Supervised,Taskonomy
+155.0,0.310567038109843,189.93503327378124,layer1.0.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+155.0,0.31267050093917187,190.15211560832233,layer1.1.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+155.0,0.3114655613433988,190.0518162663028,layer1.2.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+234.0,0.46917197679274625,246.42052736961105,layer2.0.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+236.0,0.4589105333445718,250.2140241274764,layer2.1.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+237.0,0.4636879831856871,251.79230923331193,layer2.2.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+237.0,0.4662623926891639,251.0247426796152,layer2.3.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+20.0,1.9683216264324508,11.316347216105488,layer3.0.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+18.0,2.048890591019707,6.282416029756215,layer3.1.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+18.0,2.055786526777372,6.07783689348972,layer3.2.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+18.0,2.053624365323919,7.311753428922333,layer3.3.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+18.0,2.0712412485977096,6.833427223087791,layer3.4.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+17.0,2.087191973778214,5.010906722522503,layer3.5.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+582.0,1.0125347763614112,556.4373686719575,layer4.0.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+573.0,0.9724358535506663,625.8445485135105,layer4.1.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+568.0,0.9885291884154186,509.5305474492116,layer4.2.relu,ResNet50,Semantic Segmentation,Supervised,Taskonomy
+155.0,0.3138398983076008,189.42630141423933,layer1.0.relu,ResNet50,Object Classification,Supervised,Taskonomy
+155.0,0.316026444296689,189.15930003340088,layer1.1.relu,ResNet50,Object Classification,Supervised,Taskonomy
+154.0,0.3161105077650611,188.7371915209558,layer1.2.relu,ResNet50,Object Classification,Supervised,Taskonomy
+234.0,0.46566562440136405,248.1244721957398,layer2.0.relu,ResNet50,Object Classification,Supervised,Taskonomy
+234.0,0.4631543959165136,249.92353230234684,layer2.1.relu,ResNet50,Object Classification,Supervised,Taskonomy
+235.0,0.4623310571818954,250.7834823782037,layer2.2.relu,ResNet50,Object Classification,Supervised,Taskonomy
+236.0,0.46271654350770813,251.13098367856648,layer2.3.relu,ResNet50,Object Classification,Supervised,Taskonomy
+18.0,2.024425336209871,6.177390153344148,layer3.0.relu,ResNet50,Object Classification,Supervised,Taskonomy
+16.0,2.055795978597891,4.160043691210547,layer3.1.relu,ResNet50,Object Classification,Supervised,Taskonomy
+18.0,2.0819192486145246,7.367087650232304,layer3.2.relu,ResNet50,Object Classification,Supervised,Taskonomy
+17.0,2.1205505824170467,4.681926240452127,layer3.3.relu,ResNet50,Object Classification,Supervised,Taskonomy
+18.0,2.1311368548986827,6.430440415333032,layer3.4.relu,ResNet50,Object Classification,Supervised,Taskonomy
+19.0,2.1194026355340583,9.70494749598363,layer3.5.relu,ResNet50,Object Classification,Supervised,Taskonomy
+638.0,0.9780913303012273,735.2666795445705,layer4.0.relu,ResNet50,Object Classification,Supervised,Taskonomy
+627.0,0.9871833579545131,701.0054969994218,layer4.1.relu,ResNet50,Object Classification,Supervised,Taskonomy
+618.0,0.9919554189347771,681.9042590332689,layer4.2.relu,ResNet50,Object Classification,Supervised,Taskonomy
+155.0,0.3092038182909158,189.77248970849752,layer1.0.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+154.0,0.317236056260604,188.74704468987684,layer1.1.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+155.0,0.32173400367487925,189.2681815531811,layer1.2.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+234.0,0.46431815227130757,249.76140259466393,layer2.0.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+234.0,0.469072926078054,248.01538622229583,layer2.1.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+235.0,0.4618641479730643,250.19102756922112,layer2.2.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+235.0,0.464008456658886,249.0826836300224,layer2.3.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+19.0,1.9505142607997186,7.389489668041162,layer3.0.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+18.0,2.002099518768586,5.935377606810909,layer3.1.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+17.0,2.0696563872186755,5.668379420562137,layer3.2.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+17.0,2.0843569094450527,5.9227585080780925,layer3.3.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+18.0,2.0932678462741916,8.415881160559278,layer3.4.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+17.0,2.1270201173996752,5.327258654980007,layer3.5.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+618.0,1.0017882505876226,724.8916442339382,layer4.0.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+590.0,1.0078882307678019,676.2702833090773,layer4.1.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+574.0,1.0022022318378232,581.7839562478421,layer4.2.relu,ResNet50,Scene Classification,Supervised,Taskonomy
+155.0,0.31197669008953266,190.7214935278044,layer1.0.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+156.0,0.3098127791670874,190.68418153594786,layer1.1.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+155.0,0.3052242880608608,190.7185186556038,layer1.2.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+235.0,0.460711205490289,250.59321691402658,layer2.0.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+235.0,0.45906639362366797,250.42526463296832,layer2.1.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+233.0,0.4947199717682638,244.3882268692739,layer2.2.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+233.0,0.4659214350480557,247.48477852023854,layer2.3.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+76.0,1.2248692392068983,23.615645744457716,layer3.0.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+98.0,1.1495546196017319,26.021737490726753,layer3.1.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+117.0,1.0783047775180175,42.51719811933506,layer3.2.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+112.0,1.0856399708407583,33.408486279626956,layer3.3.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+158.0,0.9941420427062531,56.04401049877982,layer3.4.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+171.0,0.9839994466246599,39.55820755952385,layer3.5.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+560.0,0.9301751308665712,134.83096965219312,layer4.0.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+621.0,0.7132780135195873,373.8167057919073,layer4.1.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+462.0,0.7018408314482257,441.01229618454454,layer4.2.relu,ResNet50,Inpainting,Self-Supervised,Taskonomy
+153.0,0.3220534077268441,186.718843681594,layer1.0.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+153.0,0.3223297273546076,186.3963321690401,layer1.1.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+152.0,0.32589708456942235,186.097564282435,layer1.2.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+228.0,0.479283447543156,240.7469642337722,layer2.0.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+228.0,0.47908120633747375,241.08244984173265,layer2.1.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+227.0,0.4847082700523665,239.1351878793165,layer2.2.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+227.0,0.47527981607299646,241.66884342133312,layer2.3.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+58.0,1.332040061372135,19.160809437734443,layer3.0.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+67.0,1.2800099110841832,23.18487397214129,layer3.1.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+63.0,1.3054192166417031,17.679771893597675,layer3.2.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+62.0,1.3117346621330108,15.240522145517279,layer3.3.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+49.0,1.3727589252760324,9.022651456876245,layer3.4.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+45.0,1.4207051180747459,9.821481870877342,layer3.5.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+263.0,1.6019349291917773,271.40017381323906,layer4.0.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+256.0,1.7241793788102981,95.28228066882318,layer4.1.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+60.0,1.9151497015296677,6.390585335586139,layer4.2.relu,ResNet50,Vanishing Point Estimation,Supervised,Taskonomy
+155.0,1.048363123680178,189.46605870486923,layer1.0.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+156.0,0.3153024567191335,190.43025638408193,layer1.1.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+156.0,0.3162275655928083,190.39661674198845,layer1.2.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+237.0,0.9549310787042234,250.44272319038575,layer2.0.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+238.0,0.4566117705769304,253.58113492298838,layer2.1.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+238.0,0.4632603708405789,251.27735894283487,layer2.2.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+238.0,0.4578434464614989,253.29458767564873,layer2.3.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+13.0,2.5488713148900963,5.3905943037950514,layer3.0.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+17.0,2.138139197012194,9.566133599152163,layer3.1.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+17.0,2.172786743348122,8.776127971264604,layer3.2.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+17.0,2.205911354957656,8.30833288931602,layer3.3.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+17.0,2.1576955924876273,6.570021007990132,layer3.4.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+19.0,2.038436457349207,25.16516444681151,layer3.5.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+550.0,1.596663314199959,649.9763261165409,layer4.0.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+559.0,1.0958450207941808,665.1349853398665,layer4.1.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub
+571.0,1.123419335886507,688.5204219364688,layer4.2.relu,ResNet50,Barlow-Twins,Self-Supervised,Pytorch Hub

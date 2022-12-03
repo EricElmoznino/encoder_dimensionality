@@ -1,0 +1,17 @@
+80% variance,alpha,effective dimensionality,layer,architecture,task,kind,source
+10.0,1.5537916225114592,5.10255633076398,layer1.0.relu,ResNet18,Object Classification,Supervised,Counter-Example
+14.0,1.3040592810458302,6.19147428372499,layer1.1.relu,ResNet18,Object Classification,Supervised,Counter-Example
+45.0,1.000006355161405,14.288130395307928,layer2.0.relu,ResNet18,Object Classification,Supervised,Counter-Example
+53.0,0.9195835727862623,17.5641982962033,layer2.1.relu,ResNet18,Object Classification,Supervised,Counter-Example
+92.0,0.9111098254184888,34.46500548564498,layer3.0.relu,ResNet18,Object Classification,Supervised,Counter-Example
+105.0,0.852577920517997,41.245489555958265,layer3.1.relu,ResNet18,Object Classification,Supervised,Counter-Example
+184.0,0.8624623668729569,69.13836740673275,layer4.0.relu,ResNet18,Object Classification,Supervised,Counter-Example
+127.0,0.899675940437801,66.56178161426425,layer4.1.relu,ResNet18,Object Classification,Supervised,Counter-Example
+3.0,2.144662507896432,3.280530519230667,layer1.0.relu,ResNet18,Object Classification,Supervised Random,Counter-Example
+3.0,1.8636231099816505,3.5294560164622077,layer1.1.relu,ResNet18,Object Classification,Supervised Random,Counter-Example
+5.0,1.6968948441850116,4.214076305691249,layer2.0.relu,ResNet18,Object Classification,Supervised Random,Counter-Example
+5.0,1.589967629383162,3.6370877382881948,layer2.1.relu,ResNet18,Object Classification,Supervised Random,Counter-Example
+24.0,1.259566473365539,4.3745804454523025,layer3.0.relu,ResNet18,Object Classification,Supervised Random,Counter-Example
+21.0,1.2287268519728582,3.3493162245116737,layer3.1.relu,ResNet18,Object Classification,Supervised Random,Counter-Example
+209.0,1.5983223393907537,23.103684835939767,layer4.0.relu,ResNet18,Object Classification,Supervised Random,Counter-Example
+208.0,0.7131029182385397,5.261915388271806,layer4.1.relu,ResNet18,Object Classification,Supervised Random,Counter-Example

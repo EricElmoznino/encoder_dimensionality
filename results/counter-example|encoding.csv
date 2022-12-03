@@ -1,0 +1,17 @@
+layer,score,score_error,architecture,task,kind,source
+layer1.0.relu,0.27394415310768905,0.0031200005855546013,ResNet18,Object Classification,Supervised,Counter-Example
+layer1.1.relu,0.27540753020140024,0.0034743614922534876,ResNet18,Object Classification,Supervised,Counter-Example
+layer2.0.relu,0.32781330010675963,0.0039882610863466025,ResNet18,Object Classification,Supervised,Counter-Example
+layer2.1.relu,0.3559196592594065,0.003444978342504861,ResNet18,Object Classification,Supervised,Counter-Example
+layer3.0.relu,0.43974305764290794,0.0028927352709422196,ResNet18,Object Classification,Supervised,Counter-Example
+layer3.1.relu,0.45465951490381656,0.0025741379692669456,ResNet18,Object Classification,Supervised,Counter-Example
+layer4.0.relu,0.47481594095176477,0.0033705555504309364,ResNet18,Object Classification,Supervised,Counter-Example
+layer4.1.relu,0.4613072757649525,0.0036323916311215964,ResNet18,Object Classification,Supervised,Counter-Example
+layer1.0.relu,0.18115054320757162,0.005516583655343676,ResNet18,Object Classification,Supervised Random,Counter-Example
+layer1.1.relu,0.18776225187805462,0.005006374045746529,ResNet18,Object Classification,Supervised Random,Counter-Example
+layer2.0.relu,0.1945032649945187,0.0046918394730073995,ResNet18,Object Classification,Supervised Random,Counter-Example
+layer2.1.relu,0.18684430572222316,0.0047976625261563115,ResNet18,Object Classification,Supervised Random,Counter-Example
+layer3.0.relu,0.1895530234913808,0.0057012926285298,ResNet18,Object Classification,Supervised Random,Counter-Example
+layer3.1.relu,0.18829072488086462,0.004803552883836983,ResNet18,Object Classification,Supervised Random,Counter-Example
+layer4.0.relu,0.12918589611167833,0.004963485721970665,ResNet18,Object Classification,Supervised Random,Counter-Example
+layer4.1.relu,0.059779533810549755,0.0035204432952046245,ResNet18,Object Classification,Supervised Random,Counter-Example
