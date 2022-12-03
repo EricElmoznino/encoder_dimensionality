@@ -1,3 +1,4 @@
+import os
 import argparse
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -16,6 +17,11 @@ from utils import timed, id_to_properties
 
 @timed
 def main(benchmark, pooling, debug=False):
+    save_path = f'results/encoding|benchmark:{benchmark._identifier}|pooling:{pooling}.csv'
+    if os.path.exists(save_path):
+        print(f'Results already exists: {save_path}')
+        return
+    
     scores = pd.DataFrame()
     for model, layers in get_activation_models():
         layer_scores = fit_encoder(benchmark, model, layers, pooling)
@@ -23,7 +29,7 @@ def main(benchmark, pooling, debug=False):
         if debug:
             break
     if not debug:
-        scores.to_csv(f'results/encoding|benchmark:{benchmark._identifier}|pooling:{pooling}.csv', index=False)
+        scores.to_csv(save_path, index=False)
 
 
 def fit_encoder(benchmark, model, layers, pooling, hooks=None):

@@ -1,3 +1,4 @@
+import os
 import argparse
 import warnings
 
@@ -13,6 +14,11 @@ from utils import timed
 
 @timed
 def main(dataset, data_dir, classifier, pooling, debug=False):
+    save_path = f'results/n-shot|dataset:{dataset}|classifier:{classifier}|pooling:{pooling}.csv'
+    if os.path.exists(save_path):
+        print(f'Results already exists: {save_path}')
+        return
+
     n_shot_df = pd.DataFrame()
     for model, layers in get_activation_models():
         n_shot = get_n_shot_performance(dataset, data_dir, classifier, model, pooling)
@@ -21,7 +27,7 @@ def main(dataset, data_dir, classifier, pooling, debug=False):
         if debug:
             break
     if not debug:
-        n_shot_df.to_csv(f'results/n-shot|dataset:{dataset}|classifier:{classifier}|pooling:{pooling}.csv', index=False)
+        n_shot_df.to_csv(save_path, index=False)
 
 
 def get_n_shot_performance(dataset, data_dir, classifier, activations_extractor, pooling):

@@ -1,3 +1,4 @@
+import os
 import argparse
 import warnings
 
@@ -14,6 +15,11 @@ from utils import timed
 
 @timed
 def main(dataset, data_dir, pooling, debug=False):
+    save_path = f'results/projections|dataset:{dataset}|pooling:{pooling}.nc'
+    if os.path.exists(save_path):
+        print(f'Results already exists: {save_path}')
+        return
+
     proj_da = []
     for model, layers in get_activation_models():
         proj = get_projection(dataset, data_dir, model, pooling)
@@ -24,7 +30,7 @@ def main(dataset, data_dir, pooling, debug=False):
     proj_da = xr.concat(proj_da, dim='identifier')
     proj_da = proj_da.reset_index('identifier')
     if not debug:
-        proj_da.to_netcdf(f'results/projections|dataset:{dataset}|pooling:{pooling}.nc')
+        proj_da.to_netcdf(save_path)
 
 
 def get_projection(dataset, data_dir, activations_extractor, pooling):

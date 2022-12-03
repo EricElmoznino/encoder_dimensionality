@@ -1,3 +1,4 @@
+import os
 import argparse
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -14,6 +15,12 @@ from utils import timed
 
 @timed
 def main(dataset, data_dir, pooling, grayscale, debug=False):
+    save_paths = {'eigspectra': f'results/eigspectra|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv',
+                  'eigmetrics': f'results/eigmetrics|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv'} 
+    if os.path.exists(save_paths['eigspectra']) or os.path.exists(save_paths['eigmetrics']):
+        print(f'Results already exists: {save_paths["eigspectra"]}\n{save_paths["eigmetrics"]}')
+        return
+    
     image_transform = ImageDatasetTransformer('grayscale', Grayscale()) if grayscale else None
     eigspec_df = pd.DataFrame()
     eigmetrics_df = pd.DataFrame()
@@ -26,8 +33,8 @@ def main(dataset, data_dir, pooling, grayscale, debug=False):
             break
 
     if not debug:
-        eigspec_df.to_csv(f'results/eigspectra|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv', index=False)
-        eigmetrics_df.to_csv(f'results/eigmetrics|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv', index=False)
+        eigspec_df.to_csv(save_paths['eigspectra'], index=False)
+        eigmetrics_df.to_csv(save_paths['eigmetrics'], index=False)
 
 
 def get_eigenspectrum(dataset, data_dir, activations_extractor, pooling, image_transform):

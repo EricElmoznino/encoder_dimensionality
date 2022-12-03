@@ -1,3 +1,4 @@
+import os
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
@@ -10,6 +11,15 @@ from scripts.fit_encoding_models import fit_encoder, get_benchmark
 
 @timed
 def main():
+    save_paths = {'eigspectra': 'results/zca-counter-example|eigspectra.csv',
+                  'eigmetrics': 'results/zca-counter-example|eigmetrics.csv',
+                  'scores': 'results/zca-counter-example|encoding.csv'} 
+    if os.path.exists(save_paths['eigspectra']) or \
+        os.path.exists(save_paths['eigmetrics']) or \
+        os.path.exists(save_paths['scores']):
+        print(f'Results already exists: {save_paths["eigspectra"]}\n{save_paths["eigmetrics"]}\n{save_paths["scores"]}')
+        return
+
     benchmark = get_benchmark(benchmark='majajhong2015', region='IT', regression='pls', data_dir=None)
 
     eigspec_df = pd.DataFrame()
@@ -27,9 +37,9 @@ def main():
         layer_scores = fit_encoder(benchmark, model, layers, pooling=True, hooks=[LayerZCA])
         scores_df = scores_df.append(layer_scores)
 
-    eigspec_df.to_csv('results/zca-counter-example|eigspectra.csv', index=False)
-    eigmetrics_df.to_csv('results/zca-counter-example|eigmetrics.csv', index=False)
-    scores_df.to_csv('results/zca-counter-example|encoding.csv', index=False)
+    eigspec_df.to_csv(save_paths['eigspectra'], index=False)
+    eigmetrics_df.to_csv(save_paths['eigmetrics'], index=False)
+    scores_df.to_csv(save_paths['scores'], index=False)
 
 
 if __name__ == '__main__':

@@ -1,3 +1,4 @@
+import os
 import argparse
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -13,6 +14,11 @@ from utils import timed
 
 @timed
 def main(dataset, data_dir, pooling, debug=False):
+    save_path = f'results/manifolds|dataset:{dataset}|pooling:{pooling}.csv'
+    if os.path.exists(save_path):
+        print(f'Results already exists: {save_path}')
+        return
+
     manifold_statistics_df = pd.DataFrame()
     for model, layers in get_activation_models():
         manifold_statistics = get_manifold_statistics(dataset, data_dir, model, pooling)
@@ -21,7 +27,7 @@ def main(dataset, data_dir, pooling, debug=False):
         if debug:
             break
     if not debug:
-        manifold_statistics_df.to_csv(f'results/manifolds|dataset:{dataset}|pooling:{pooling}.csv', index=False)
+        manifold_statistics_df.to_csv(save_path, index=False)
 
 
 def get_manifold_statistics(dataset, data_dir, activations_extractor, pooling):

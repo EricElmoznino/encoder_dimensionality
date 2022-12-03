@@ -1,3 +1,4 @@
+import os
 import argparse
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -11,6 +12,11 @@ from utils import timed
 
 @timed
 def main(bench, pooling, debug=False):
+    save_path = f'results/dimusage|benchmark:{bench}|pooling:{pooling}.csv'
+    if os.path.exists(save_path):
+        print(f'Results already exists: {save_path}')
+        return
+
     dim_usage_df = pd.DataFrame()
     for model, layers in get_activation_models():
         dim_usage = get_dim_usage_class(bench, model, pooling)
@@ -20,7 +26,7 @@ def main(bench, pooling, debug=False):
             break
 
     if not debug:
-        dim_usage_df.to_csv(f'results/dimusage|benchmark:{bench}|pooling:{pooling}.csv', index=False)
+        dim_usage_df.to_csv(save_path, index=False)
 
 
 def get_dim_usage_class(bench, activations_extractor, pooling):

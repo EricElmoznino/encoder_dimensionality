@@ -1,3 +1,4 @@
+import os
 import argparse
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -12,6 +13,11 @@ from utils import timed
 
 @timed
 def main(dataset, data_dir, pooling, debug=False):
+    save_path = f'results/intrinsic-dim|dataset:{dataset}|pooling:{pooling}.csv'
+    if os.path.exists(save_path):
+        print(f'Results already exists: {save_path}')
+        return
+    
     intrinsic_dim_df = pd.DataFrame()
     for model, layers in get_activation_models():
         intrinsic_dim = get_intrinsic_dim(dataset, data_dir, model, pooling)
@@ -20,7 +26,7 @@ def main(dataset, data_dir, pooling, debug=False):
         if debug:
             break
     if not debug:
-        intrinsic_dim_df.to_csv(f'results/intrinsic-dim|dataset:{dataset}|pooling:{pooling}.csv', index=False)
+        intrinsic_dim_df.to_csv(save_path, index=False)
 
 
 def get_intrinsic_dim(dataset, data_dir, activations_extractor, pooling):
