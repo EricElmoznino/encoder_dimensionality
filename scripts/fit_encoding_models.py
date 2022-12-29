@@ -85,6 +85,17 @@ def get_benchmark(benchmark, region, regression, data_dir):
         elif regression == 'l2':
             benchmark._identifier = benchmark.identifier.replace('pls', 'l2')
             benchmark._similarity_metric.regression = ridge_regression()
+    elif benchmark == 'freeman2013':
+        assert region == 'V1'
+        identifier = f' movshon.FreemanZiemba2013public.{region}-pls'
+        benchmark = bench.load(identifier)
+        if regression == 'lin':
+            benchmark._identifier = benchmark.identifier.replace('pls', 'lin')
+            benchmark._similarity_metric.regression = linear_regression()
+            benchmark._similarity_metric.regression._regression.alpha = 0.1
+        elif regression == 'l2':
+            benchmark._identifier = benchmark.identifier.replace('pls', 'l2')
+            benchmark._similarity_metric.regression = ridge_regression()
     elif benchmark == 'object2vec':
         if region == 'all':
             region = None
@@ -98,7 +109,7 @@ def get_benchmark(benchmark, region, regression, data_dir):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Fit encoding models to a neural dataset')
     parser.add_argument('--bench', type=str, default='majajhong2015',
-                        choices=['majajhong2015', 'object2vec'],
+                        choices=['majajhong2015', 'freeman2013', 'object2vec'],
                         help='Neural benchmark dataset to fit')
     parser.add_argument('--region', type=str, default='IT',
                         help='Region(s) to fit. Valid region(s) depend on the neural benchmark')
