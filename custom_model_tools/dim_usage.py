@@ -8,6 +8,7 @@ from sklearn.decomposition import PCA
 from result_caching import store_dict
 import brainscore.benchmarks as bench
 from brainscore.benchmarks._neural_common import explained_variance
+from brainscore.metrics.regression import linear_regression
 from model_tools.activations.pca import LayerPCA, _get_imagenet_val
 from model_tools.activations.core import flatten, change_dict
 from model_tools.utils import fullname
@@ -103,10 +104,14 @@ class DimUsageBase(ABC):
 
 class DimUsageMajajHongIT(DimUsageBase):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, regression='pls', **kwargs):
         super(DimUsageMajajHongIT, self).__init__(*args, **kwargs)
 
         self._benchmark = bench.load('dicarlo.MajajHong2015public.IT-pls')
+        if regression == 'lin':
+            self._benchmark._identifier = self._benchmark.identifier.replace('pls', 'lin')
+            self._benchmark._similarity_metric.regression = linear_regression()
+            self._benchmark._similarity_metric.regression._regression.alpha = 0.1
 
     @property
     def benchmark_identifier(self):
