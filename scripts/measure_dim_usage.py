@@ -12,7 +12,7 @@ from utils import timed
 
 @timed
 def main(bench, regression, pooling, debug=False):
-    save_path = f'results/dimusage|benchmark:{bench}|pooling:{pooling}.csv'
+    save_path = f'results/dimusage|benchmark:{bench}|reg:{regression}|pooling:{pooling}.csv'
     if os.path.exists(save_path):
         print(f'Results already exists: {save_path}')
         return
