@@ -87,7 +87,7 @@ def get_benchmark(benchmark, region, regression, data_dir):
             benchmark._similarity_metric.regression = ridge_regression()
     elif benchmark == 'freeman2013':
         assert region == 'V1'
-        identifier = f' movshon.FreemanZiemba2013public.{region}-pls'
+        identifier = f'movshon.FreemanZiemba2013public.{region}-pls'
         benchmark = bench.load(identifier)
         if regression == 'lin':
             benchmark._identifier = benchmark.identifier.replace('pls', 'lin')
