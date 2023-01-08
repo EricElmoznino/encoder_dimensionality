@@ -71,7 +71,7 @@ def fit_rsa(benchmark, model, layers, pooling, hooks=None):
     return layer_scores
 
 
-def get_benchmark(benchmark, region, data_dir):
+def get_benchmark(benchmark, region):
     if benchmark == 'majajhong2015':
         assert region in ['IT', 'V4']
         benchmark = DicarloMajajHong2015ITRSA() if region == 'IT' else DicarloMajajHong2015V4RSA()
@@ -93,5 +93,5 @@ if __name__ == '__main__':
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()
 
-    benchmark = get_benchmark(benchmark=args.bench, region=args.region, data_dir=args.data_dir)
+    benchmark = get_benchmark(benchmark=args.bench, region=args.region)
     main(benchmark=benchmark, pooling=args.pooling, debug=args.debug)
