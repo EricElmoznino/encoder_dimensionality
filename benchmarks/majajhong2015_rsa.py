@@ -20,15 +20,15 @@ def _DicarloMajajHong2015Region(region, identifier_metric_suffix, similarity_met
                            bibtex=BIBTEX)
 
 
-def DicarloMajajHong2015V4RDM():
-    return _DicarloMajajHong2015Region('V4', identifier_metric_suffix='rdm',
+def DicarloMajajHong2015V4RSA():
+    return _DicarloMajajHong2015Region('V4', identifier_metric_suffix='rsa',
                                        similarity_metric=RDMCrossValidated(
                                            crossvalidation_kwargs=dict(stratification_coord='object_name')),
                                        ceiler=RDMConsistency())
 
 
-def DicarloMajajHong2015ITRDM():
-    return _DicarloMajajHong2015Region('IT', identifier_metric_suffix='rdm',
+def DicarloMajajHong2015ITRSA():
+    return _DicarloMajajHong2015Region('IT', identifier_metric_suffix='rsa',
                                        similarity_metric=RDMCrossValidated(
                                            crossvalidation_kwargs=dict(stratification_coord='object_name')),
                                        ceiler=RDMConsistency())
