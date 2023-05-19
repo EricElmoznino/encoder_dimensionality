@@ -8,17 +8,21 @@ import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
-from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
+from custom_model_tools.hooks import GlobalMaxPool2d, GlobalAvgPool2d, RandomProjection
 from custom_model_tools.image_transform import ImageDatasetTransformer
 from utils import id_to_properties, get_imagenet_val
 from typing import Optional, List
 
 
 class EigenspectrumBase:
-
-    def __init__(self, activations_extractor, pooling=True, stimuli_identifier=None,
-                 image_transform: Optional[ImageDatasetTransformer] = None,
-                 hooks: Optional[List] = None):
+    def __init__(
+        self,
+        activations_extractor,
+        pooling="max",
+        stimuli_identifier=None,
+        image_transform: Optional[ImageDatasetTransformer] = None,
+        hooks: Optional[List] = None,
+    ):
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
         self._pooling = pooling
@@ -28,16 +32,22 @@ class EigenspectrumBase:
         self._layer_eigenspectra = {}
 
     def fit(self, layers):
-        transform_name = None if self._image_transform is None else self._image_transform.name
-        self._layer_eigenspectra = self._fit(identifier=self._extractor.identifier,
-                                             stimuli_identifier=self._stimuli_identifier,
-                                             layers=layers,
-                                             pooling=self._pooling,
-                                             image_transform_name=transform_name)
+        transform_name = (
+            None if self._image_transform is None else self._image_transform.name
+        )
+        self._layer_eigenspectra = self._fit(
+            identifier=self._extractor.identifier,
+            stimuli_identifier=self._stimuli_identifier,
+            layers=layers,
+            pooling=self._pooling,
+            image_transform_name=transform_name,
+        )
 
     def effective_dimensionalities(self):
-        effdims = {layer: eigspec.sum() ** 2 / (eigspec ** 2).sum()
-                   for layer, eigspec in self._layer_eigenspectra.items()}
+        effdims = {
+            layer: eigspec.sum() ** 2 / (eigspec**2).sum()
+            for layer, eigspec in self._layer_eigenspectra.items()
+        }
         return effdims
 
     def eighty_percent_var(self):
@@ -66,7 +76,9 @@ class EigenspectrumBase:
     def as_df(self):
         df = pd.DataFrame()
         for layer, eigspec in self._layer_eigenspectra.items():
-            layer_df = pd.DataFrame({'n': range(1, len(eigspec) + 1), 'variance': eigspec})
+            layer_df = pd.DataFrame(
+                {"n": range(1, len(eigspec) + 1), "variance": eigspec}
+            )
             layer_df = layer_df.assign(layer=layer)
             df = df.append(layer_df)
         properties = id_to_properties(self._extractor.identifier)
@@ -79,40 +91,52 @@ class EigenspectrumBase:
         alpha = self.powerlaw_exponent()
         df = pd.DataFrame()
         for layer in self._layer_eigenspectra:
-            df = df.append({'layer': layer,
-                            'effective dimensionality': effdims[layer],
-                            '80% variance': eightyvar[layer],
-                            'alpha': alpha[layer]},
-                           ignore_index=True)
+            df = df.append(
+                {
+                    "layer": layer,
+                    "effective dimensionality": effdims[layer],
+                    "80% variance": eightyvar[layer],
+                    "alpha": alpha[layer],
+                },
+                ignore_index=True,
+            )
         properties = id_to_properties(self._extractor.identifier)
         df = df.assign(**properties)
         return df
 
-    @store_dict(dict_key='layers', identifier_ignore=['layers'])
-    def _fit(self, identifier, stimuli_identifier, layers, pooling, image_transform_name):
+    @store_dict(dict_key="layers", identifier_ignore=["layers"])
+    def _fit(
+        self, identifier, stimuli_identifier, layers, pooling, image_transform_name
+    ):
         image_paths = self.get_image_paths()
         if self._image_transform is not None:
-            image_paths = self._image_transform.transform_dataset(self._stimuli_identifier, image_paths)
+            image_paths = self._image_transform.transform_dataset(
+                self._stimuli_identifier, image_paths
+            )
 
         # Compute activations and PCA for every layer individually to save on memory.
         # This is more inefficient because we run images through the network several times,
         # but it is a more scalable approach when using many images and large layers.
         layer_eigenspectra = {}
         for layer in layers:
-            if pooling:
+            if pooling == "max":
                 handle = GlobalMaxPool2d.hook(self._extractor)
-            else:
+            elif pooling == "avg":
+                handle = GlobalAvgPool2d.hook(self._extractor)
+            elif pooling == "none":
                 handle = RandomProjection.hook(self._extractor)
+            else:
+                raise ValueError(f"Unknown pooling method {pooling}")
 
             handles = []
             if self._hooks is not None:
                 handles = [cls.hook(self._extractor) for cls in self._hooks]
 
-            self._logger.debug('Retrieving stimulus activations')
+            self._logger.debug("Retrieving stimulus activations")
             activations = self._extractor(image_paths, layers=[layer])
             activations = activations.sel(layer=layer).values
 
-            self._logger.debug('Computing principal components')
+            self._logger.debug("Computing principal components")
             progress = tqdm(total=1, desc="layer principal components")
             activations = flatten(activations)
             pca = PCA(random_state=0)
@@ -135,21 +159,22 @@ class EigenspectrumBase:
 
 
 class EigenspectrumImageNet(EigenspectrumBase):
-
     def __init__(self, *args, num_classes=1000, num_per_class=10, **kwargs):
-        super(EigenspectrumImageNet, self).__init__(*args, **kwargs,
-                                                    stimuli_identifier='imagenet')
+        super(EigenspectrumImageNet, self).__init__(
+            *args, **kwargs, stimuli_identifier="imagenet"
+        )
         assert 1 <= num_classes <= 1000 and 1 <= num_per_class <= 100
         self.num_classes = num_classes
         self.num_per_class = num_per_class
-        self.image_paths = get_imagenet_val(num_classes=num_classes, num_per_class=num_per_class)
+        self.image_paths = get_imagenet_val(
+            num_classes=num_classes, num_per_class=num_per_class
+        )
 
     def get_image_paths(self) -> List[str]:
         return self.image_paths
 
 
 class EigenspectrumImageFolder(EigenspectrumBase):
-
     def __init__(self, data_dir, *args, num_images=None, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -170,8 +195,9 @@ class EigenspectrumImageFolder(EigenspectrumBase):
 
 
 class EigenspectrumNestedImageFolder(EigenspectrumBase):
-
-    def __init__(self, data_dir, *args, num_folders=None, num_per_folder=None, **kwargs):
+    def __init__(
+        self, data_dir, *args, num_folders=None, num_per_folder=None, **kwargs
+    ):
         super().__init__(*args, **kwargs)
 
         self.num_folders = num_folders
@@ -200,27 +226,30 @@ class EigenspectrumNestedImageFolder(EigenspectrumBase):
 
 
 class EigenspectrumImageNet21k(EigenspectrumNestedImageFolder):
-
     def __init__(self, data_dir, *args, num_classes=996, num_per_class=10, **kwargs):
-        super().__init__(data_dir, *args, num_folders=num_classes, num_per_folder=num_per_class, **kwargs,
-                         stimuli_identifier='imagenet21k')
+        super().__init__(
+            data_dir,
+            *args,
+            num_folders=num_classes,
+            num_per_folder=num_per_class,
+            **kwargs,
+            stimuli_identifier="imagenet21k",
+        )
 
 
 class EigenspectrumObject2Vec(EigenspectrumNestedImageFolder):
-
     def __init__(self, data_dir, *args, **kwargs):
-        data_dir = os.path.join(data_dir, 'stimuli_rgb')
-        super().__init__(data_dir, *args, **kwargs,
-                         stimuli_identifier='object2vec')
+        data_dir = os.path.join(data_dir, "stimuli_rgb")
+        super().__init__(data_dir, *args, **kwargs, stimuli_identifier="object2vec")
 
 
 class EigenspectrumMajajHong2015(EigenspectrumImageFolder):
-
     def __init__(self, *args, **kwargs):
-        data_dir = os.getenv('BRAINIO_HOME', os.path.expanduser('~/.brainio'))
-        data_dir = os.path.join(data_dir, 'image_dicarlo_hvm-public')
+        data_dir = os.getenv("BRAINIO_HOME", os.path.expanduser("~/.brainio"))
+        data_dir = os.path.join(data_dir, "image_dicarlo_hvm-public")
         assert os.path.exists(data_dir)
-        super().__init__(data_dir, *args, **kwargs,
-                         stimuli_identifier='dicarlo.hvm-public')
+        super().__init__(
+            data_dir, *args, **kwargs, stimuli_identifier="dicarlo.hvm-public"
+        )
 
-        self.image_paths = [p for p in self.image_paths if p[-4:] == '.png']
+        self.image_paths = [p for p in self.image_paths if p[-4:] == ".png"]
