@@ -57,8 +57,13 @@ if __name__ == '__main__':
                         help='Dataset for which to compute pairwise class projections')
     parser.add_argument('--data_dir', type=str, default=None,
                         help='Data directory containing stimuli')
-    parser.add_argument('--no_pooling', dest='pooling', action='store_false',
-                        help='Do not perform global max-pooling prior to computing the projections')
+    parser.add_argument(
+        "--pooling",
+        type=str,
+        default="max",
+        choices=["max", "avg", "none"],
+        help="Perform pooling prior to computing the projections",
+    )
     parser.add_argument('--debug', action='store_true',
                         help='Just run a single model to make sure there are no errors')
     args = parser.parse_args()

@@ -15,7 +15,7 @@ import numpy as np
 from tqdm import tqdm
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
-from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
+from custom_model_tools.hooks import GlobalMaxPool2d, GlobalAvgPool2d, RandomProjection
 from utils import id_to_properties, get_imagenet_val
 from typing import List, Dict
 
@@ -24,7 +24,7 @@ class NShotLearningBase:
 
     def __init__(self, activations_extractor, classifier,
                  n_cats=50, n_train=(1, 5, 20, 50), n_test=50,
-                 n_repeats=10, pooling=True, stimuli_identifier=None):
+                 n_repeats=10, pooling='max', stimuli_identifier=None):
         assert classifier in ['linear', 'prototype', 'maxmargin']
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
@@ -64,10 +64,14 @@ class NShotLearningBase:
         # but it is a more scalable approach when using many images and large layers.
         layer_performance_statistics = {}
         for layer in layers:
-            if pooling:
+            if pooling == "max":
                 handle = GlobalMaxPool2d.hook(self._extractor)
-            else:
+            elif pooling == "avg":
+                handle = GlobalAvgPool2d.hook(self._extractor)
+            elif pooling == "none":
                 handle = RandomProjection.hook(self._extractor)
+            else:
+                raise ValueError(f"Unknown pooling method {pooling}")
 
             self._logger.debug('Retrieving activations')
             activations = self._extractor([path for cat in cat_paths for path in cat], layers=[layer])

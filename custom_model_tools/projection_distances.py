@@ -7,14 +7,14 @@ import xarray as xr
 from result_caching import store_xarray
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
-from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
+from custom_model_tools.hooks import GlobalMaxPool2d, GlobalAvgPool2d, RandomProjection
 from utils import id_to_properties, get_imagenet_val
 from typing import List, Dict
 
 
 class ProjectionDistancesBase:
 
-    def __init__(self, activations_extractor, pooling=True, stimuli_identifier=None):
+    def __init__(self, activations_extractor, pooling='max', stimuli_identifier=None):
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
         self._pooling = pooling
@@ -61,10 +61,14 @@ class ProjectionDistancesBase:
                                                       'target_category': cat_names,
                                                       'layer': layers})
         for layer in layers:
-            if pooling:
+            if pooling == "max":
                 handle = GlobalMaxPool2d.hook(self._extractor)
-            else:
+            elif pooling == "avg":
+                handle = GlobalAvgPool2d.hook(self._extractor)
+            elif pooling == "none":
                 handle = RandomProjection.hook(self._extractor)
+            else:
+                raise ValueError(f"Unknown pooling method {pooling}")
 
             # Get all activations
             self._logger.debug('Retrieving activations')
