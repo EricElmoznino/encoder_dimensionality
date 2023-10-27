@@ -20,11 +20,16 @@ from utils import timed
 
 
 @timed
-def main(dataset, data_dir, pooling, grayscale, debug=False):
+def main(dataset, data_dir, pooling, additional, grayscale, debug=False):
     save_paths = {
         "eigspectra": f"results/eigspectra|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv",
         "eigmetrics": f"results/eigmetrics|dataset:{dataset}|pooling:{pooling}|grayscale:{grayscale}.csv",
     }
+    if additional:
+        save_paths = {
+            k: path.replace(".csv", "|additional:True.csv")
+            for k, path in save_paths.items()
+        }
     if os.path.exists(save_paths["eigspectra"]) or os.path.exists(
         save_paths["eigmetrics"]
     ):
@@ -38,7 +43,7 @@ def main(dataset, data_dir, pooling, grayscale, debug=False):
     )
     eigspec_df = pd.DataFrame()
     eigmetrics_df = pd.DataFrame()
-    for model, layers in get_activation_models():
+    for model, layers in get_activation_models(additional=additional):
         eigspec = get_eigenspectrum(dataset, data_dir, model, pooling, image_transform)
         eigspec.fit(layers)
         eigspec_df = eigspec_df.append(eigspec.as_df())
@@ -100,9 +105,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "--pooling",
         type=str,
-        default="max",
+        default="avg",
         choices=["max", "avg", "none"],
         help="Perform pooling prior to computing the eigenspectrum",
+    )
+    parser.add_argument(
+        "--additional_models",
+        dest="additional",
+        action="store_true",
+        help="Run only additional models (AlexNet, VGG16, SqueezeNet)",
     )
     parser.add_argument(
         "--grayscale",
@@ -120,6 +131,7 @@ if __name__ == "__main__":
         dataset=args.dataset,
         data_dir=args.data_dir,
         pooling=args.pooling,
+        additional=args.additional,
         grayscale=args.grayscale,
         debug=args.debug,
     )

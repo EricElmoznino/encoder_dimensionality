@@ -18,16 +18,18 @@ from utils import timed, id_to_properties
 
 
 @timed
-def main(benchmark, pooling, debug=False):
+def main(benchmark, pooling, additional, debug=False):
     save_path = (
         f"results/encoding|benchmark:{benchmark._identifier}|pooling:{pooling}.csv"
     )
+    if additional:
+        save_path = save_path.replace(".csv", "|additional:True.csv")
     if os.path.exists(save_path):
         print(f"Results already exists: {save_path}")
         return
 
     scores = pd.DataFrame()
-    for model, layers in get_activation_models():
+    for model, layers in get_activation_models(additional=additional):
         layer_scores = fit_encoder(benchmark, model, layers, pooling)
         scores = scores.append(layer_scores)
         if debug:
@@ -153,6 +155,12 @@ if __name__ == "__main__":
         help="Do not perform global max-pooling prior to fitting",
     )
     parser.add_argument(
+        "--additional_models",
+        dest="additional",
+        action="store_true",
+        help="Run only additional models (AlexNet, VGG16, SqueezeNet)",
+    )
+    parser.add_argument(
         "--debug",
         action="store_true",
         help="Just run a single model to make sure there are no errors",
@@ -165,4 +173,9 @@ if __name__ == "__main__":
         regression=args.regression,
         data_dir=args.data_dir,
     )
-    main(benchmark=benchmark, pooling=args.pooling, debug=args.debug)
+    main(
+        benchmark=benchmark,
+        pooling=args.pooling,
+        additional=args.additional,
+        debug=args.debug,
+    )
