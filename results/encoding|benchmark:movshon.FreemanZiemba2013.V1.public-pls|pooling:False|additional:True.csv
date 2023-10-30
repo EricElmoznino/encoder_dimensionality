@@ -1,0 +1,33 @@
+layer,score,score_error,architecture,task,kind,source
+features.1,0.12212083242950965,0.01265959156943614,AlexNet,None,Untrained,PyTorch
+features.4,0.2248804266257047,0.01043303888532009,AlexNet,None,Untrained,PyTorch
+features.7,0.21828695857623667,0.008776479213110816,AlexNet,None,Untrained,PyTorch
+features.9,0.21061518991346193,0.011275531733129647,AlexNet,None,Untrained,PyTorch
+features.11,0.22087673616421358,0.013184728497609972,AlexNet,None,Untrained,PyTorch
+features.1,0.24996230730913482,0.01404497048434003,AlexNet,Object Classification,Supervised,PyTorch
+features.4,0.259147595558119,0.006277094622084864,AlexNet,Object Classification,Supervised,PyTorch
+features.7,0.2073529535725518,0.009291149960329424,AlexNet,Object Classification,Supervised,PyTorch
+features.9,0.16657938283983437,0.01841573820711223,AlexNet,Object Classification,Supervised,PyTorch
+features.11,0.11634601573432075,0.009894206297101114,AlexNet,Object Classification,Supervised,PyTorch
+features.18,0.1698253685706062,0.01514753214097089,VGG16,None,Untrained,PyTorch
+features.20,0.17970600932632336,0.014081848156682791,VGG16,None,Untrained,PyTorch
+features.22,0.1703651412087827,0.013080643436829182,VGG16,None,Untrained,PyTorch
+features.25,0.1825379348735146,0.01626393808271752,VGG16,None,Untrained,PyTorch
+features.27,0.19248372526802776,0.01599173533934593,VGG16,None,Untrained,PyTorch
+features.29,0.19577832587280272,0.014105535171302488,VGG16,None,Untrained,PyTorch
+features.18,0.20635373267320636,0.016829410441067196,VGG16,Object Classification,Supervised,PyTorch
+features.20,0.17207248208654144,0.020134927053110003,VGG16,Object Classification,Supervised,PyTorch
+features.22,0.1383675467790722,0.019386399685815774,VGG16,Object Classification,Supervised,PyTorch
+features.25,0.11433029960129953,0.017471134447942745,VGG16,Object Classification,Supervised,PyTorch
+features.27,0.10030050626447672,0.01940821426951766,VGG16,Object Classification,Supervised,PyTorch
+features.29,0.08068658093711413,0.019142828995640754,VGG16,Object Classification,Supervised,PyTorch
+features.4,0.12294968557619618,0.014387982226243504,SqueezeNet,None,Untrained,PyTorch
+features.6,0.13878438091402676,0.010868003394985372,SqueezeNet,None,Untrained,PyTorch
+features.8,0.1316417363202705,0.011052578294714925,SqueezeNet,None,Untrained,PyTorch
+features.10,0.10977353937256626,0.010860467669579267,SqueezeNet,None,Untrained,PyTorch
+features.12,0.09219468436507282,0.010696787749804275,SqueezeNet,None,Untrained,PyTorch
+features.4,0.2355909391347196,0.011162565852805844,SqueezeNet,Object Classification,Supervised,PyTorch
+features.6,0.25274454114689865,0.012234504668591356,SqueezeNet,Object Classification,Supervised,PyTorch
+features.8,0.19816486158952007,0.016070009905873962,SqueezeNet,Object Classification,Supervised,PyTorch
+features.10,0.14491929901135958,0.011204692181667135,SqueezeNet,Object Classification,Supervised,PyTorch
+features.12,0.10080520419901194,0.016184348089248228,SqueezeNet,Object Classification,Supervised,PyTorch
