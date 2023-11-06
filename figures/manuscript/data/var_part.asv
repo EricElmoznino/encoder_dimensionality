@@ -1,0 +1,7 @@
+% Load data
+file = 'data.csv';
+T = readtable(file);
+
+% Variance partitioning
+X = table(log10(T.ED), log10(T.MRR), 'VariableNames', {'ED', 'MRR'});
+explained = regCommonality_lsqminnorm(T.EncodingScore, X) 
