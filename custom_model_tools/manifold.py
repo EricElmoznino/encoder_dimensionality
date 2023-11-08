@@ -7,15 +7,14 @@ from tqdm import tqdm
 from brainio_base.assemblies import NeuroidAssembly
 from model_tools.activations.core import flatten
 from model_tools.utils import fullname
-from custom_model_tools.hooks import GlobalMaxPool2d, RandomProjection
+from custom_model_tools.hooks import GlobalMaxPool2d, GlobalAvgPool2d, RandomProjection
 from lib.manifold_geometry import ManifoldGeometry, get_manifold_statistics
 from utils import id_to_properties, get_imagenet_val
 from typing import List
 
 
 class ManifoldStatisticsBase:
-
-    def __init__(self, activations_extractor, pooling=True, stimuli_identifier=None):
+    def __init__(self, activations_extractor, pooling="max", stimuli_identifier=None):
         self._logger = logging.getLogger(fullname(self))
         self._extractor = activations_extractor
         self._pooling = pooling
@@ -23,21 +22,23 @@ class ManifoldStatisticsBase:
         self._layer_manifold_statistics = {}
 
     def fit(self, layers):
-        self._layer_manifold_statistics = self._fit(identifier=self._extractor.identifier,
-                                                    stimuli_identifier=self._stimuli_identifier,
-                                                    layers=layers,
-                                                    pooling=self._pooling)
+        self._layer_manifold_statistics = self._fit(
+            identifier=self._extractor.identifier,
+            stimuli_identifier=self._stimuli_identifier,
+            layers=layers,
+            pooling=self._pooling,
+        )
 
     def as_df(self):
         df = pd.DataFrame()
         for layer, statistics in self._layer_manifold_statistics.items():
-            statistics['layer'] = layer
+            statistics["layer"] = layer
             df = df.append(statistics, ignore_index=True)
         properties = id_to_properties(self._extractor.identifier)
         df = df.assign(**properties)
         return df
 
-    @store_dict(dict_key='layers', identifier_ignore=['layers'])
+    @store_dict(dict_key="layers", identifier_ignore=["layers"])
     def _fit(self, identifier, stimuli_identifier, layers, pooling):
         concept_paths = self.get_image_concept_paths()
 
@@ -46,22 +47,28 @@ class ManifoldStatisticsBase:
         # but it is a more scalable approach when using many images and large layers.
         layer_manifold_statistics = {}
         for layer in layers:
-            if pooling:
+            if pooling == "max":
                 handle = GlobalMaxPool2d.hook(self._extractor)
-            else:
+            elif pooling == "avg":
+                handle = GlobalAvgPool2d.hook(self._extractor)
+            elif pooling == "none":
                 handle = RandomProjection.hook(self._extractor)
+            else:
+                raise ValueError(f"Unknown pooling method {pooling}")
 
-            self._logger.debug('Computing concept manifold geometries')
+            self._logger.debug("Computing concept manifold geometries")
             concept_manifolds = []
-            for stimuli_paths in tqdm(concept_paths, desc='concept manifolds'):
+            for stimuli_paths in tqdm(concept_paths, desc="concept manifolds"):
                 activations = self._extractor(stimuli_paths, layers=[layer])
                 activations = activations.sel(layer=layer).values
                 activations = flatten(activations)
                 concept_manifolds.append(ManifoldGeometry(activations))
 
-            self._logger.debug('Computing concept manifold statistics')
+            self._logger.debug("Computing concept manifold statistics")
             progress = tqdm(total=1, desc="manifold statistics")
-            layer_manifold_statistics[layer] = get_manifold_statistics(concept_manifolds)
+            layer_manifold_statistics[layer] = get_manifold_statistics(
+                concept_manifolds
+            )
             progress.update(1)
             progress.close()
 
@@ -74,20 +81,22 @@ class ManifoldStatisticsBase:
 
 
 class ManifoldStatisticsImageNet(ManifoldStatisticsBase):
-
-    def __init__(self, activations_extractor, num_classes=50, num_per_class=50, pooling=True):
-        super().__init__(activations_extractor, pooling, 'imagenet')
+    def __init__(
+        self, activations_extractor, num_classes=50, num_per_class=50, pooling=True
+    ):
+        super().__init__(activations_extractor, pooling, "imagenet")
         assert 2 <= num_classes <= 1000 and 2 <= num_per_class <= 100
         self.num_classes = num_classes
         self.num_per_class = num_per_class
-        self.concept_paths = get_imagenet_val(num_classes, num_per_class, separate_classes=True)
+        self.concept_paths = get_imagenet_val(
+            num_classes, num_per_class, separate_classes=True
+        )
 
     def get_image_concept_paths(self) -> List[List[str]]:
         return self.concept_paths
 
 
 class ManifoldStatisticsImageFolder(ManifoldStatisticsBase):
-
     def __init__(self, data_dir, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -108,13 +117,20 @@ class ManifoldStatisticsImageFolder(ManifoldStatisticsBase):
 
 
 class ManifoldStatisticsImageNet21k(ManifoldStatisticsImageFolder):
-
-    def __init__(self, data_dir, num_classes=50, num_per_class=50,
-                 stimuli_identifier=None, *args, **kwargs):
+    def __init__(
+        self,
+        data_dir,
+        num_classes=50,
+        num_per_class=50,
+        stimuli_identifier=None,
+        *args,
+        **kwargs,
+    ):
         if stimuli_identifier is None:
-            stimuli_identifier = 'imagenet21k'
-        super().__init__(data_dir, *args, **kwargs,
-                         stimuli_identifier=stimuli_identifier)
+            stimuli_identifier = "imagenet21k"
+        super().__init__(
+            data_dir, *args, **kwargs, stimuli_identifier=stimuli_identifier
+        )
         self.num_classes = num_classes
         self.num_per_class = num_per_class
 
@@ -126,28 +142,27 @@ class ManifoldStatisticsImageNet21k(ManifoldStatisticsImageFolder):
 
 
 class ManifoldStatisticsObject2Vec(ManifoldStatisticsImageFolder):
-
     def __init__(self, data_dir, *args, **kwargs):
-        data_dir = os.path.join(data_dir, 'stimuli_rgb')
-        super().__init__(data_dir, *args, **kwargs,
-                         stimuli_identifier='object2vec')
+        data_dir = os.path.join(data_dir, "stimuli_rgb")
+        super().__init__(data_dir, *args, **kwargs, stimuli_identifier="object2vec")
 
 
 class ManifoldStatisticsMajajHong2015(ManifoldStatisticsBase):
     # Brainscore IT benchmark images (64 objects, 50 images/object)
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs,
-                         stimuli_identifier='dicarlo.hvm-public')
+        super().__init__(*args, **kwargs, stimuli_identifier="dicarlo.hvm-public")
 
-        data_dir = os.getenv('BRAINIO_HOME', os.path.expanduser('~/.brainio'))
-        data_dir = os.path.join(data_dir, 'image_dicarlo_hvm-public')
+        data_dir = os.getenv("BRAINIO_HOME", os.path.expanduser("~/.brainio"))
+        data_dir = os.path.join(data_dir, "image_dicarlo_hvm-public")
         assert os.path.exists(data_dir)
 
-        concept_paths = pd.read_csv(os.path.join(data_dir, 'image_dicarlo_hvm-public.csv'))
-        concept_paths = concept_paths[['object_name', 'filename']]
-        concept_paths['filename'] = data_dir + '/' + concept_paths['filename']
-        concept_paths = concept_paths.groupby('object_name')['filename'].agg(list)
+        concept_paths = pd.read_csv(
+            os.path.join(data_dir, "image_dicarlo_hvm-public.csv")
+        )
+        concept_paths = concept_paths[["object_name", "filename"]]
+        concept_paths["filename"] = data_dir + "/" + concept_paths["filename"]
+        concept_paths = concept_paths.groupby("object_name")["filename"].agg(list)
         concept_paths = concept_paths.values.tolist()
         self.concept_paths = concept_paths
 
@@ -157,8 +172,10 @@ class ManifoldStatisticsMajajHong2015(ManifoldStatisticsBase):
 
 def neural_assembly_manifold_statistics(assembly: NeuroidAssembly, concept_coord: str):
     concept_manifolds = [g[1].values for g in assembly.groupby(concept_coord)]
-    concept_manifolds = [ManifoldGeometry(activations)
-                         for activations in tqdm(concept_manifolds, desc='concept manifolds')]
+    concept_manifolds = [
+        ManifoldGeometry(activations)
+        for activations in tqdm(concept_manifolds, desc="concept manifolds")
+    ]
     progress = tqdm(total=1, desc="manifold statistics")
     manifold_statistics = get_manifold_statistics(concept_manifolds)
     progress.update(1)

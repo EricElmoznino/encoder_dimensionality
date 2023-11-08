@@ -94,10 +94,11 @@ if __name__ == "__main__":
         "--data_dir", type=str, default=None, help="Data directory containing stimuli"
     )
     parser.add_argument(
-        "--no_pooling",
-        dest="pooling",
-        action="store_false",
-        help="Do not perform global max-pooling prior to computing the manifold statistics",
+        "--pooling",
+        type=str,
+        default="avg",
+        choices=["max", "avg", "none"],
+        help="Perform pooling prior to computing the manifold statistics",
     )
     parser.add_argument(
         "--additional_models",
